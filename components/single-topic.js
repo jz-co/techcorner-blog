@@ -1,5 +1,5 @@
 import Link from 'next/Link'
-import { Button, Text, Box } from "@chakra-ui/react"
+import { Button, Text, Box, LinkBox, LinkOverlay } from "@chakra-ui/react"
 
 function SingleTopicButton({ topic, to, ...props }) {
     return (
@@ -11,8 +11,9 @@ function SingleTopicButton({ topic, to, ...props }) {
                 textAlign="center"
                 width="240px"
                 height="50px"
-                color="#686868"
+                color="#656565"
                 px="24px"
+                _hover={{ boxShadow: '0px 1px 12px rgba(0, 0, 0, 0.25)', color: "#353535" }}
                 { ...props }>
                 <Text isTruncated>
                     { topic }
@@ -22,10 +23,10 @@ function SingleTopicButton({ topic, to, ...props }) {
     )
 }
 
-function SingleTopicCard({ topic, category, to, ...props}) {
+function SingleTopicCard({ topic, category, to="/", ...props}) {
 
     return (
-        <Box
+        <LinkBox
             as="button"
             bg="white"
             borderRadius="16px"
@@ -34,20 +35,23 @@ function SingleTopicCard({ topic, category, to, ...props}) {
             textAlign="left"
             color="#353535"
             p="28px"
+            _hover={{ boxShadow: '0px 1px 12px rgba(0, 0, 0, 0.25)' }}
             { ...props }>
             <Text 
-             isTruncated
-             fontWeight="bold">
-                { topic }
+            isTruncated
+            fontWeight="bold">
+                <Link href={to}>
+                    <LinkOverlay>{topic}</LinkOverlay>
+                </Link>
             </Text>
             <Text 
-             fontSize="sm"
-             color="#959595"
-             isTruncated
-             fontWeight="normal">
+            fontSize="sm"
+            color="#959595"
+            isTruncated
+            fontWeight="normal">
                 {category}
             </Text>
-        </Box>
+        </LinkBox>
     )
 
 }

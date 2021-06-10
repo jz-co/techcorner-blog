@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 
 import Container from '../components/container'
-import { SingleTopicButton, SingleTopicCard } from '../components/single-topic-btn'
+import { SingleTopicButton, SingleTopicCard } from '../components/single-topic'
 import NoteSectionContainer from '../components/note-section-container'
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
       <HStack
         spacing={8}
         mb={8}>
-        <SingleTopicCard topic="Big O Notation" category="Algorithms"/>
+        <SingleTopicCard topic="Big O Notation" category="Algorithms" to="/notes/"/>
         <SingleTopicCard topic="Time Complexity" category="Algorithms"/>
         <SingleTopicCard topic="Space Complexity with more" category="Algorithms"/>
       </HStack>
