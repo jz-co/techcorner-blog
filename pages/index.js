@@ -5,8 +5,24 @@ import Image from 'next/image'
 import Container from '../components/container'
 import { SingleTopicButton, SingleTopicCard } from '../components/single-topic'
 import NoteSectionContainer from '../components/note-section-container'
+import AddResourcesCard from '../components/add-resources'
 
 export default function Home() {
+
+  const addResources = [
+    {
+      title: "Google Home",
+      name: "Google",
+      link: "https://google.com",
+      icon: "/favicon.ico"
+    },
+    {
+      title: "Google Home 2",
+      name: "Google",
+      link: "https://google.com",
+      icon: "/favicon.ico"
+    }
+  ]
   return (
     <Container>
       <Head>
@@ -40,6 +56,7 @@ export default function Home() {
           Hello world...
         </Text>
       </NoteSectionContainer>
+      <AddResourcesCard srcs={addResources} w="300px" mt={8}/>
 
     </Container>
   )
