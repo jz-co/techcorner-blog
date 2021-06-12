@@ -1,4 +1,4 @@
-import Link from 'next/Link'
+import Link from 'next/link'
 import styled from '@emotion/styled'
 import {
     Flex,
@@ -40,6 +40,7 @@ const NavBar = (props) => {
             <Box>
                 <NavLink to="/" label="Home"/>
                 <NavLink to="/about" label="About Us"/>
+                <NavLink to="/notes" label="Notes"/>
             </Box>
         </NavContainer>
     )
