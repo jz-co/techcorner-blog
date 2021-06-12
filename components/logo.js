@@ -15,7 +15,7 @@ export default function Logo(props) {
 				<line x1='46.53' y1='151.653' x2='178.53' y2='76.6527' stroke='#63D3F6' stroke-width='10' />
 				<line x1='60.4816' y1='95.0232' x2='246.482' y2='113.023' stroke='#63D3F6' stroke-width='10' />
 			</svg>
-			<Text fontSize='lg' fontWeight='bold' color="gray.600">
+			<Text fontSize='lg' fontWeight='bold' color="gray.600" minW="fit-content">
 				Tech Corner
 			</Text>
 		</HStack>
