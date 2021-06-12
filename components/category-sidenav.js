@@ -22,7 +22,7 @@ export default function CategorySideNav({ pathPrefix, currCategory = '', categor
 							px={2}
                             _hover={{
                                 fontWeight: 'bold',
-                                color: "gray.500"
+                                color: selected ? '#353535' : "gray.500"
                             }}>
 							<ChakraLink as={Link} href={`${pathPrefix}${name.toLowerCase()}`}>
 								{name}

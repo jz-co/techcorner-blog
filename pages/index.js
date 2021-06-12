@@ -60,7 +60,7 @@ export default function Home() {
 				image='/images/coffee.jpg'
 			/>
 			<DownloadCard img="/images/coffee.jpg" />
-			<CategorySideNav pathPrefix="/" categories={["Notes", "About"]} title={"Pages"} currCategory="notes" mt={12}/>
+			<CategorySideNav pathPrefix="/" categories={["Notes", "About"]} title={"Pages"} currCategory="notes" mt={12} ml={12}/>
 		</Container>
 	);
 }
