@@ -11,6 +11,22 @@ import DownloadCard from '../components/download-card';
 import CategorySideNav from '../components/category-sidenav';
 import ThumbnailImage from '../components/thumbnail';
 import BodyImage from '../components/body-image';
+import ArticleLayout from '../components/article-layout';
+
+// FAKE DATA
+const articleMeta = {
+	title: 'How to write a tech resume',
+	caption:
+		'Kickstart your tech job hunt with a great resume. This guide is suited for those just getting started on their tech career journey.',
+	author: 'Jessie Lam',
+	publishedDate: 'June 30, 2021',
+	category: 'Career',
+};
+
+const thumbnailMeta = {
+	src: '/images/coffee.jpg',
+	alt: 'coffee on a book',
+};
 
 export default function Home() {
 	const addResources = [
@@ -71,7 +87,7 @@ export default function Home() {
 				mt={12}
 				ml={12}
 			/>
-			<Box m={8} maxWidth='760px' >
+			<Box m={8} maxWidth='760px'>
 				<Heading mb={8}>Here is an article with an example of a thumbnail...</Heading>
 				<p>
 					Kielbasa bacon boudin swine cow tri-tip shankle. Ham hock flank landjaeger porchetta, strip steak t-bone short
@@ -86,8 +102,18 @@ export default function Home() {
 					shankle ground round. Turkey pancetta sirloin, beef spare ribs boudin biltong pork frankfurter meatloaf jerky
 					meatball bacon porchetta jowl.
 				</p>
-				<BodyImage my={10} src='/images/coffee.jpg' alt='coffee' caption="This is some lovely coffee!"/>
+				<BodyImage my={10} src='/images/coffee.jpg' alt='coffee' caption='This is some lovely coffee!' />
 			</Box>
+			Here's an example using the Article Layout:
+			<ArticleLayout meta={articleMeta} thumbnail={thumbnailMeta}>
+				<p>
+					Kielbasa bacon boudin swine cow tri-tip shankle. Ham hock flank landjaeger porchetta, strip steak t-bone short
+					loin beef chuck tri-tip kielbasa bresaola prosciutto hamburger bacon. Cow t-bone bresaola, swine ham bacon
+					shankle ground round. Turkey pancetta sirloin, beef spare ribs boudin biltong pork frankfurter meatloaf jerky
+					meatball bacon porchetta jowl.
+				</p>
+				<BodyImage my={10} src='/images/coffee.jpg' alt='coffee' caption='This is some lovely coffee!' />
+			</ArticleLayout>
 		</Container>
 	);
 }
