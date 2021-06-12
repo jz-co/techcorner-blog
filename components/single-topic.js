@@ -1,4 +1,4 @@
-import Link from 'next/Link'
+import Link from 'next/link'
 import { Button, Text, Box, LinkBox, LinkOverlay } from "@chakra-ui/react"
 
 function SingleTopicButton({ topic, to, ...props }) {
