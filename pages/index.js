@@ -8,6 +8,7 @@ import NoteSectionContainer from '../components/note-section-container';
 import AddResourcesCard from '../components/add-resources';
 import HeroPostCard from '../components/hero-post-card';
 import DownloadCard from '../components/download-card';
+import CategorySideNav from '../components/category-sidenav';
 
 export default function Home() {
 	const addResources = [
@@ -59,6 +60,7 @@ export default function Home() {
 				image='/images/coffee.jpg'
 			/>
 			<DownloadCard img="/images/coffee.jpg" />
+			<CategorySideNav pathPrefix="/" categories={["Notes", "About"]} title={"Pages"} currCategory="notes" mt={12}/>
 		</Container>
 	);
 }
