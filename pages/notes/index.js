@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 
 import Container from '../../components/container'
-import { SingleTopicButton, SingleTopicCard } from '../../components/single-topic-btn'
+import { SingleTopicButton, SingleTopicCard } from '../../components/single-topic'
 import NoteSectionContainer from '../../components/note-section-container'
 
 export default function Home() {
