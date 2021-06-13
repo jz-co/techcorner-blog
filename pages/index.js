@@ -4,7 +4,9 @@ import Image from 'next/image'
 
 import Container from '../components/container'
 import { SingleTopicButton, SingleTopicCard } from '../components/single-topic-btn'
+import TeamProfileCard from '../components/team-profile-card'
 import NoteSectionContainer from '../components/note-section-container'
+import PostCard from '../components/post-card'
 
 export default function Home() {
   return (
@@ -40,6 +42,16 @@ export default function Home() {
           Hello world...
         </Text>
       </NoteSectionContainer>
+      <TeamProfileCard imgSrc="/assets/Avatar.png" name="Jessie Lam" message="Here is where we describe ourselves. We can give a brief introduction of who we are and a message that we want to tell the world."></TeamProfileCard>
+      <PostCard
+        imgSrc="/assets/Avatar.png"
+        imgAlt="Jessie"
+        tag="Career"
+        title="An awesome article"
+        description="Coming soon... but here is a little 2-line description while you wait"
+        publishDate="June 8, 2021"
+      />
+        
 
     </Container>
   )
