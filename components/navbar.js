@@ -1,48 +1,55 @@
-import Link from 'next/Link'
-import styled from '@emotion/styled'
-import {
-    Flex,
-    Button,
-    Box
-} from '@chakra-ui/react'
+import NextLink from 'next/link';
+import { Button, Box, Link } from '@chakra-ui/react';
 
-import Logo from './logo'
+const NavLink = ({ to, label, ...props }) => {
+	return (
+		<Link as={NextLink} href={to}>
+			<Button
+                color="#353535"
+				bg='none'
+				mx={4}
+				_focus={{
+					boxShadow: 'none',
+					outline: 'none',
+				}}
+				{...props}>
+				{label}
+			</Button>
+		</Link>
+	);
+};
 
-const NavLink = ({ to, label, ...props}) => {
-    return (
-        <Link href={to}>
-            <Button as="a" >
-                {label}
-            </Button>
-        </Link>
-    )
-}
+const NavBar = ({ selectedPage = '', ...props }) => {
+	const pages = [
+		{
+			name: 'Home',
+			path: '/',
+		},
+		{
+			name: 'CS Notes',
+			path: '/notes',
+		},
+		{
+			name: 'Blog',
+			path: '/blog',
+		},
+		{
+			name: 'About',
+			path: '/about',
+		},
+	];
 
-const NavBar = (props) => {
-    const NavContainer = styled(Flex)`
-        position: sticky;
-        z-index: 10;
-        top: 0;
-    `
-    return (
-        <NavContainer
-            as="nav"
-            flexDirection="row"
-            justifyContent="space-between"
-            alignItems="center"
-            width="100%"
-            maxWidth="1024px"
-            mx="auto"
-            mt={8}
-            mb={[0, 0, 8]}
-        >
-            <Logo/>
-            <Box>
-                <NavLink to="/" label="Home"/>
-                <NavLink to="/about" label="About Us"/>
-            </Box>
-        </NavContainer>
-    )
-}
+	return (
+        <Box>
+            {pages.map(({ name, path }) => (
+                <NavLink
+                    label={name}
+                    to={path}
+                    fontWeight={name.toLowerCase() === selectedPage.toLowerCase() ? 'bold' : 'medium'}
+                />
+            ))}
+        </Box>
+	);
+};
 
 export default NavBar;
