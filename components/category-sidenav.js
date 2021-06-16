@@ -1,30 +1,31 @@
 import Link from 'next/link';
 import { Flex, Button, Box, Link as ChakraLink, Heading, Stack } from '@chakra-ui/react';
 
-/* catgories is simply a list of category names */
+/* catgories is list of categories, which are objects of form
+	{ name: string, slug: string }
+*/
 
-export default function CategorySideNav({ pathPrefix, currCategory = '', categories, title, ...props }) {
+export default function CategorySideNav({ pathPrefix, currCategory, categories, title, ...props }) {
 	return (
 		<Box w="fit-content" {...props}>
-			<Heading mb={8} fontSize='xx-large' color='#353535'>
+			<Heading mb={8} color='#353535'>
 				{title}
 			</Heading>
 			<Stack spacing={4}>
-				{categories.map((name) => {
-					let selected = currCategory.toLowerCase() === name.toLowerCase();
+				{categories.map(({ name, slug }) => {
+					let selected = currCategory.slug === slug;
 					return (
 						<Box
-							key={name}
-							fontSize='lg'
-                            fontWeight={selected ? 'bold' : 'normal'}
+							key={slug}
+							fontSize='md'
+							fontWeight={selected ? 'bold' : 'normal'}
 							color={selected ? '#353535' : 'gray.400'}
 							borderLeft={selected ? '3px solid #353535' : 'none'}
 							px={2}
-                            _hover={{
-                                fontWeight: 'bold',
-                                color: selected ? '#353535' : "gray.500"
-                            }}>
-							<ChakraLink as={Link} href={`${pathPrefix}${name.toLowerCase()}`}>
+							_hover={{
+								color: '#353535'
+							}}>
+							<ChakraLink as={Link} href={`${pathPrefix}/${slug}`}>
 								{name}
 							</ChakraLink>
 						</Box>

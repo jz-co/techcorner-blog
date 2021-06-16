@@ -6,7 +6,7 @@ import NavBar from './navbar';
 
 export default function Header({ currPage, ...props }) {
 	return (
-        <Flex w="100%" justifyContent="center">
+        <Flex w="100%" justifyContent="center" bg="white">
             <Flex
                 as='nav'
                 flexDirection='row'
@@ -16,10 +16,8 @@ export default function Header({ currPage, ...props }) {
                 maxWidth='1024px'
                 mx={12}
                 mt={8}
-                mb={[0, 0, 8]}>
-                <Link href="/">
-                    <Logo as="button"/>
-                </Link>
+                mb={4}>
+                <Logo as="a" href="/"/>
                 <NavBar selectedPage={currPage}/>
             </Flex>
         </Flex>

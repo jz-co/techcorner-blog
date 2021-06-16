@@ -14,7 +14,7 @@ const Container = ({ children, currPage="home" }) => {
 			<Header currPage={currPage} /> 
 			<Flex w="100%" justifyContent="center">
 				<Flex
-					m='0 20px 4rem 20px'
+					m='0 4rem 4rem 4rem'
 					justifyContent='flex-start'
 					alignItems='center'
 					flexDirection='column'

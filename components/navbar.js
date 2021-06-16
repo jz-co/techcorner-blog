@@ -43,6 +43,7 @@ const NavBar = ({ selectedPage = '', ...props }) => {
         <Box>
             {pages.map(({ name, path }) => (
                 <NavLink
+					key={name}
                     label={name}
                     to={path}
                     fontWeight={name.toLowerCase() === selectedPage.toLowerCase() ? 'bold' : 'medium'}

@@ -79,14 +79,7 @@ export default function Home() {
 				image='/images/coffee.jpg'
 			/>
 			<DownloadCard img='/images/coffee.jpg' />
-			<CategorySideNav
-				pathPrefix='/'
-				categories={['Notes', 'About']}
-				title={'Pages'}
-				currCategory='notes'
-				mt={12}
-				ml={12}
-			/>
+			
 			<Box m={8} maxWidth='760px'>
 				<Heading mb={8}>Here is an article with an example of a thumbnail...</Heading>
 				<p>
