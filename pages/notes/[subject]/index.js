@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Box, Flex, Grid, GridItem, Heading, HStack, SimpleGrid, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, SimpleGrid, Text } from '@chakra-ui/react';
 
 import Container from '../../../components/container';
 import { SingleTopicButton } from '../../../components/single-topic';
