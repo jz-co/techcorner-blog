@@ -12,8 +12,8 @@ const Container = ({ children, currPage="home" }) => {
 	return (
 		<>
 			<Header currPage={currPage} /> 
-			<Flex w="100%" justifyContent="center">
-				<Flex
+			<Flex w="100%" justifyContent="center" alignItems="center" flexDirection="column">
+				{/* <Flex
 					m='0 4rem 4rem 4rem'
 					justifyContent='flex-start'
 					alignItems='center'
@@ -23,7 +23,8 @@ const Container = ({ children, currPage="home" }) => {
 					minHeight='80vh'
 					maxWidth='1200px'>
 					{children}
-				</Flex>
+				</Flex> */}
+				{children}
 			</Flex>
 		</>
 	);

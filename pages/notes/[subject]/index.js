@@ -4,6 +4,7 @@ import { Box, Flex, Heading, SimpleGrid, Text } from '@chakra-ui/react';
 import Container from '../../../components/container';
 import { SingleTopicButton } from '../../../components/single-topic';
 import CategorySideNav from '../../../components/category-sidenav';
+import MainLayout from '../../../components/layout';
 
 export default function NotesSubject({ allSubjects, subject, notes }) {
 	return (
@@ -12,23 +13,25 @@ export default function NotesSubject({ allSubjects, subject, notes }) {
 				<title>{subject.name} - Tech Corner</title>
 				<meta name='description' content={`Find all CS notes on the topic of ${subject.name.toLowerCase()}`} />
 			</Head>
-			<Flex mt={12} w='100%' flexWrap="wrap" >
-				<CategorySideNav title='Subjects' currCategory={subject} categories={allSubjects} pathPrefix={`/notes`} mb={8} mr={24} minWidth="200px" />
-				<Box maxWidth='800px'>
-					<Heading as='h1' mb='1.5rem' color='#353535'>
-						{subject.name}
-					</Heading>
-					<Text mb='2.5rem' color='gray.500'>
-						Here you will find quick reference notes for some of the major computer science algorithms and related
-						topics. We also have links to more in-depth resources if you want to learn more.{' '}
-					</Text>
-					<SimpleGrid columns={3} spacing={6} minChildWidth='240px'>
-						{notes.map((note) => (
-							<SingleTopicButton key={note.slug} topic={note.title} to={`/notes/${subject.slug}/${note.slug}`} />
-						))}
-					</SimpleGrid>
-				</Box>
-			</Flex>
+			<MainLayout>
+				<Flex mt={12} w='100%' flexWrap="wrap" >
+					<CategorySideNav title='Subjects' currCategory={subject} categories={allSubjects} pathPrefix={`/notes`} mb={8} mr={24} minWidth="200px" />
+					<Box maxWidth='800px'>
+						<Heading as='h1' mb='1.5rem' color='#353535'>
+							{subject.name}
+						</Heading>
+						<Text mb='2.5rem' color='gray.500'>
+							Here you will find quick reference notes for some of the major computer science algorithms and related
+							topics. We also have links to more in-depth resources if you want to learn more.{' '}
+						</Text>
+						<SimpleGrid columns={3} spacing={6} minChildWidth='240px'>
+							{notes.map((note) => (
+								<SingleTopicButton key={note.slug} topic={note.title} to={`/notes/${subject.slug}/${note.slug}`} />
+							))}
+						</SimpleGrid>
+					</Box>
+				</Flex>
+			</MainLayout>
 		</Container>
 	);
 }
