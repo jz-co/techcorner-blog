@@ -39,16 +39,18 @@ export default function NotesPost({ note }) {
                     <Text color="gray.300" fontWeight="bold" fontSize="2xl">Algorithms</Text>
                 </Flex>
             </Flex>
-            <MainLayout pt={12} w="100%">
+            <MainLayout pt="4rem" w="100%">
                 <Flex w="100%" px='2rem' maxWidth="1120px" justifyContent="space-between" wrap="wrap">
 
                     <Stack spacing={12} maxWidth="700px" mb={12} >
                         <NoteSectionContainer >
 
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vivamus at augue eget arcu. Nibh mauris cursus mattis molestie a. Pharetra diam sit amet nisl suscipit adipiscing bibendum est. Sem fringilla ut morbi tincidunt augue interdum velit. Mauris augue neque gravida in fermentum. Gravida cum sociis natoque penatibus. Mi sit amet mauris commodo quis imperdiet massa. Cursus euismod quis viverra nibh cras pulvinar mattis nunc. Magna etiam tempor orci eu lobortis elementum nibh tellus. Pharetra pharetra massa massa ultricies mi quis. Nisl condimentum id venenatis a condimentum vitae. Pharetra magna ac placerat vestibulum lectus mauris ultrices eros in. Dui ut ornare lectus sit amet est. Turpis egestas sed tempus urna et pharetra pharetra massa. Purus sit amet luctus venenatis. Morbi non arcu risus quis varius quam quisque id. Diam vel quam elementum pulvinar etiam. Nunc faucibus a pellentesque sit amet porttitor eget.
+                            <Text>Lorem ipsum dolor sit amet,</Text>
+                            <Text>consectetur adipiscing elit, sed do eiusmod</Text>
                         </NoteSectionContainer>
                         <NoteSectionContainer >
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vivamus at augue eget arcu. Nibh mauris cursus mattis molestie a. Pharetra diam sit amet nisl suscipit adipiscing bibendum est. Sem fringilla ut morbi tincidunt augue interdum velit. Mauris augue neque gravida in fermentum. Gravida cum sociis natoque penatibus. Mi sit amet mauris commodo quis imperdiet massa. Cursus euismod quis viverra nibh cras pulvinar mattis nunc. Magna etiam tempor orci eu lobortis elementum nibh tellus. Pharetra pharetra massa massa ultricies mi quis. Nisl condimentum id venenatis a condimentum vitae. Pharetra magna ac placerat vestibulum lectus mauris ultrices eros in. Dui ut ornare lectus sit amet est. Turpis egestas sed tempus urna et pharetra pharetra massa. Purus sit amet luctus venenatis. Morbi non arcu risus quis varius quam quisque id. Diam vel quam elementum pulvinar etiam. Nunc faucibus a pellentesque sit amet porttitor eget.
+                            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vivamus at augue eget arcu. Nibh mauris cursus mattis molestie a. Pharetra diam sit amet nisl suscipit adipiscing bibendum est. Sem fringilla ut morbi tincidunt augue interdum velit. Mauris augue neque gravida in fermentum. Gravida cum sociis natoque penatibus. Mi sit amet mauris commodo quis imperdiet massa. Cursus euismod quis viverra nibh cras pulvinar mattis nunc. Magna etiam tempor orci eu lobortis elementum nibh tellus. Pharetra pharetra massa massa ultricies mi quis. Nisl condimentum id venenatis a condimentum vitae. Pharetra magna ac placerat vestibulum lectus mauris ultrices eros in. Dui ut ornare lectus sit amet est. Turpis egestas sed tempus urna et pharetra pharetra massa. Purus sit amet luctus venenatis. Morbi non arcu risus quis varius quam quisque id. Diam vel quam elementum pulvinar etiam. Nunc faucibus a pellentesque sit amet porttitor eget.
+                            </Text>
                         </NoteSectionContainer>
                     </Stack>
                     <AddResourcesCard srcs={addResources} w="300px" h="fit-content" ml={2} />

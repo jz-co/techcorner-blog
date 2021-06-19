@@ -1,6 +1,7 @@
-import { HStack, Text, Heading, Box } from '@chakra-ui/react';
+import { HStack, Text, Heading, Box, Stack } from '@chakra-ui/react';
 import Head from 'next/head';
 import Image from 'next/image';
+import ReactMarkdown from 'react-markdown';
 
 import Container from '../components/container';
 import { SingleTopicButton, SingleTopicCard } from '../components/single-topic';
@@ -13,6 +14,8 @@ import ThumbnailImage from '../components/thumbnail';
 import BodyImage from '../components/body-image';
 import ArticleLayout from '../components/article-layout';
 import MainLayout from '../components/layout';
+
+import { notesComponents } from '../components/markdown';
 
 // FAKE DATA
 const articleMeta = {
@@ -28,6 +31,25 @@ const thumbnailMeta = {
 	src: '/images/coffee.jpg',
 	alt: 'coffee on a book',
 };
+
+const markdownContent = `
+# Hello World
+
+## Hello World 2
+\n
+> I am a blockquote. Blah blah blah, there's so much to say
+\n
+![Coffee](/images/coffee.jpg)
+Hi, I'm just some text... What is *Lorem Ipsum*? **Lorem Ipsum** is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type
+
+This is where something new starts...
+
+\`\`\`
+<h1>Here's some code</h1>
+\`\`\`	
+
+Here is some \`inline-code\`.
+`
 
 export default function Home() {
 	const addResources = [
@@ -109,6 +131,9 @@ export default function Home() {
 					</p>
 					<BodyImage my={10} src='/images/coffee.jpg' alt='coffee' caption='This is some lovely coffee!' />
 				</ArticleLayout>
+				<Stack spacing={8} maxWidth="600px">
+				<ReactMarkdown components={notesComponents}>{markdownContent}</ReactMarkdown>
+				</Stack>
 			</MainLayout>
 		</Container>
 	);

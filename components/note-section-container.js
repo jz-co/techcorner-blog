@@ -1,8 +1,8 @@
-import { Box } from '@chakra-ui/react'
+import { Stack } from '@chakra-ui/react'
 
 export default function NoteSectionContainer({ children, ...props }) {
     return (
-        <Box
+        <Stack
           as="section"
           spacing="1em"
           bg="white"
@@ -13,6 +13,6 @@ export default function NoteSectionContainer({ children, ...props }) {
           py={8}
           {...props}>
               { children }
-          </Box>
+          </Stack>
     )
 }
