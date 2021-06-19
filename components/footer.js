@@ -1,11 +1,6 @@
 import { Text, Flex, Box, Heading, HStack, Link, Button} from '@chakra-ui/react';
 
-export default function Footer({
-    imgSrc,
-    name,
-    message,
-    ...props
-}) {
+export default function Footer() {
     return (
         <Flex flexDirection="column">
             <Box flex="1">
