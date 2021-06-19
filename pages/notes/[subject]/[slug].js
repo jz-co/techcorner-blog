@@ -1,26 +1,14 @@
 import Head from 'next/head';
-import { Flex, Heading, Text, Grid, Stack } from '@chakra-ui/react'
+import { Flex, Heading, Text, Grid, Stack } from '@chakra-ui/react';
+import ReactMarkdown from 'react-markdown';
 
 import Container from "../../../components/container";
 import MainLayout from '../../../components/layout';
 import NoteSectionContainer from '../../../components/note-section-container';
 import AddResourcesCard from '../../../components/add-resources';
+import { notesComponents } from '../../../components/markdown';
 
 export default function NotesPost({ note }) {
-    const addResources = [
-        {
-            title: 'Google Home',
-            name: 'Google',
-            link: 'https://google.com',
-            icon: '/favicon.ico',
-        },
-        {
-            title: 'Google Home 2',
-            name: 'Google',
-            link: 'https://google.com',
-            icon: '/favicon.ico',
-        },
-    ];
 
     return (
         <Container>
@@ -36,24 +24,23 @@ export default function NotesPost({ note }) {
                 pb="80px">
                 <Flex width="100%" px='4rem' maxWidth="1120px" flexDirection="column" alignItems="flex-start">
                     <Heading as="h1" mb={2} color="#353535" fontSize="4xl">{note.title}</Heading>
-                    <Text color="gray.300" fontWeight="bold" fontSize="2xl">Algorithms</Text>
+                    <Text color="gray.300" fontWeight="bold" fontSize="2xl">{note.subject}</Text>
                 </Flex>
             </Flex>
             <MainLayout pt="4rem" w="100%">
                 <Flex w="100%" px='2rem' maxWidth="1120px" justifyContent="space-between" wrap="wrap">
 
-                    <Stack spacing={12} maxWidth="700px" mb={12} >
-                        <NoteSectionContainer >
+                    <Stack spacing={12} maxWidth="700px" mb={12} color="gray.700">
+                        {note.body.map( (section) => {
+                            return (<NoteSectionContainer key={section.id} spacing={6}>
+                                <ReactMarkdown components={notesComponents}>
+                                    {section.content}
 
-                            <Text>Lorem ipsum dolor sit amet,</Text>
-                            <Text>consectetur adipiscing elit, sed do eiusmod</Text>
-                        </NoteSectionContainer>
-                        <NoteSectionContainer >
-                            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vivamus at augue eget arcu. Nibh mauris cursus mattis molestie a. Pharetra diam sit amet nisl suscipit adipiscing bibendum est. Sem fringilla ut morbi tincidunt augue interdum velit. Mauris augue neque gravida in fermentum. Gravida cum sociis natoque penatibus. Mi sit amet mauris commodo quis imperdiet massa. Cursus euismod quis viverra nibh cras pulvinar mattis nunc. Magna etiam tempor orci eu lobortis elementum nibh tellus. Pharetra pharetra massa massa ultricies mi quis. Nisl condimentum id venenatis a condimentum vitae. Pharetra magna ac placerat vestibulum lectus mauris ultrices eros in. Dui ut ornare lectus sit amet est. Turpis egestas sed tempus urna et pharetra pharetra massa. Purus sit amet luctus venenatis. Morbi non arcu risus quis varius quam quisque id. Diam vel quam elementum pulvinar etiam. Nunc faucibus a pellentesque sit amet porttitor eget.
-                            </Text>
-                        </NoteSectionContainer>
+                                </ReactMarkdown>
+                            </NoteSectionContainer>)
+                        })}
                     </Stack>
-                    <AddResourcesCard srcs={addResources} w="300px" h="fit-content" ml={2} />
+                    <AddResourcesCard srcs={note.resources} w="300px" h="fit-content" ml={2} />
 
                 </Flex>
             </MainLayout>
@@ -63,7 +50,7 @@ export default function NotesPost({ note }) {
 }
 
 export async function getStaticPaths() {
-    // TODO: Call Strapi API to get all notes topics
+    // TODO: Call Strapi API to get all notes topics, and all notes associated with each topic
     const subjects = ['algorithms', 'data-structures', 'operating-systems'];
     const notes = {
         'algorithms': [
@@ -100,17 +87,57 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
 
-    const notes = [
-        { title: 'Big Oh Notation', slug: 'big-oh-notation' },
-        { title: 'Time Complexity', slug: 'time-complexity' },
-        { title: 'Space Complexity', slug: 'space-complexity' },
+    const mockData = {
+        notes: {
+            'big-oh-notation': 'Big Oh Notation',
+            'time-complexity': 'Time Complexity',
+            'space-complexity': 'Space Complexity'
+        },
+        subjects: {
+            'algorithms': 'Algorithms',
+            'data-structures': 'Data Structures',
+            'operating-systems': "Operating Systems"
+
+        }
+    };
+
+    const mockContent = [
+        {
+            "__component": "components.section",
+            id: 1,
+            "content": `# How to render markdown as React components\n\n> I am a blockquote. Blah blah blah, there's so much to say\n\n![Coffee](/images/coffee.jpg)\nHi, I'm just some text... What is *Lorem Ipsum*? **Lorem Ipsum** is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type\n\nThis is where something new starts...\n\n\`\`\`\n<h1>Here's some code</h1>\n\`\`\`\n\nHere is some \`inline-code\`.`
+        },
+        {
+            "__component": "components.section",
+            id: 2,
+            "content": "## How to write a test note\n\nYou simply need a title and some educative content!\n\nHere are the steps:\n1. Do this\n2. Then that\n3. And finally..."
+        }
+    ];
+
+    const mockResources = [
+        {
+            title: 'Next.js Documentation',
+            name: 'Vercel',
+            link: 'https://nextjs.org/docs/getting-started',
+            icon: '/favicon.ico',
+        },
+        {
+            title: 'Vercel Home',
+            name: 'Vercel',
+            link: 'https://vercel.com/home?utm_source=next-site&utm_medium=banner&utm_campaign=next-website',
+            icon: '/favicon.ico',
+        },
     ];
 
     // params contains the `subject` and `slug` of the curr page
-    // TODO: call Strapi API to get detailed info about the subject
-    //       and all the notes in that subject
+    // TODO: call Strapi API to get detailed info about the note
 
-    const note = notes.filter((note) => note.slug === params.slug)[0];
+    // Use API to (query) find the note that corresponds to params.slug
+
+    const title = mockData.notes[params.slug];
+    const subject = mockData.subjects[params.subject];
+
+    const note = { title, subject, body: mockContent, resources: mockResources }
 
 
     return {

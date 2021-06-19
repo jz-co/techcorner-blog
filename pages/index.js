@@ -49,6 +49,15 @@ This is where something new starts...
 \`\`\`	
 
 Here is some \`inline-code\`.
+
+Here is a list:
+* 	What is *Lorem Ipsum*? **Lorem Ipsum** is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type
+* 	N
+* 	D
+
+1. Do this
+2. Then that
+3. And finally...
 `
 
 export default function Home() {
