@@ -21,7 +21,7 @@ export default function NotesPost({ note }) {
                 bg='white'
                 w="100%"
                 pt="100px"
-                pb="80px">
+                pb="64px">
                 <Flex width="100%" px='4rem' maxWidth="1120px" flexDirection="column" alignItems="flex-start">
                     <Heading as="h1" mb={2} color="#353535" fontSize="4xl">{note.title}</Heading>
                     <Text color="gray.300" fontWeight="bold" fontSize="2xl">{note.subject}</Text>

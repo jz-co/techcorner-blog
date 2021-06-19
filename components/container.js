@@ -3,7 +3,7 @@ import { Flex, useColorMode } from '@chakra-ui/react';
 
 import Header from './header';
 
-const Container = ({ children, currPage="home" }) => {
+const Container = ({ children }) => {
 	const { colorMode } = useColorMode();
 
 	const bgColor = { light: '#F5F5F5', dark: 'gray.900' };
@@ -11,7 +11,7 @@ const Container = ({ children, currPage="home" }) => {
 
 	return (
 		<>
-			<Header currPage={currPage} /> 
+			<Header /> 
 			<Flex w="100%" justifyContent="center" alignItems="center" flexDirection="column">
 				{/* <Flex
 					m='0 4rem 4rem 4rem'

@@ -4,7 +4,7 @@ import { Flex } from '@chakra-ui/react';
 import Logo from './logo';
 import NavBar from './navbar';
 
-export default function Header({ currPage, ...props }) {
+export default function Header({ ...props }) {
 	return (
         <Flex w="100%" justifyContent="center" bg="white">
             <Flex
@@ -18,7 +18,7 @@ export default function Header({ currPage, ...props }) {
                 mt={8}
                 mb={4}>
                 <Logo as="a" href="/"/>
-                <NavBar selectedPage={currPage}/>
+                <NavBar/>
             </Flex>
         </Flex>
 	);
