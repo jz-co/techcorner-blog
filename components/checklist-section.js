@@ -31,14 +31,19 @@ export default function Footer({
             <Box backgroundColor="#D2D2D2"
                 borderTopLeftRadius="10px"
                 borderTopRightRadius="10px"
-                padding="10px"
+                padding="18px"
                 
             >
-                <Text marginLeft="50px" fontSize="22px">{title}</Text>
+                <Text marginLeft="50px" fontSize="20px">{title}</Text>
             </Box>
-            <Stack marginLeft="40px" padding="20px" spacing="15px">
+            <Stack marginLeft="43px" padding="20px" spacing="15px">
                 {checklistItems.map(({ text, complete }, i) => (
-                    <Checkbox onChange={() => changeCompletionStatus(i)} color={complete ? "gray" : ""}>{text}</Checkbox>
+
+                    <Flex alignItems="flex-start">
+                        <Box marginTop="3px"><Checkbox onChange={() => changeCompletionStatus(i)} size="lg"></Checkbox></Box>
+                        <Box textDecoration={ complete ? "line-through" : "" } marginLeft="10px">{text}</Box>
+                    </Flex>
+
                 ))}
             </Stack>
 
