@@ -22,6 +22,7 @@ export default function PostCard({
                         mb="1"
                         size="sm"
                         border="2px"
+                        backgroundColor="transparent"
                         borderColor="#353535"
                         _hover={{
                             background: "#353535",
