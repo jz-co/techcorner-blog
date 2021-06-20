@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Text, Flex, Box, Heading, HStack, Checkbox, Stack } from '@chakra-ui/react';
+import { Text, Flex, Box, Checkbox, Stack } from '@chakra-ui/react';
 
-export default function Footer({
+export default function ChecklistSection({
     title,
     items,
     ...props

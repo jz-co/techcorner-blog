@@ -1,4 +1,5 @@
-import { Button, Box, Image, Text } from '@chakra-ui/react';
+import { Box, Image, Text } from '@chakra-ui/react';
+import PostTag from './post-tag';
 
 export default function PostCard({
     imgSrc,
@@ -17,20 +18,7 @@ export default function PostCard({
 
             <Box p="6">
                 <Box d="flex" alignItems="baseline">
-                    <Button
-                        fontSize="13"
-                        mb="1"
-                        size="sm"
-                        border="2px"
-                        backgroundColor="transparent"
-                        borderColor="#353535"
-                        _hover={{
-                            background: "#353535",
-                            color: "white",
-                        }}
-                    >
-                        {tag.toUpperCase()}
-                    </Button>
+                    <PostTag tag={tag} color={ "#353535" }/>
                 </Box>
 
                 <Box
