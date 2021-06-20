@@ -41,7 +41,7 @@ export default function Footer({
 
                     <Flex alignItems="flex-start">
                         <Box marginTop="3px"><Checkbox onChange={() => changeCompletionStatus(i)} size="lg"></Checkbox></Box>
-                        <Box textDecoration={ complete ? "line-through" : "" } marginLeft="10px">{text}</Box>
+                        <Box textDecoration={ complete ? "line-through" : "" } color={complete ? "#535353" : ""} marginLeft="10px">{text}</Box>
                     </Flex>
 
                 ))}

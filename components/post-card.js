@@ -1,4 +1,4 @@
-import { Button, Box, Image } from '@chakra-ui/react';
+import { Button, Box, Image, Text } from '@chakra-ui/react';
 
 export default function PostCard({
     imgSrc,
@@ -10,7 +10,7 @@ export default function PostCard({
     ...props
 }) {
     return (
-        <Box width="300px" borderWidth="1px">
+        <Box width="300px" height="360px" borderWidth="1px">
             <Box height="160px" overflow="hidden">
                 <Image src={imgSrc} alt={imgAlt} />
             </Box>
@@ -42,11 +42,11 @@ export default function PostCard({
                     as="h4"
                     lineHeight="tight"
                 >
-                    {title}
+                    <Text noOfLines={2}>{title}</Text>
                 </Box>
 
                 <Box fontSize="13">
-                    {description}
+                    <Text noOfLines={2}>{description}</Text>
                 </Box>
 
                 <Box d="flex" mt="2" alignItems="center" color="#959595" fontSize="12">
