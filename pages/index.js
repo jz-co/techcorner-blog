@@ -1,7 +1,9 @@
 import Head from 'next/head';
-import { Flex, Heading, Stack, Text, Image } from '@chakra-ui/react';
+import { Box, Flex, Heading, Stack, Text, Grid, Image, } from '@chakra-ui/react';
 
 import Container from '../components/container';
+import MainLayout from '../components/layout';
+import { SingleTopicCard } from '../components/single-topic';
 
 export default function Home() {
 	return (
@@ -12,18 +14,52 @@ export default function Home() {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<Flex
-                justifyContent='center'
-                bg='white'
-                w="100%"
-                pt="100px"
-                pb="64px">
-                <Stack spacing={16} direction={['column', 'row']} width="100%" px='4rem' maxWidth="1120px" maxHeight="300px">
-					<Flex>
-                    <Heading as="h1" mb={2} color="#353535" fontSize="4xl">Home</Heading>
+				justifyContent='center'
+				bg='white'
+				w="100%"
+				pt="54px"
+				pb="80px">
+				<Flex width="100%" px={['1.5rem', '4rem']} maxWidth="1180px" flexWrap="wrap" flexDirection={["column", "row"]}>
+					<Flex flexBasis="50%" px={2} flexDirection="column" justifyContent="center">
+						<Heading as="h1" mb={4} color="#353535" fontSize={["4xl", "4xl"]} lineHeight="130%">
+							Welcome to our little corner of the internet...
+						</Heading>
+						<Text fontSize="md" mb={2} color="gray.500">
+							Here's a quick small description...
+						</Text>
 					</Flex>
-					<Image boxSize="250px" objectFit="contain" src="/images/hero-img.jpg" alt="hero" />
-                </Stack>
-            </Flex>
-        </Container>
-    );
+					<Flex flexBasis="50%" flexDirection="column" justifyContent="center">
+						<Image objectFit="contain" src="/images/hero-img.png" alt="hero" />
+					</Flex>
+				</Flex>
+			</Flex>
+			<Flex justifyContent='center' w="100%" bg='#F5F5F5' py={16} color="#353535">
+				<Flex width="100%" px={['2rem', '4rem']} maxWidth="1120px" flexDirection="column" justifyContent="flex-start">
+					<Box as="section" mb={[12, 24]}>
+						<Heading fontSize="2xl" mb={4}>
+							Recently Added Notes
+						</Heading>
+						<Text fontSize="md">
+							Check out our notes on Computer Science topics
+						</Text>
+						<Flex gridColumnGap="2rem" gridRowGap="1.5rem" flexWrap="wrap" width="100%" pt={10}>
+							<SingleTopicCard topic='Big O Notation' category='Algorithms' to='/notes/algorithms/big-oh-notation' />
+							<SingleTopicCard topic='Time Complexity' category='Algorithms' to='/notes/algorithms/big-oh-notation' />
+							<SingleTopicCard topic='Space Complexity with more' category='Algorithms' />
+							<SingleTopicCard topic='Space Complexity with more' category='Algorithms' />
+						</Flex>
+					</Box>
+					<Box>
+						<Heading fontSize="2xl" mb={4}>
+							Latest Blog Posts
+						</Heading>
+						<Text fontSize="md">
+							Everything from career to humor, check out our awesome blog!
+						</Text>
+					</Box>
+
+				</Flex>
+			</Flex>
+		</Container>
+	);
 }
