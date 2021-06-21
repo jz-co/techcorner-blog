@@ -1,9 +1,10 @@
 import Head from 'next/head';
-import { Box, Flex, Heading, Stack, Text, Grid, Image, } from '@chakra-ui/react';
+import NextLink from 'next/link';
+import { Box, Flex, Heading, Link, Text, Image, } from '@chakra-ui/react';
 
 import Container from '../components/container';
-import MainLayout from '../components/layout';
 import { SingleTopicCard } from '../components/single-topic';
+import PostCard from '../components/post-card';
 
 export default function Home() {
 	return (
@@ -33,7 +34,7 @@ export default function Home() {
 					</Flex>
 				</Flex>
 			</Flex>
-			<Flex justifyContent='center' w="100%" bg='#F5F5F5' py={16} color="#353535">
+			<Flex justifyContent='center' w="100%" bg='#F5F5F5' py={16} color="#353535" mb="4rem">
 				<Flex width="100%" px={['2rem', '4rem']} maxWidth="1120px" flexDirection="column" justifyContent="flex-start">
 					<Box as="section" mb={[12, 24]}>
 						<Heading fontSize="2xl" mb={4}>
@@ -42,11 +43,23 @@ export default function Home() {
 						<Text fontSize="md">
 							Check out our notes on Computer Science topics
 						</Text>
-						<Flex gridColumnGap="2rem" gridRowGap="1.5rem" flexWrap="wrap" width="100%" pt={10}>
+						<Flex gridColumnGap="2rem" gridRowGap="1.5rem" flexWrap="wrap" width="100%" py={10}>
 							<SingleTopicCard topic='Big O Notation' category='Algorithms' to='/notes/algorithms/big-oh-notation' />
 							<SingleTopicCard topic='Time Complexity' category='Algorithms' to='/notes/algorithms/big-oh-notation' />
 							<SingleTopicCard topic='Space Complexity with more' category='Algorithms' />
 							<SingleTopicCard topic='Space Complexity with more' category='Algorithms' />
+						</Flex>
+						<Flex justifyContent={["flex-start"]} pl={2}>
+							<Text color="gray.400" fontWeight="medium" _hover={{
+								color: "gray.600",
+								fontWeight: 'semibold',
+								textDecoration: 'underline'
+
+							}}>
+							<Link as={NextLink} href="\notes">
+								See all notes
+							</Link>
+							</Text>
 						</Flex>
 					</Box>
 					<Box>
@@ -56,10 +69,45 @@ export default function Home() {
 						<Text fontSize="md">
 							Everything from career to humor, check out our awesome blog!
 						</Text>
+						<Flex gridColumnGap="2.5rem" gridRowGap="1.5rem" flexWrap="wrap" width="100%" py={10}>
+							<PostCard {...mockPost} />
+							<PostCard {...mockPost2}/>
+							<PostCard {...mockPost} />
+						</Flex>
+						<Flex justifyContent={["flex-start"]} pl={2}>
+							<Text color="gray.400" fontWeight="medium" _hover={{
+								color: "gray.600",
+								fontWeight: 'semibold',
+								textDecoration: 'underline'
+
+							}}>
+							<Link as={NextLink} href="\notes">
+								See all posts
+							</Link>
+							</Text>
+						</Flex>
 					</Box>
 
 				</Flex>
 			</Flex>
 		</Container>
 	);
+}
+
+const mockPost = {
+    imgSrc: '/images/coffee.jpg',
+    imgAlt: 'avatar',
+    tag: 'career',
+    title: 'Becoming a cartoon avatar',
+    description: 'This is how a cartoon avatar was born from nothing',
+    publishDate: 'July 7, 2021',
+}
+
+const mockPost2 = {
+    imgSrc: '/images/coffee.jpg',
+    imgAlt: 'avatar',
+    tag: 'career',
+    title: 'Becoming a cartoon avatar and exploring the face of the internet',
+    description: 'This is how a cartoon avatar was born from nothing. Everything from the inital ideation to the realization of my character',
+    publishDate: 'July 7, 2021',
 }

@@ -9,7 +9,7 @@ export default function PostTag({
         <Button
             fontSize="13"
             mb="1"
-            size="sm"
+            size="xs"
             border="2px"
             backgroundColor="transparent"
             color={color}
