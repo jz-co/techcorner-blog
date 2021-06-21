@@ -6,7 +6,7 @@ import Container from '../components/container';
 import { SingleTopicCard } from '../components/single-topic';
 import PostCard from '../components/post-card';
 
-export default function Home() {
+export default function Home({ recentNotes, recentPosts, }) {
 	return (
 		<Container>
 			<Head>
@@ -34,9 +34,9 @@ export default function Home() {
 					</Flex>
 				</Flex>
 			</Flex>
-			<Flex justifyContent='center' w="100%" bg='#F5F5F5' py={16} color="#353535" mb="4rem">
+			<Flex justifyContent='center' w="100%" bg='#F5F5F5' py={16} color="#353535" mb="6rem">
 				<Flex width="100%" px={['2rem', '4rem']} maxWidth="1120px" flexDirection="column" justifyContent="flex-start">
-					<Box as="section" mb={[12, 24]}>
+					<Box as="section" mb={[18, 28]}>
 						<Heading fontSize="2xl" mb={4}>
 							Recently Added Notes
 						</Heading>
@@ -44,10 +44,17 @@ export default function Home() {
 							Check out our notes on Computer Science topics
 						</Text>
 						<Flex gridColumnGap="2rem" gridRowGap="1.5rem" flexWrap="wrap" width="100%" py={10}>
-							<SingleTopicCard topic='Big O Notation' category='Algorithms' to='/notes/algorithms/big-oh-notation' />
+							{
+								recentNotes.map(({ slug, title, topic}) => {
+									return (
+										<SingleTopicCard key={slug} topic={title} category={topic.name} to={`/notes/${topic.slug}/${slug}`}/>
+									)
+								})
+							}
+							{/* <SingleTopicCard topic='Big O Notation' category='Algorithms' to='/notes/algorithms/big-oh-notation' />
 							<SingleTopicCard topic='Time Complexity' category='Algorithms' to='/notes/algorithms/big-oh-notation' />
 							<SingleTopicCard topic='Space Complexity with more' category='Algorithms' />
-							<SingleTopicCard topic='Space Complexity with more' category='Algorithms' />
+							<SingleTopicCard topic='Space Complexity with more' category='Algorithms' /> */}
 						</Flex>
 						<Flex justifyContent={["flex-start"]} pl={2}>
 							<Text color="gray.400" fontWeight="medium" _hover={{
@@ -70,9 +77,12 @@ export default function Home() {
 							Everything from career to humor, check out our awesome blog!
 						</Text>
 						<Flex gridColumnGap="2.5rem" gridRowGap="1.5rem" flexWrap="wrap" width="100%" py={10}>
-							<PostCard {...mockPost} />
+							{
+								recentPosts.map((post) => (<PostCard key={post.title} {...post}/>))
+							}
+							{/* <PostCard {...mockPost} />
 							<PostCard {...mockPost2}/>
-							<PostCard {...mockPost} />
+							<PostCard {...mockPost} /> */}
 						</Flex>
 						<Flex justifyContent={["flex-start"]} pl={2}>
 							<Text color="gray.400" fontWeight="medium" _hover={{
@@ -92,6 +102,88 @@ export default function Home() {
 			</Flex>
 		</Container>
 	);
+}
+
+export async function getStaticProps({ params }) {
+
+	// Call Strapi API to get 4 most recently added notes
+	const recentNotes = [
+		{
+			slug: 'big-oh-notation',
+			title: 'Big Oh Notation',
+			topic: {
+				slug: 'algorithms',
+				name: 'Algorithms',
+			}
+		},
+		{
+			slug: 'time-complexity',
+			title: 'Time Complexity',
+			topic: {
+				slug: 'algorithms',
+				name: 'Algorithms',
+			}
+		},
+		{
+			slug: 'space-complexity',
+			title: 'Space Complexity',
+			topic: {
+				slug: 'data-structures',
+				name: 'Data Structures',
+			}
+		}
+	]
+	
+	// Call Strapi API to get 3 most recently added blog posts/articles
+	// This is the structure that we would get from the API
+	const posts = [
+		{
+			slug: '',
+			title: '',
+			description: '',
+			publishedAt: '',
+			category: {
+				name: '',
+				slug: '',
+			}, 
+			thumbnail: {
+				src: '',
+				alt: ''
+			} 
+		}
+	]
+
+	// This is what we are currently working with
+	const recentPosts = [
+		{
+			imgSrc: '/images/coffee.jpg',
+			imgAlt: 'avatar',
+			tag: 'career',
+			title: 'Becoming a cartoon avatar',
+			description: 'This is how a cartoon avatar was born from nothing',
+			publishDate: 'July 7, 2021',
+		},
+		{
+			imgSrc: '/images/coffee.jpg',
+			imgAlt: 'avatar',
+			tag: 'career',
+			title: 'Becoming a cartoon avatar and exploring the face of the internet',
+			description: 'This is how a cartoon avatar was born from nothing. Everything from the inital ideation to the realization of my character',
+			publishDate: 'July 7, 2021',
+		}
+	]
+
+	return {
+        props: {
+            recentNotes,
+			recentPosts
+        },
+    };
+
+	
+
+
+
 }
 
 const mockPost = {
