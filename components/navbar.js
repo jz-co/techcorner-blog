@@ -1,9 +1,11 @@
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 import { Button, Box, Link } from '@chakra-ui/react';
 
-const NavLink = ({ to, label, ...props }) => {
+function NavLink ({ to, label, ...props }) {
+	const router = useRouter();
 	return (
-		<Link as={NextLink} href={to}>
+		<Link as={ NextLink } href={to}>
 			<Button
                 color="#353535"
 				bg='none'
@@ -12,6 +14,7 @@ const NavLink = ({ to, label, ...props }) => {
 					boxShadow: 'none',
 					outline: 'none',
 				}}
+				fontWeight={router.pathname === to ? 'bold' : 'medium'}
 				{...props}>
 				{label}
 			</Button>
@@ -19,7 +22,7 @@ const NavLink = ({ to, label, ...props }) => {
 	);
 };
 
-const NavBar = ({ selectedPage = '', ...props }) => {
+export default function NavBar ({ ...props }) {
 	const pages = [
 		{
 			name: 'Home',
@@ -43,13 +46,11 @@ const NavBar = ({ selectedPage = '', ...props }) => {
         <Box>
             {pages.map(({ name, path }) => (
                 <NavLink
+					key={name}
                     label={name}
                     to={path}
-                    fontWeight={name.toLowerCase() === selectedPage.toLowerCase() ? 'bold' : 'medium'}
                 />
             ))}
         </Box>
 	);
 };
-
-export default NavBar;
