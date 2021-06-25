@@ -5,6 +5,7 @@ import Container from '../../../components/container';
 import { SingleTopicButton } from '../../../components/single-topic';
 import CategorySideNav from '../../../components/category-sidenav';
 import MainLayout from '../../../components/layout';
+import { fetchStrapi } from '../../../lib/api';
 
 export default function NotesSubject({ allSubjects, subject, notes }) {
 	return (
@@ -24,11 +25,11 @@ export default function NotesSubject({ allSubjects, subject, notes }) {
 							Here you will find quick reference notes for some of the major computer science algorithms and related
 							topics. We also have links to more in-depth resources if you want to learn more.{' '}
 						</Text>
-						<SimpleGrid columns={3} spacing={6} minChildWidth='240px'>
+						<Flex gridColumnGap="2rem" gridRowGap="1.5rem" flexWrap="wrap" width="100%" >
 							{notes.map((note) => (
 								<SingleTopicButton key={note.slug} topic={note.title} to={`/notes/${subject.slug}/${note.slug}`} />
 							))}
-						</SimpleGrid>
+						</Flex>
 					</Box>
 				</Flex>
 			</MainLayout>
@@ -37,11 +38,11 @@ export default function NotesSubject({ allSubjects, subject, notes }) {
 }
 
 export async function getStaticPaths() {
-	// TODO: Call Strapi API to get all notes topics
-	const subjects = ['algorithms', 'data-structures', 'operating-systems'];
+	// Call Strapi API to get all notes topics
+	const subjects = await fetchStrapi('get.notes-topics');
 
 	const paths = subjects.map((subject) => ({
-		params: { subject: subject },
+		params: { subject: subject.slug },
 	}));
 
 	return {
@@ -54,44 +55,19 @@ export async function getStaticPaths() {
 // https://nextjs.org/docs/basic-features/data-fetching#getstaticpaths-static-generation
 
 export async function getStaticProps({ params }) {
-	const mockData = {
-		algorithms: 'Algorithms',
-		'data-structures': 'Data Structures',
-		'operating-systems': 'Operating Systems'
-	};
+
 	// params contains the `subject` of the curr page
-	// TODO: call Strapi API to get detailed info about the subject
-	//       and all the notes in that subject
-	const allSubjects = [
-		{
-			slug: 'algorithms',
-			name: 'Algorithms'
-		},
-		{
-			slug: 'data-structures',
-			name: 'Data Structures'
-		},
-		{
-			slug: 'operating-systems',
-			name: 'Operating Systems'
-		}
-	]
+	// Call Strapi API to get detailed info about all subjects, the curr subject
+	// and all the notes in that subject
 
-	const subject = {
-		slug: params.subject,
-		name: mockData[params.subject],
-	};
+	const allSubjects = await fetchStrapi('get.notes-topics');
 
-	const notes = [
-		{ title: 'Big Oh Notation', slug: 'big-oh-notation' },
-		{ title: 'Time Complexity', slug: 'time-complexity' },
-		{ title: 'Space Complexity', slug: 'space-complexity' },
-	];
+	const { name, slug, notes } = allSubjects.filter((subject) => subject.slug === params.subject)[0];
 
 	return {
 		props: {
 			allSubjects,
-			subject,
+			subject: { name, slug },
 			notes,
 		},
 	};

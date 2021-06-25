@@ -30,7 +30,7 @@ export default function Home({ recentNotes, recentPosts, }) {
 						</Text>
 					</Flex>
 					<Flex flexBasis="50%" flexDirection="column" justifyContent="center">
-						<Image objectFit="contain" src="/images/hero-img.png" alt="hero" />
+						<Image objectFit="contain" src="https://res.cloudinary.com/d4h7j9/image/upload/v1624414629/hero-img.png" alt="hero" />
 					</Flex>
 				</Flex>
 			</Flex>
@@ -51,10 +51,6 @@ export default function Home({ recentNotes, recentPosts, }) {
 									)
 								})
 							}
-							{/* <SingleTopicCard topic='Big O Notation' category='Algorithms' to='/notes/algorithms/big-oh-notation' />
-							<SingleTopicCard topic='Time Complexity' category='Algorithms' to='/notes/algorithms/big-oh-notation' />
-							<SingleTopicCard topic='Space Complexity with more' category='Algorithms' />
-							<SingleTopicCard topic='Space Complexity with more' category='Algorithms' /> */}
 						</Flex>
 						<Flex justifyContent={["flex-start"]} pl={2}>
 							<Text color="gray.400" fontWeight="medium" _hover={{

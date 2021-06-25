@@ -7,6 +7,14 @@ import MainLayout from '../../../components/layout';
 import NoteSectionContainer from '../../../components/note-section-container';
 import AddResourcesCard from '../../../components/add-resources';
 import { notesComponents } from '../../../components/markdown';
+import { fetchStrapi } from '../../../lib/api';
+
+const vercelResource = {
+    title: 'Next.js Documentation',
+    source: 'Vercel',
+    link: 'https://nextjs.org/docs/getting-started',
+    icon: '/favicon.ico'
+}
 
 export default function NotesPost({ note }) {
 
@@ -24,14 +32,15 @@ export default function NotesPost({ note }) {
                 pb="64px">
                 <Flex width="100%" px='4rem' maxWidth="1120px" flexDirection="column" alignItems="flex-start">
                     <Heading as="h1" mb={2} color="#353535" fontSize="4xl">{note.title}</Heading>
-                    <Text color="gray.300" fontWeight="bold" fontSize="2xl">{note.subject}</Text>
+                    <Text color="gray.300" fontWeight="bold" fontSize="2xl">{note.topic.name}</Text>
                 </Flex>
             </Flex>
             <MainLayout pt="4rem" w="100%">
+                {note.body.length === 0 && <Text>Nothing to see here...</Text>}
                 <Flex w="100%" px='2rem' maxWidth="1120px" justifyContent="space-between" wrap="wrap">
 
                     <Stack spacing={12} maxWidth="700px" mb={12} color="gray.700">
-                        {note.body.map( (section) => {
+                        {note.body.map((section) => {
                             return (<NoteSectionContainer key={section.id} spacing={6}>
                                 <ReactMarkdown components={notesComponents}>
                                     {section.content}
@@ -40,7 +49,7 @@ export default function NotesPost({ note }) {
                             </NoteSectionContainer>)
                         })}
                     </Stack>
-                    <AddResourcesCard srcs={note.resources} w="300px" h="fit-content" ml={2} />
+                    {note.resources.length > 0 && <AddResourcesCard srcs={[...note.resources, vercelResource]} w="300px" h="fit-content" ml={2} />}
 
                 </Flex>
             </MainLayout>
@@ -51,29 +60,12 @@ export default function NotesPost({ note }) {
 
 export async function getStaticPaths() {
     // TODO: Call Strapi API to get all notes topics, and all notes associated with each topic
-    const subjects = ['algorithms', 'data-structures', 'operating-systems'];
-    const notes = {
-        'algorithms': [
-            { title: 'Big Oh Notation', slug: 'big-oh-notation' },
-            { title: 'Time Complexity', slug: 'time-complexity' },
-            { title: 'Space Complexity', slug: 'space-complexity' },
-        ],
-        'data-structures': [
-            { title: 'Big Oh Notation', slug: 'big-oh-notation' },
-            { title: 'Time Complexity', slug: 'time-complexity' },
-            { title: 'Space Complexity', slug: 'space-complexity' },
-        ],
-        "operating-systems": [
-            { title: 'Big Oh Notation', slug: 'big-oh-notation' },
-            { title: 'Time Complexity', slug: 'time-complexity' },
-            { title: 'Space Complexity', slug: 'space-complexity' },
-        ],
-    };
+    const subjects = await fetchStrapi('get.notes-topics');
 
     const paths = subjects.reduce((accumulator, subject) => {
-        let slugs = notes[subject].map(note => note.slug);
-        let params = slugs.map(slug => ({ params: { subject: subject, slug: slug } }));
-        return accumulator.concat(params)
+        let slugs = subject.notes.map(note => note.slug);
+        let params = slugs.map(slug => ({ params: { subject: subject.slug, slug: slug } }));
+        return accumulator.concat(params);
     }, []);
 
     return {
@@ -137,8 +129,10 @@ export async function getStaticProps({ params }) {
     const title = mockData.notes[params.slug];
     const subject = mockData.subjects[params.subject];
 
-    const note = { title, subject, body: mockContent, resources: mockResources }
+    // const note = { title, subject, body: mockContent, resources: mockResources }
 
+    const response = await fetchStrapi("get.note-by-slug", params.slug);
+    const note = response[0];
 
     return {
         props: {
