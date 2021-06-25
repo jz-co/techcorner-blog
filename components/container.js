@@ -2,6 +2,7 @@ import React from 'react';
 import { Flex, useColorMode } from '@chakra-ui/react';
 
 import Header from './header';
+import Footer from './footer';
 
 const Container = ({ children }) => {
 	const { colorMode } = useColorMode();
@@ -26,6 +27,7 @@ const Container = ({ children }) => {
 				</Flex> */}
 				{children}
 			</Flex>
+			<Footer/>
 		</>
 	);
 };

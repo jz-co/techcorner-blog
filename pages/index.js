@@ -1,9 +1,12 @@
 import Head from 'next/head';
-import { Flex, Heading, Stack, Text, Image } from '@chakra-ui/react';
+import NextLink from 'next/link';
+import { Box, Flex, Heading, Link, Text, Image, } from '@chakra-ui/react';
 
 import Container from '../components/container';
+import { SingleTopicCard } from '../components/single-topic';
+import PostCard from '../components/post-card';
 
-export default function Home() {
+export default function Home({ recentNotes, recentPosts, }) {
 	return (
 		<Container>
 			<Head>
@@ -12,18 +15,191 @@ export default function Home() {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<Flex
-                justifyContent='center'
-                bg='white'
-                w="100%"
-                pt="100px"
-                pb="64px">
-                <Stack spacing={16} direction={['column', 'row']} width="100%" px='4rem' maxWidth="1120px" maxHeight="300px">
-					<Flex>
-                    <Heading as="h1" mb={2} color="#353535" fontSize="4xl">Home</Heading>
+				justifyContent='center'
+				bg='white'
+				w="100%"
+				pt="54px"
+				pb="80px">
+				<Flex width="100%" px={['1.5rem', '4rem']} maxWidth="1180px" flexWrap="wrap" flexDirection={["column", "row"]}>
+					<Flex flexBasis="50%" px={2} flexDirection="column" justifyContent="center">
+						<Heading as="h1" mb={4} color="#353535" fontSize={["4xl", "4xl"]} lineHeight="130%">
+							Welcome to our little corner of the internet...
+						</Heading>
+						<Text fontSize="md" mb={2} color="gray.500">
+							Here's a quick small description...
+						</Text>
 					</Flex>
-					<Image boxSize="250px" objectFit="contain" src="/images/hero-img.jpg" alt="hero" />
-                </Stack>
-            </Flex>
-        </Container>
-    );
+					<Flex flexBasis="50%" flexDirection="column" justifyContent="center">
+						<Image objectFit="contain" src="/images/hero-img.png" alt="hero" />
+					</Flex>
+				</Flex>
+			</Flex>
+			<Flex justifyContent='center' w="100%" bg='#F5F5F5' py={16} color="#353535" mb="6rem">
+				<Flex width="100%" px={['2rem', '4rem']} maxWidth="1120px" flexDirection="column" justifyContent="flex-start">
+					<Box as="section" mb={[18, 28]}>
+						<Heading fontSize="2xl" mb={4}>
+							Recently Added Notes
+						</Heading>
+						<Text fontSize="md">
+							Check out our notes on Computer Science topics
+						</Text>
+						<Flex gridColumnGap="2rem" gridRowGap="1.5rem" flexWrap="wrap" width="100%" py={10}>
+							{
+								recentNotes.map(({ slug, title, topic}) => {
+									return (
+										<SingleTopicCard key={slug} topic={title} category={topic.name} to={`/notes/${topic.slug}/${slug}`}/>
+									)
+								})
+							}
+							{/* <SingleTopicCard topic='Big O Notation' category='Algorithms' to='/notes/algorithms/big-oh-notation' />
+							<SingleTopicCard topic='Time Complexity' category='Algorithms' to='/notes/algorithms/big-oh-notation' />
+							<SingleTopicCard topic='Space Complexity with more' category='Algorithms' />
+							<SingleTopicCard topic='Space Complexity with more' category='Algorithms' /> */}
+						</Flex>
+						<Flex justifyContent={["flex-start"]} pl={2}>
+							<Text color="gray.400" fontWeight="medium" _hover={{
+								color: "gray.600",
+								fontWeight: 'semibold',
+								textDecoration: 'underline'
+
+							}}>
+							<Link as={NextLink} href="\notes">
+								See all notes
+							</Link>
+							</Text>
+						</Flex>
+					</Box>
+					<Box>
+						<Heading fontSize="2xl" mb={4}>
+							Latest Blog Posts
+						</Heading>
+						<Text fontSize="md">
+							Everything from career to humor, check out our awesome blog!
+						</Text>
+						<Flex gridColumnGap="2.5rem" gridRowGap="1.5rem" flexWrap="wrap" width="100%" py={10}>
+							{
+								recentPosts.map((post) => (<PostCard key={post.title} {...post}/>))
+							}
+							{/* <PostCard {...mockPost} />
+							<PostCard {...mockPost2}/>
+							<PostCard {...mockPost} /> */}
+						</Flex>
+						<Flex justifyContent={["flex-start"]} pl={2}>
+							<Text color="gray.400" fontWeight="medium" _hover={{
+								color: "gray.600",
+								fontWeight: 'semibold',
+								textDecoration: 'underline'
+
+							}}>
+							<Link as={NextLink} href="\notes">
+								See all posts
+							</Link>
+							</Text>
+						</Flex>
+					</Box>
+
+				</Flex>
+			</Flex>
+		</Container>
+	);
+}
+
+export async function getStaticProps({ params }) {
+
+	// Call Strapi API to get 4 most recently added notes
+	const recentNotes = [
+		{
+			slug: 'big-oh-notation',
+			title: 'Big Oh Notation',
+			topic: {
+				slug: 'algorithms',
+				name: 'Algorithms',
+			}
+		},
+		{
+			slug: 'time-complexity',
+			title: 'Time Complexity',
+			topic: {
+				slug: 'algorithms',
+				name: 'Algorithms',
+			}
+		},
+		{
+			slug: 'space-complexity',
+			title: 'Space Complexity',
+			topic: {
+				slug: 'data-structures',
+				name: 'Data Structures',
+			}
+		}
+	]
+	
+	// Call Strapi API to get 3 most recently added blog posts/articles
+	// This is the structure that we would get from the API
+	const posts = [
+		{
+			slug: '',
+			title: '',
+			description: '',
+			publishedAt: '',
+			category: {
+				name: '',
+				slug: '',
+			}, 
+			thumbnail: {
+				src: '',
+				alt: ''
+			} 
+		}
+	]
+
+	// This is what we are currently working with
+	const recentPosts = [
+		{
+			imgSrc: '/images/coffee.jpg',
+			imgAlt: 'avatar',
+			tag: 'career',
+			title: 'Becoming a cartoon avatar',
+			description: 'This is how a cartoon avatar was born from nothing',
+			publishDate: 'July 7, 2021',
+		},
+		{
+			imgSrc: '/images/coffee.jpg',
+			imgAlt: 'avatar',
+			tag: 'career',
+			title: 'Becoming a cartoon avatar and exploring the face of the internet',
+			description: 'This is how a cartoon avatar was born from nothing. Everything from the inital ideation to the realization of my character',
+			publishDate: 'July 7, 2021',
+		}
+	]
+
+	return {
+        props: {
+            recentNotes,
+			recentPosts
+        },
+    };
+
+	
+
+
+
+}
+
+const mockPost = {
+    imgSrc: '/images/coffee.jpg',
+    imgAlt: 'avatar',
+    tag: 'career',
+    title: 'Becoming a cartoon avatar',
+    description: 'This is how a cartoon avatar was born from nothing',
+    publishDate: 'July 7, 2021',
+}
+
+const mockPost2 = {
+    imgSrc: '/images/coffee.jpg',
+    imgAlt: 'avatar',
+    tag: 'career',
+    title: 'Becoming a cartoon avatar and exploring the face of the internet',
+    description: 'This is how a cartoon avatar was born from nothing. Everything from the inital ideation to the realization of my character',
+    publishDate: 'July 7, 2021',
 }
