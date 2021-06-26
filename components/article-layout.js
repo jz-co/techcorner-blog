@@ -6,22 +6,26 @@ import ThumbnailImage from './thumbnail';
 /** meta is an object with the schema:
  * {
  *     title: string,
- *     author: string, -> possibly { firstName, lastName } -> TODO: check Strapi model
- *     publishedDate: date,  -> TODO: currently treated as string, to be modified
- *     category: string,
- *      caption: string
+ *     author: {
+ * 			name: string,
+ * 		}
+ *     published_at: date,  -> TODO: currently treated as string, to be modified
+ *     category: {
+ * 			name: string,
+ * 			slug: string
+ * 		},
+ *      description: string
  * }
  *
  * thumbnail is an object with the schema
  * {
- *      src: string path/url,
- *      alt: string
+ *      url: string path/url,
+ *      alternativeText: string
  * }
  */
 
-export default function ArticleLayout({ meta, thumbnail, children, ...props }) {
-	const { title, author, publishedDate, category, caption } = meta;
-    const { src, alt } = thumbnail;
+export default function ArticleLayout({ title, author, published_at, category, description, thumbnail, children, ...props }) {
+	const { url, alternativeText } = thumbnail;
 
 	return (
 		<Box m={8} maxWidth='760px' {...props} color="#353535">
@@ -29,17 +33,17 @@ export default function ArticleLayout({ meta, thumbnail, children, ...props }) {
 				{title}
 			</Heading>
 			<Text color="gray.500">
-				Posted by <Text as='span' color="gray.700">{author}</Text> on {publishedDate} in{' '}
-                <Link color="teal.500" fontWeight="semibold" href={`/topics/${category.toLowerCase()}`}>
-					{category}
-                    {/* TODO: change teal colour */}
+				Posted by <Text as='span' color="gray.700">{author.name}</Text> on {published_at} in{' '}
+				<Link color="teal.500" fontWeight="semibold" href={`/topics/${category.slug}`}>
+					{category.name}
+					{/* TODO: change teal colour */}
 				</Link>
 			</Text>
-            <Text my={6} fontSize="lg">
-                {caption}
-            </Text>
-            <ThumbnailImage my={10} src={src} alt={alt} />
-            {children}
+			<Text my={6} fontSize="lg">
+				{description}
+			</Text>
+			<ThumbnailImage my={10} src={url} alt={alternativeText} />
+			{children}
 		</Box>
 	);
 }

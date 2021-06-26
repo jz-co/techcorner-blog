@@ -9,7 +9,7 @@ function ResourceGroup({ title, srcLink, srcName, srcIcon, ...props }) {
 				transform: 'translateX(3px)',
 			}}>
 			<HStack spacing={2} w='fit-content' alignItems='center'>
-				{srcIcon && <Image src={srcIcon} alt={`${srcName} icon`} height='32px' borderRadius='full' />}
+				{srcIcon && <Image src={srcIcon.url} alt={srcIcon.alternativeText} height='32px' borderRadius='full' />}
 				<Box color='#353535' fontWeight='medium' fontSize='sm'>
 					<LinkOverlay href={srcLink}><Text noOfLines={2}>{title}</Text></LinkOverlay>
 					<Text fontSize='xs' color='gray.400' lineHeight='4' mt={1} noOfLines={1}>

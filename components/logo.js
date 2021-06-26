@@ -1,10 +1,10 @@
 import React from 'react';
-import { Box, Text, HStack } from '@chakra-ui/react';
+import { Box, Text, HStack, Image } from '@chakra-ui/react';
 
 export default function Logo(props) {
 	return (
 		<HStack {...props}>
-			<svg width='64' height='53' viewBox='0 0 296 260' fill='none' xmlns='http://www.w3.org/2000/svg'>
+			{/* <svg width='64' height='53' viewBox='0 0 296 260' fill='none' xmlns='http://www.w3.org/2000/svg'>
 				<path d='M251.601 103.354L95.7601 40.6034L33.0091 196.444' stroke='#63C1F6' stroke-width='13' />
 				<circle cx='32.8828' cy='202.883' r='25' transform='rotate(-23.4451 32.8828 202.883)' fill='#5FC5F0' />
 				<circle cx='92.8828' cy='33.8615' r='25' transform='rotate(-23.4451 92.8828 33.8615)' fill='#6DB6EB' />
@@ -17,7 +17,8 @@ export default function Logo(props) {
 			</svg>
 			<Text fontSize='lg' fontWeight='bold' color="gray.600" minW="fit-content">
 				Tech Corner
-			</Text>
+			</Text> */}
+			<Image src="/logo.svg" height="80px" />
 		</HStack>
 	);
 }

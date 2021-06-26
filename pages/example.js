@@ -20,16 +20,21 @@ import { notesComponents } from '../components/markdown';
 // FAKE DATA
 const articleMeta = {
 	title: 'How to write a tech resume',
-	caption:
+	description:
 		'Kickstart your tech job hunt with a great resume. This guide is suited for those just getting started on their tech career journey.',
-	author: 'Jessie Lam',
-	publishedDate: 'June 30, 2021',
-	category: 'Career',
+	author: {
+		name: 'Jessie Lam'
+	},
+	published_at: 'June 30, 2021',
+	category: {
+		name: 'Career',
+		slug: 'career',
+	}
 };
 
 const thumbnailMeta = {
-	src: '/images/coffee.jpg',
-	alt: 'coffee on a book',
+	url: '/images/coffee.jpg',
+	alternativeText: 'coffee on a book',
 };
 
 const markdownContent = `
@@ -133,7 +138,7 @@ export default function Home() {
 					<BodyImage my={10} src='/images/coffee.jpg' alt='coffee' caption='This is some lovely coffee!' />
 				</Box>
 				Here's an example using the Article Layout:
-				<ArticleLayout meta={articleMeta} thumbnail={thumbnailMeta}>
+				<ArticleLayout {...articleMeta} thumbnail={thumbnailMeta}>
 					<p>
 						Kielbasa bacon boudin swine cow tri-tip shankle. Ham hock flank landjaeger porchetta, strip steak t-bone short
 						loin beef chuck tri-tip kielbasa bresaola prosciutto hamburger bacon. Cow t-bone bresaola, swine ham bacon

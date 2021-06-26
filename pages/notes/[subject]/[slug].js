@@ -13,7 +13,10 @@ const vercelResource = {
     title: 'Next.js Documentation',
     source: 'Vercel',
     link: 'https://nextjs.org/docs/getting-started',
-    icon: '/favicon.ico'
+    icon: {
+        url: '/favicon.ico',
+        alternativeText: 'vercel icon'
+    }
 }
 
 export default function NotesPost({ note }) {
