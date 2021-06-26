@@ -5,8 +5,9 @@ import { Box, Flex, Heading, Link, Text, Image, } from '@chakra-ui/react';
 import Container from '../components/container';
 import { SingleTopicCard } from '../components/single-topic';
 import PostCard from '../components/post-card';
+import { fetchStrapi } from '../lib/api';
 
-export default function Home({ recentNotes, recentPosts, }) {
+export default function Home({ recentNotes, recentPosts, hero }) {
 	return (
 		<Container>
 			<Head>
@@ -23,10 +24,10 @@ export default function Home({ recentNotes, recentPosts, }) {
 				<Flex width="100%" px={['1.5rem', '4rem']} maxWidth="1180px" flexWrap="wrap" flexDirection={["column", "row"]}>
 					<Flex flexBasis="50%" px={2} flexDirection="column" justifyContent="center">
 						<Heading as="h1" mb={4} color="#353535" fontSize={["4xl", "4xl"]} lineHeight="130%">
-							Welcome to our little corner of the internet...
+							{ hero.heroTitle }
 						</Heading>
 						<Text fontSize="md" mb={2} color="gray.500">
-							Here's a quick small description...
+							{ hero.heroDescription }
 						</Text>
 					</Flex>
 					<Flex flexBasis="50%" flexDirection="column" justifyContent="center">
@@ -59,7 +60,7 @@ export default function Home({ recentNotes, recentPosts, }) {
 								textDecoration: 'underline'
 
 							}}>
-							<Link as={NextLink} href="\notes">
+							<Link as={ NextLink } href="\notes">
 								See all notes
 							</Link>
 							</Text>
@@ -102,33 +103,39 @@ export default function Home({ recentNotes, recentPosts, }) {
 
 export async function getStaticProps({ params }) {
 
+	// Call Strapi to get homepage data (for hero section)
+	const { hero } = await fetchStrapi("get.homepage");
+
+
 	// Call Strapi API to get 4 most recently added notes
-	const recentNotes = [
-		{
-			slug: 'big-oh-notation',
-			title: 'Big Oh Notation',
-			topic: {
-				slug: 'algorithms',
-				name: 'Algorithms',
-			}
-		},
-		{
-			slug: 'time-complexity',
-			title: 'Time Complexity',
-			topic: {
-				slug: 'algorithms',
-				name: 'Algorithms',
-			}
-		},
-		{
-			slug: 'space-complexity',
-			title: 'Space Complexity',
-			topic: {
-				slug: 'data-structures',
-				name: 'Data Structures',
-			}
-		}
-	]
+	// const recentNotes = [
+	// 	{
+	// 		slug: 'big-oh-notation',
+	// 		title: 'Big Oh Notation',
+	// 		topic: {
+	// 			slug: 'algorithms',
+	// 			name: 'Algorithms',
+	// 		}
+	// 	},
+	// 	{
+	// 		slug: 'time-complexity',
+	// 		title: 'Time Complexity',
+	// 		topic: {
+	// 			slug: 'algorithms',
+	// 			name: 'Algorithms',
+	// 		}
+	// 	},
+	// 	{
+	// 		slug: 'space-complexity',
+	// 		title: 'Space Complexity',
+	// 		topic: {
+	// 			slug: 'data-structures',
+	// 			name: 'Data Structures',
+	// 		}
+	// 	}
+	// ]
+
+	const recentNotes = await fetchStrapi('get.recent-notes');
 	
 	// Call Strapi API to get 3 most recently added blog posts/articles
 	// This is the structure that we would get from the API
@@ -172,7 +179,8 @@ export async function getStaticProps({ params }) {
 	return {
         props: {
             recentNotes,
-			recentPosts
+			recentPosts,
+			hero,
         },
     };
 

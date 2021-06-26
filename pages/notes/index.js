@@ -1,13 +1,14 @@
-import { HStack, Text, Heading } from '@chakra-ui/react'
+import { Text, Heading, Box, Flex } from '@chakra-ui/react'
 import Head from 'next/head'
-import Image from 'next/image'
 
 import Container from '../../components/container'
-import { SingleTopicButton, SingleTopicCard } from '../../components/single-topic'
-import NoteSectionContainer from '../../components/note-section-container'
+import { SingleTopicCard } from '../../components/single-topic'
 import MainLayout from '../../components/layout'
+import CategorySideNav from '../../components/category-sidenav';
 
-export default function Home() {
+import { fetchStrapi } from '../../lib/api';
+
+export default function Notes({ notes, allSubjects }) {
   return (
     <Container>
       <Head>
@@ -16,33 +17,40 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MainLayout>
-      <HStack
-       spacing={8}
-       mb={8}>
-        <SingleTopicButton topic="Breadth First Search Super Uber long" to="/"/>
-        <SingleTopicButton topic="Breadth First Search" to="/"/>
-      </HStack>
-      <HStack
-        spacing={8}
-        mb={8}>
-        <SingleTopicCard topic="Big O Notation" category="Algorithms"/>
-        <SingleTopicCard topic="Time Complexity" category="Algorithms"/>
-        <SingleTopicCard topic="Space Complexity with more" category="Algorithms"/>
-      </HStack>
-      <NoteSectionContainer>
-        <Heading
-          fontSize="lg"
-          fontWeight="semibold"
-          color="#353535">
-          What is Big Oh Notation?
-        </Heading>
-        <Text
-          fontSize="sm"
-          color="#686868">
-          Hello world...
-        </Text>
-      </NoteSectionContainer>
+        <Flex mt={12} w='100%' flexWrap="wrap" >
+          <CategorySideNav title='Subjects' categories={allSubjects} pathPrefix={`/notes`} mb={8} mr={24} minWidth="200px" />
+          <Box maxWidth='800px'>
+            <Heading as='h1' mb='1.5rem' color='#353535'>
+              Computer Science Notes
+            </Heading>
+            <Text mb='2.5rem' color='gray.500'>
+              Here you will find quick reference notes for some of the major computer science algorithms and related
+              topics. We also have links to more in-depth resources if you want to learn more.{' '}
+            </Text>
+            <Flex gridColumnGap="2rem" gridRowGap="1.5rem" flexWrap="wrap" width="100%">
+              {
+                notes.map(({ slug, title, topic }) => {
+                  return (
+                    <SingleTopicCard key={slug} topic={title} category={topic.name} to={`/notes/${topic.slug}/${slug}`} />
+                  )
+                })
+              }
+            </Flex>
+          </Box>
+        </Flex>
       </MainLayout>
     </Container>
   )
+}
+
+export async function getStaticProps() {
+  const notes = await fetchStrapi("get.notes");
+  const allSubjects = await fetchStrapi("get.notes-topics");
+
+  return {
+    props: {
+      notes,
+      allSubjects
+    },
+  };
 }

@@ -59,7 +59,7 @@ export default function NotesPost({ note }) {
 }
 
 export async function getStaticPaths() {
-    // TODO: Call Strapi API to get all notes topics, and all notes associated with each topic
+    // Call Strapi API to get all notes topics, and all notes associated with each topic
     const subjects = await fetchStrapi('get.notes-topics');
 
     const paths = subjects.reduce((accumulator, subject) => {
