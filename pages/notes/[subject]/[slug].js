@@ -1,4 +1,5 @@
 import Head from 'next/head';
+
 import { Flex, Heading, Text, Stack } from '@chakra-ui/react';
 import ReactMarkdown from 'react-markdown';
 
@@ -50,7 +51,6 @@ export default function NotesPost({ note }) {
                         })}
                     </Stack>
                     {note.resources.length > 0 && <AddResourcesCard srcs={[...note.resources, vercelResource]} w="300px" h="fit-content" ml={2} />}
-
                 </Flex>
             </MainLayout>
         </Container>
@@ -59,6 +59,7 @@ export default function NotesPost({ note }) {
 }
 
 export async function getStaticPaths() {
+
     // Call Strapi API to get all notes topics, and all notes associated with each topic
     const subjects = await fetchStrapi('get.notes-topics');
 
@@ -83,8 +84,6 @@ export async function getStaticProps({ params }) {
     // TODO: call Strapi API to get detailed info about the note
 
     // Use API to (query) find the note that corresponds to params.slug
-
-    // const note = { title, subject, body: mockContent, resources: mockResources }
 
     const response = await fetchStrapi("get.note-by-slug", params.slug);
     const note = response[0];

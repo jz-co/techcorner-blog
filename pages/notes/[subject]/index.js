@@ -38,6 +38,7 @@ export default function NotesSubject({ allSubjects, subject, notes }) {
 }
 
 export async function getStaticPaths() {
+
 	// Call Strapi API to get all notes topics
 	const subjects = await fetchStrapi('get.notes-topics');
 
