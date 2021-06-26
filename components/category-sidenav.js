@@ -14,6 +14,7 @@ export default function CategorySideNav({ pathPrefix, currCategory, categories, 
 			<Stack spacing={4}>
 				{categories.map(({ name, slug }) => {
 					let selected = currCategory && currCategory.slug === slug;
+
 					return (
 						<Box
 							key={slug}

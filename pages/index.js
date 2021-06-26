@@ -134,27 +134,4 @@ export async function getStaticProps({ params }) {
 			hero,
 		},
 	};
-
-
-
-
-
-}
-
-const mockPost = {
-	imgSrc: '/images/coffee.jpg',
-	imgAlt: 'avatar',
-	tag: 'career',
-	title: 'Becoming a cartoon avatar',
-	description: 'This is how a cartoon avatar was born from nothing',
-	publishDate: 'July 7, 2021',
-}
-
-const mockPost2 = {
-	imgSrc: '/images/coffee.jpg',
-	imgAlt: 'avatar',
-	tag: 'career',
-	title: 'Becoming a cartoon avatar and exploring the face of the internet',
-	description: 'This is how a cartoon avatar was born from nothing. Everything from the inital ideation to the realization of my character',
-	publishDate: 'July 7, 2021',
 }

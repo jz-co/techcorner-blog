@@ -7,6 +7,7 @@ import Container from '../components/container';
 import { SingleTopicButton, SingleTopicCard } from '../components/single-topic';
 import NoteSectionContainer from '../components/note-section-container';
 import AddResourcesCard from '../components/resources-card';
+
 import HeroPostCard from '../components/hero-post-card';
 import DownloadCard from '../components/download-card';
 import CategorySideNav from '../components/category-sidenav';
