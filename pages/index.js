@@ -24,10 +24,10 @@ export default function Home({ recentNotes, recentPosts, hero }) {
 				<Flex width="100%" px={['1.5rem', '4rem']} maxWidth="1180px" flexWrap="wrap" flexDirection={["column", "row"]}>
 					<Flex flexBasis="50%" px={2} flexDirection="column" justifyContent="center">
 						<Heading as="h1" mb={4} color="#353535" fontSize={["4xl", "4xl"]} lineHeight="130%">
-							{ hero.heroTitle }
+							{hero.heroTitle}
 						</Heading>
 						<Text fontSize="md" mb={2} color="gray.500">
-							{ hero.heroDescription }
+							{hero.heroDescription}
 						</Text>
 					</Flex>
 					<Flex flexBasis="50%" flexDirection="column" justifyContent="center">
@@ -46,9 +46,9 @@ export default function Home({ recentNotes, recentPosts, hero }) {
 						</Text>
 						<Flex gridColumnGap="2rem" gridRowGap="1.5rem" flexWrap="wrap" width="100%" py={10}>
 							{
-								recentNotes.map(({ slug, title, topic}) => {
+								recentNotes.map(({ slug, title, topic }) => {
 									return (
-										<SingleTopicCard key={slug} topic={title} category={topic.name} to={`/notes/${topic.slug}/${slug}`}/>
+										<SingleTopicCard key={slug} topic={title} category={topic.name} to={`/notes/${topic.slug}/${slug}`} />
 									)
 								})
 							}
@@ -60,9 +60,9 @@ export default function Home({ recentNotes, recentPosts, hero }) {
 								textDecoration: 'underline'
 
 							}}>
-							<Link as={ NextLink } href="\notes">
-								See all notes
-							</Link>
+								<Link as={NextLink} href="\notes">
+									<a>See all notes</a>
+								</Link>
 							</Text>
 						</Flex>
 					</Box>
@@ -75,11 +75,8 @@ export default function Home({ recentNotes, recentPosts, hero }) {
 						</Text>
 						<Flex gridColumnGap="2.5rem" gridRowGap="1.5rem" flexWrap="wrap" width="100%" py={10}>
 							{
-								recentPosts.map((post) => (<PostCard key={post.title} {...post}/>))
+								recentPosts.map((post) => (<PostCard key={post.title} {...post} />))
 							}
-							{/* <PostCard {...mockPost} />
-							<PostCard {...mockPost2}/>
-							<PostCard {...mockPost} /> */}
 						</Flex>
 						<Flex justifyContent={["flex-start"]} pl={2}>
 							<Text color="gray.400" fontWeight="medium" _hover={{
@@ -88,9 +85,9 @@ export default function Home({ recentNotes, recentPosts, hero }) {
 								textDecoration: 'underline'
 
 							}}>
-							<Link as={NextLink} href="\notes">
-								See all posts
-							</Link>
+								<Link as={NextLink} href="\blog">
+									<a>See all posts</a>
+								</Link>
 							</Text>
 						</Flex>
 					</Box>
@@ -108,102 +105,56 @@ export async function getStaticProps({ params }) {
 
 
 	// Call Strapi API to get 4 most recently added notes
-	// const recentNotes = [
+	const recentNotes = await fetchStrapi('get.recent-notes');
+
+	// Call Strapi API to get 3 most recently added blog posts/articles
+	const articles = await fetchStrapi('get.recent-articles');
+	// This is the structure that we would get from the API
+	// const posts = [
 	// 	{
-	// 		slug: 'big-oh-notation',
-	// 		title: 'Big Oh Notation',
-	// 		topic: {
-	// 			slug: 'algorithms',
-	// 			name: 'Algorithms',
-	// 		}
-	// 	},
-	// 	{
-	// 		slug: 'time-complexity',
-	// 		title: 'Time Complexity',
-	// 		topic: {
-	// 			slug: 'algorithms',
-	// 			name: 'Algorithms',
-	// 		}
-	// 	},
-	// 	{
-	// 		slug: 'space-complexity',
-	// 		title: 'Space Complexity',
-	// 		topic: {
-	// 			slug: 'data-structures',
-	// 			name: 'Data Structures',
+	// 		slug: '',
+	// 		title: '',
+	// 		description: '',
+	// 		publishedAt: '',
+	// 		category: {
+	// 			name: '',
+	// 			slug: '',
+	// 		},
+	// 		thumbnail: {
+	// 			src: '',
+	// 			alt: ''
 	// 		}
 	// 	}
 	// ]
 
-	const recentNotes = await fetchStrapi('get.recent-notes');
-	
-	// Call Strapi API to get 3 most recently added blog posts/articles
-	// This is the structure that we would get from the API
-	const posts = [
-		{
-			slug: '',
-			title: '',
-			description: '',
-			publishedAt: '',
-			category: {
-				name: '',
-				slug: '',
-			}, 
-			thumbnail: {
-				src: '',
-				alt: ''
-			} 
-		}
-	]
-
-	// This is what we are currently working with
-	const recentPosts = [
-		{
-			imgSrc: '/images/coffee.jpg',
-			imgAlt: 'avatar',
-			tag: 'career',
-			title: 'Becoming a cartoon avatar',
-			description: 'This is how a cartoon avatar was born from nothing',
-			publishDate: 'July 7, 2021',
-		},
-		{
-			imgSrc: '/images/coffee.jpg',
-			imgAlt: 'avatar',
-			tag: 'career',
-			title: 'Becoming a cartoon avatar and exploring the face of the internet',
-			description: 'This is how a cartoon avatar was born from nothing. Everything from the inital ideation to the realization of my character',
-			publishDate: 'July 7, 2021',
-		}
-	]
-
 	return {
-        props: {
-            recentNotes,
-			recentPosts,
+		props: {
+			recentNotes,
+			recentPosts: articles,
 			hero,
-        },
-    };
+		},
+	};
 
-	
+
 
 
 
 }
 
 const mockPost = {
-    imgSrc: '/images/coffee.jpg',
-    imgAlt: 'avatar',
-    tag: 'career',
-    title: 'Becoming a cartoon avatar',
-    description: 'This is how a cartoon avatar was born from nothing',
-    publishDate: 'July 7, 2021',
+	imgSrc: '/images/coffee.jpg',
+	imgAlt: 'avatar',
+	tag: 'career',
+	title: 'Becoming a cartoon avatar',
+	description: 'This is how a cartoon avatar was born from nothing',
+	publishDate: 'July 7, 2021',
 }
 
 const mockPost2 = {
-    imgSrc: '/images/coffee.jpg',
-    imgAlt: 'avatar',
-    tag: 'career',
-    title: 'Becoming a cartoon avatar and exploring the face of the internet',
-    description: 'This is how a cartoon avatar was born from nothing. Everything from the inital ideation to the realization of my character',
-    publishDate: 'July 7, 2021',
+	imgSrc: '/images/coffee.jpg',
+	imgAlt: 'avatar',
+	tag: 'career',
+	title: 'Becoming a cartoon avatar and exploring the face of the internet',
+	description: 'This is how a cartoon avatar was born from nothing. Everything from the inital ideation to the realization of my character',
+	publishDate: 'July 7, 2021',
 }

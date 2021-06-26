@@ -1,11 +1,11 @@
 import Head from 'next/head';
-import { Flex, Heading, Text, Grid, Stack } from '@chakra-ui/react';
+import { Flex, Heading, Text, Stack } from '@chakra-ui/react';
 import ReactMarkdown from 'react-markdown';
 
 import Container from "../../../components/container";
 import MainLayout from '../../../components/layout';
 import NoteSectionContainer from '../../../components/note-section-container';
-import AddResourcesCard from '../../../components/add-resources';
+import AddResourcesCard from '../../../components/resources-card';
 import { notesComponents } from '../../../components/markdown';
 import { fetchStrapi } from '../../../lib/api';
 
@@ -79,55 +79,10 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
 
-    const mockData = {
-        notes: {
-            'big-oh-notation': 'Big Oh Notation',
-            'time-complexity': 'Time Complexity',
-            'space-complexity': 'Space Complexity'
-        },
-        subjects: {
-            'algorithms': 'Algorithms',
-            'data-structures': 'Data Structures',
-            'operating-systems': "Operating Systems"
-
-        }
-    };
-
-    const mockContent = [
-        {
-            "__component": "components.section",
-            id: 1,
-            "content": `# How to render markdown as React components\n\n> I am a blockquote. Blah blah blah, there's so much to say\n\n![Coffee](/images/coffee.jpg)\nHi, I'm just some text... What is *Lorem Ipsum*? **Lorem Ipsum** is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type\n\nThis is where something new starts...\n\n\`\`\`\n<h1>Here's some code</h1>\n\`\`\`\n\nHere is some \`inline-code\`.`
-        },
-        {
-            "__component": "components.section",
-            id: 2,
-            "content": "## How to write a test note\n\nYou simply need a title and some educative content!\n\nHere are the steps:\n1. Do this\n2. Then that\n3. And finally..."
-        }
-    ];
-
-    const mockResources = [
-        {
-            title: 'Next.js Documentation',
-            name: 'Vercel',
-            link: 'https://nextjs.org/docs/getting-started',
-            icon: '/favicon.ico',
-        },
-        {
-            title: 'Vercel Home',
-            name: 'Vercel',
-            link: 'https://vercel.com/home?utm_source=next-site&utm_medium=banner&utm_campaign=next-website',
-            icon: '/favicon.ico',
-        },
-    ];
-
     // params contains the `subject` and `slug` of the curr page
     // TODO: call Strapi API to get detailed info about the note
 
     // Use API to (query) find the note that corresponds to params.slug
-
-    const title = mockData.notes[params.slug];
-    const subject = mockData.subjects[params.subject];
 
     // const note = { title, subject, body: mockContent, resources: mockResources }
 

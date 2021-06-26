@@ -6,7 +6,7 @@ import ReactMarkdown from 'react-markdown';
 import Container from '../components/container';
 import { SingleTopicButton, SingleTopicCard } from '../components/single-topic';
 import NoteSectionContainer from '../components/note-section-container';
-import AddResourcesCard from '../components/add-resources';
+import AddResourcesCard from '../components/resources-card';
 import HeroPostCard from '../components/hero-post-card';
 import DownloadCard from '../components/download-card';
 import CategorySideNav from '../components/category-sidenav';
@@ -63,13 +63,13 @@ Here is a list:
 const addResources = [
 	{
 		title: 'Google Home',
-		name: 'Google',
+		source: 'Google',
 		link: 'https://google.com',
 		icon: '/favicon.ico',
 	},
 	{
 		title: 'Google Home 2',
-		name: 'Google',
+		source: 'Google',
 		link: 'https://google.com',
 		icon: '/favicon.ico',
 	},
@@ -108,8 +108,8 @@ export default function Home() {
 					mt={8}
 					title='How to craft your tech resume for your dream job'
 					caption='Kickstart your tech job hunt with a great resume. This guide is suited for those just getting started.'
-					tag='career'
-					publishedDate='June 30, 2021'
+					category={{ name: 'career', slug: 'career' }}
+					published_at='June 30, 2021'
 					link='/'
 					image='/images/coffee.jpg'
 				/>
@@ -144,7 +144,7 @@ export default function Home() {
 				</ArticleLayout>
 				<Stack spacing={8} maxWidth="600px">
 					<Heading>Rendering Markdown: </Heading>
-				<ReactMarkdown components={notesComponents}>{markdownContent}</ReactMarkdown>
+					<ReactMarkdown components={notesComponents}>{markdownContent}</ReactMarkdown>
 				</Stack>
 			</MainLayout>
 		</Container>
