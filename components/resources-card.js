@@ -9,10 +9,10 @@ function ResourceGroup({ title, srcLink, srcName, srcIcon, ...props }) {
 				transform: 'translateX(3px)',
 			}}>
 			<HStack spacing={2} w='fit-content' alignItems='center'>
-				<Image src={srcIcon} alt={`${srcName} icon`} height='32px' borderRadius='full' />
-				<Box color='#353535' fontWeight='semibold' fontSize='medium'>
-					<LinkOverlay href={srcLink}>{title}</LinkOverlay>
-					<Text fontSize='xs' color='gray.400' lineHeight='4' mt={0}>
+				{srcIcon && <Image src={srcIcon.url} alt={srcIcon.alternativeText} height='32px' borderRadius='full' />}
+				<Box color='#353535' fontWeight='medium' fontSize='sm'>
+					<LinkOverlay href={srcLink}><Text noOfLines={2}>{title}</Text></LinkOverlay>
+					<Text fontSize='xs' color='gray.400' lineHeight='4' mt={1} noOfLines={1}>
 						{srcName}
 					</Text>
 				</Box>
@@ -26,7 +26,7 @@ function ResourceGroup({ title, srcLink, srcName, srcIcon, ...props }) {
  * { 
  *   title: string, title of the article/page
  *   link: string, external url
- *   name: string, name of the source website
+ *   source: string, name of the source website
  *   icon: string, url to image of source icon 
  * }
  *
@@ -34,13 +34,13 @@ function ResourceGroup({ title, srcLink, srcName, srcIcon, ...props }) {
 
 export default function AddResourcesCard({ srcs, ...props }) {
 	return (
-		<Box bg='white' borderRadius='16px' boxShadow='0px 0px 12px rgba(0, 0, 0, 0.16)' px={8} py={10} {...props}>
+		<Box bg='white' borderRadius='16px' boxShadow='0px 0px 12px rgba(0, 0, 0, 0.16)' px={9} py={10} {...props}>
 			<Text color='#353535' fontWeight='semibold' mb={6}>
 				To learn more...
 			</Text>
-			<Stack spacing={4} divider={<StackDivider borderColor='gray.200' />}>
+			<Stack spacing={6} divider={<StackDivider borderColor='gray.200' />}>
 				{srcs.map((src) => (
-					<ResourceGroup key={src.title} title={src.title} srcLink={src.link} srcName={src.name} srcIcon={src.icon} />
+					<ResourceGroup key={src.title} title={src.title} srcLink={src.link} srcName={src.source} srcIcon={src.icon} />
 				))}
 			</Stack>
 		</Box>

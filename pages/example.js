@@ -6,7 +6,8 @@ import ReactMarkdown from 'react-markdown';
 import Container from '../components/container';
 import { SingleTopicButton, SingleTopicCard } from '../components/single-topic';
 import NoteSectionContainer from '../components/note-section-container';
-import AddResourcesCard from '../components/add-resources';
+import AddResourcesCard from '../components/resources-card';
+
 import HeroPostCard from '../components/hero-post-card';
 import DownloadCard from '../components/download-card';
 import CategorySideNav from '../components/category-sidenav';
@@ -20,16 +21,21 @@ import { notesComponents } from '../components/markdown';
 // FAKE DATA
 const articleMeta = {
 	title: 'How to write a tech resume',
-	caption:
+	description:
 		'Kickstart your tech job hunt with a great resume. This guide is suited for those just getting started on their tech career journey.',
-	author: 'Jessie Lam',
-	publishedDate: 'June 30, 2021',
-	category: 'Career',
+	author: {
+		name: 'Jessie Lam'
+	},
+	published_at: 'June 30, 2021',
+	category: {
+		name: 'Career',
+		slug: 'career',
+	}
 };
 
 const thumbnailMeta = {
-	src: '/images/coffee.jpg',
-	alt: 'coffee on a book',
+	url: '/images/coffee.jpg',
+	alternativeText: 'coffee on a book',
 };
 
 const markdownContent = `
@@ -63,13 +69,13 @@ Here is a list:
 const addResources = [
 	{
 		title: 'Google Home',
-		name: 'Google',
+		source: 'Google',
 		link: 'https://google.com',
 		icon: '/favicon.ico',
 	},
 	{
 		title: 'Google Home 2',
-		name: 'Google',
+		source: 'Google',
 		link: 'https://google.com',
 		icon: '/favicon.ico',
 	},
@@ -108,8 +114,8 @@ export default function Home() {
 					mt={8}
 					title='How to craft your tech resume for your dream job'
 					caption='Kickstart your tech job hunt with a great resume. This guide is suited for those just getting started.'
-					tag='career'
-					publishedDate='June 30, 2021'
+					category={{ name: 'career', slug: 'career' }}
+					published_at='June 30, 2021'
 					link='/'
 					image='/images/coffee.jpg'
 				/>
@@ -133,7 +139,7 @@ export default function Home() {
 					<BodyImage my={10} src='/images/coffee.jpg' alt='coffee' caption='This is some lovely coffee!' />
 				</Box>
 				Here's an example using the Article Layout:
-				<ArticleLayout meta={articleMeta} thumbnail={thumbnailMeta}>
+				<ArticleLayout {...articleMeta} thumbnail={thumbnailMeta}>
 					<p>
 						Kielbasa bacon boudin swine cow tri-tip shankle. Ham hock flank landjaeger porchetta, strip steak t-bone short
 						loin beef chuck tri-tip kielbasa bresaola prosciutto hamburger bacon. Cow t-bone bresaola, swine ham bacon
@@ -144,7 +150,7 @@ export default function Home() {
 				</ArticleLayout>
 				<Stack spacing={8} maxWidth="600px">
 					<Heading>Rendering Markdown: </Heading>
-				<ReactMarkdown components={notesComponents}>{markdownContent}</ReactMarkdown>
+					<ReactMarkdown components={notesComponents}>{markdownContent}</ReactMarkdown>
 				</Stack>
 			</MainLayout>
 		</Container>

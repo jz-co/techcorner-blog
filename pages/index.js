@@ -1,9 +1,13 @@
 import Head from 'next/head';
-import { Flex, Heading, Stack, Text, Image } from '@chakra-ui/react';
+import NextLink from 'next/link';
+import { Box, Flex, Heading, Link, Text, Image, } from '@chakra-ui/react';
 
 import Container from '../components/container';
+import { SingleTopicCard } from '../components/single-topic';
+import PostCard from '../components/post-card';
+import { fetchStrapi } from '../lib/api';
 
-export default function Home() {
+export default function Home({ recentNotes, recentPosts, hero }) {
 	return (
 		<Container>
 			<Head>
@@ -12,18 +16,122 @@ export default function Home() {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<Flex
-                justifyContent='center'
-                bg='white'
-                w="100%"
-                pt="100px"
-                pb="64px">
-                <Stack spacing={16} direction={['column', 'row']} width="100%" px='4rem' maxWidth="1120px" maxHeight="300px">
-					<Flex>
-                    <Heading as="h1" mb={2} color="#353535" fontSize="4xl">Home</Heading>
+				justifyContent='center'
+				bg='white'
+				w="100%"
+				pt="54px"
+				pb="80px">
+				<Flex width="100%" px={['1.5rem', '4rem']} maxWidth="1180px" flexWrap="wrap" flexDirection={["column", "row"]}>
+					<Flex flexBasis="50%" px={2} flexDirection="column" justifyContent="center">
+						<Heading as="h1" mb={4} color="#353535" fontSize={["4xl", "4xl"]} lineHeight="130%">
+							{hero.heroTitle}
+						</Heading>
+						<Text fontSize="md" mb={2} color="gray.500">
+							{hero.heroDescription}
+						</Text>
 					</Flex>
-					<Image boxSize="250px" objectFit="contain" src="/images/hero-img.jpg" alt="hero" />
-                </Stack>
-            </Flex>
-        </Container>
-    );
+					<Flex flexBasis="50%" flexDirection="column" justifyContent="center">
+						<Image objectFit="contain" src="https://res.cloudinary.com/d4h7j9/image/upload/v1624414629/hero-img.png" alt="hero" />
+					</Flex>
+				</Flex>
+			</Flex>
+			<Flex justifyContent='center' w="100%" bg='#F5F5F5' py={16} color="#353535" mb="6rem">
+				<Flex width="100%" px={['2rem', '4rem']} maxWidth="1120px" flexDirection="column" justifyContent="flex-start">
+					<Box as="section" mb={[18, 28]}>
+						<Heading fontSize="2xl" mb={4}>
+							Recently Added Notes
+						</Heading>
+						<Text fontSize="md">
+							Check out our notes on Computer Science topics
+						</Text>
+						<Flex gridColumnGap="2rem" gridRowGap="1.5rem" flexWrap="wrap" width="100%" py={10}>
+							{
+								recentNotes.map(({ slug, title, topic }) => {
+									return (
+										<SingleTopicCard key={slug} topic={title} category={topic.name} to={`/notes/${topic.slug}/${slug}`} />
+									)
+								})
+							}
+						</Flex>
+						<Flex justifyContent={["flex-start"]} pl={2}>
+							<Text color="gray.400" fontWeight="medium" _hover={{
+								color: "gray.600",
+								fontWeight: 'semibold',
+								textDecoration: 'underline'
+
+							}}>
+								<Link as={NextLink} href="\notes">
+									<a>See all notes</a>
+								</Link>
+							</Text>
+						</Flex>
+					</Box>
+					<Box>
+						<Heading fontSize="2xl" mb={4}>
+							Latest Blog Posts
+						</Heading>
+						<Text fontSize="md">
+							Everything from career to humor, check out our awesome blog!
+						</Text>
+						<Flex gridColumnGap="2.5rem" gridRowGap="1.5rem" flexWrap="wrap" width="100%" py={10}>
+							{
+								recentPosts.map((post) => (<PostCard key={post.title} {...post} />))
+							}
+						</Flex>
+						<Flex justifyContent={["flex-start"]} pl={2}>
+							<Text color="gray.400" fontWeight="medium" _hover={{
+								color: "gray.600",
+								fontWeight: 'semibold',
+								textDecoration: 'underline'
+
+							}}>
+								<Link as={NextLink} href="\blog">
+									<a>See all posts</a>
+								</Link>
+							</Text>
+						</Flex>
+					</Box>
+
+				</Flex>
+			</Flex>
+		</Container>
+	);
+}
+
+export async function getStaticProps({ params }) {
+
+	// Call Strapi to get homepage data (for hero section)
+	const { hero } = await fetchStrapi("get.homepage");
+
+
+	// Call Strapi API to get 4 most recently added notes
+	const recentNotes = await fetchStrapi('get.recent-notes');
+
+	// Call Strapi API to get 3 most recently added blog posts/articles
+	const articles = await fetchStrapi('get.recent-articles');
+	// This is the structure that we would get from the API
+	// const posts = [
+	// 	{
+	// 		slug: '',
+	// 		title: '',
+	// 		description: '',
+	// 		publishedAt: '',
+	// 		category: {
+	// 			name: '',
+	// 			slug: '',
+	// 		},
+	// 		thumbnail: {
+	// 			src: '',
+	// 			alt: ''
+	// 		}
+	// 	}
+	// ]
+
+	return {
+		props: {
+			recentNotes,
+			recentPosts: articles,
+			hero,
+		},
+	};
 }
