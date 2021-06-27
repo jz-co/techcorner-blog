@@ -60,7 +60,7 @@ export default function Home({ recentNotes, recentPosts, hero }) {
 								textDecoration: 'underline'
 
 							}}>
-								<Link as={NextLink} href="\notes">
+								<Link as={NextLink} href="/notes">
 									<a>See all notes</a>
 								</Link>
 							</Text>
@@ -85,7 +85,7 @@ export default function Home({ recentNotes, recentPosts, hero }) {
 								textDecoration: 'underline'
 
 							}}>
-								<Link as={NextLink} href="\blog">
+								<Link as={NextLink} href="/blog">
 									<a>See all posts</a>
 								</Link>
 							</Text>
@@ -99,6 +99,10 @@ export default function Home({ recentNotes, recentPosts, hero }) {
 }
 
 export async function getStaticProps({ params }) {
+
+	await new Promise((resolve) => {
+		setTimeout(resolve, 2000);
+	})
 
 	// Call Strapi to get homepage data (for hero section)
 	const { hero } = await fetchStrapi("get.homepage");
