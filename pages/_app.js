@@ -1,7 +1,8 @@
 import { ChakraProvider, useColorMode } from '@chakra-ui/react';
 import { Global, css } from '@emotion/react';
-import { useState } from 'react';
-import Router from 'next/router';
+import { motion, AnimatePresence } from 'framer-motion';
+// import { useState } from 'react';
+// import Router from 'next/router';
 
 import Loader from '../components/loader';
 
@@ -38,27 +39,40 @@ const GlobalStyle = ({ children }) => {
   );
 };
 
-function MyApp({ Component, pageProps }) {
-  const { colorMode } = useColorMode();
-  const [loading, setLoading] = useState(false);
+function MyApp({ Component, pageProps, router }) {
+  // const { colorMode } = useColorMode();
+  // const [loading, setLoading] = useState(false);
 
-  Router.events.on('routeChangeStart', () => {
-    setLoading(true);
-  });
-  Router.events.on('routeChangeComplete', () => {
-    setLoading(false);
-  });
+  // Router.events.on('routeChangeStart', () => {
+  //   setLoading(true);
+  // });
+  // Router.events.on('routeChangeComplete', () => {
+  //   setLoading(false);
+  // });
 
   return (
-    <ChakraProvider>
-      {loading ? (
+    <motion.div key={router.route} initial="pageInitial" animate="pageAnimate"
+      variants={{
+        pageInitial: {
+          opacity: 0.3
+        },
+        pageAnimate: {
+          opacity: 1
+        },
+        pageExit: {
+          opacity: 0,
+        }
+      }}>
+      <ChakraProvider>
+        {/* {loading ? (
         <Loader />
-      ) : (
-        <GlobalStyle>
-          <Component {...pageProps} />
-        </GlobalStyle>
-      )}
-    </ChakraProvider>
+      ) : ( */
+          (<GlobalStyle>
+            <Component {...pageProps} />
+          </GlobalStyle>
+          )}
+      </ChakraProvider>
+    </motion.div>
   );
 }
 

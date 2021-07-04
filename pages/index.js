@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import NextLink from 'next/link';
 import { Box, Flex, Heading, Link, Text, Image, } from '@chakra-ui/react';
+import { motion } from "framer-motion";
 
 import Container from '../components/container';
 import { SingleTopicCard } from '../components/single-topic';
@@ -20,18 +21,41 @@ export default function Home({ recentNotes, recentPosts, hero }) {
 				bg='white'
 				w="100%"
 				pt="54px"
-				pb="80px">
+				pb={["54px", "80px"]}>
 				<Flex width="100%" px={['1.5rem', '4rem']} maxWidth="1180px" flexWrap="wrap" flexDirection={["column", "row"]}>
+
 					<Flex flexBasis="50%" px={2} flexDirection="column" justifyContent="center">
-						<Heading as="h1" mb={4} color="#353535" fontSize={["4xl", "4xl"]} lineHeight="130%">
-							{hero.heroTitle}
-						</Heading>
-						<Text fontSize="md" mb={2} color="gray.500">
-							{hero.heroDescription}
-						</Text>
+						<motion.div initial="displaced" animate="normal" transition={{ duration: .8 }} variants={{
+							displaced: {
+								translateY: 28,
+								opacity: 0
+							},
+							normal: {
+								translateY: 0,
+								opacity: 1,
+							}
+						}}>
+							<Heading as="h1" mb={[2, 4]} color="#353535" fontSize={["3xl", "4xl"]} lineHeight="130%">
+								{hero.heroTitle}
+							</Heading>
+						</motion.div>
+						<motion.div initial="displaced" animate="normal" transition={{ duration: .8, delay: .4 }} variants={{
+							displaced: {
+								translateY: 28,
+								opacity: 0
+							},
+							normal: {
+								translateY: 0,
+								opacity: 1,
+							}
+						}}>
+							<Text fontSize="md" mb={[8, 2]} color="gray.500">
+								{hero.heroDescription}
+							</Text>
+						</motion.div>
 					</Flex>
 					<Flex flexBasis="50%" flexDirection="column" justifyContent="center">
-						<Image objectFit="contain" src="https://res.cloudinary.com/d4h7j9/image/upload/v1624414629/hero-img.png" alt="hero" />
+						<Image objectFit="contain" src="/assets/hero.svg" alt="hero" />
 					</Flex>
 				</Flex>
 			</Flex>
@@ -99,10 +123,6 @@ export default function Home({ recentNotes, recentPosts, hero }) {
 }
 
 export async function getStaticProps({ params }) {
-
-	await new Promise((resolve) => {
-		setTimeout(resolve, 2000);
-	})
 
 	// Call Strapi to get homepage data (for hero section)
 	const { hero } = await fetchStrapi("get.homepage");
