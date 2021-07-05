@@ -27,7 +27,7 @@ export default function CategorySideNav({ pathPrefix, currCategory, categories, 
 								color: '#353535'
 							}}>
 							<ChakraLink as={Link} href={`${pathPrefix}/${slug}`}>
-								{name}
+								{name[0].toUpperCase().concat(name.slice(1))}
 							</ChakraLink>
 						</Box>
 					);
