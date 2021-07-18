@@ -117,7 +117,7 @@ export default function Home() {
 					category={{ name: 'career', slug: 'career' }}
 					published_at='June 30, 2021'
 					link='/'
-					image='/images/coffee.jpg'
+					thumbnail={thumbnailMeta}
 				/>
 				<DownloadCard img='/images/coffee.jpg' />
 
