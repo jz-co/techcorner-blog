@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Flex } from '@chakra-ui/react';
 
 import Logo from './logo';
@@ -16,7 +17,9 @@ export default function Header({ ...props }) {
                 mx={[4, 12]}
                 mt={8}
                 mb={4}>
-                <Logo as="a" href="/" />
+                <Link href="/" passHref>
+                    <a><Logo /></a>
+                </Link>
                 <NavBar />
             </Flex>
         </Flex>
