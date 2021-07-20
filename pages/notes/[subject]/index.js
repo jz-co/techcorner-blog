@@ -13,6 +13,7 @@ export default function NotesSubject({ allSubjects, subject, notes }) {
 			<Head>
 				<title>{subject.name} - Tech Corner</title>
 				<meta name='description' content={`Find all CS notes on the topic of ${subject.name.toLowerCase()}`} />
+				<link rel='icon' href='/favicon.png' />
 			</Head>
 			<MainLayout>
 				<Flex mt={12} w='100%' flexWrap="wrap" >
