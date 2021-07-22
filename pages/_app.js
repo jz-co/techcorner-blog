@@ -54,7 +54,7 @@ function MyApp({ Component, pageProps, router }) {
     <motion.div key={router.route} initial="pageInitial" animate="pageAnimate"
       variants={{
         pageInitial: {
-          opacity: 0.3
+          opacity: 0.7
         },
         pageAnimate: {
           opacity: 1
