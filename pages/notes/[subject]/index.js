@@ -26,9 +26,10 @@ export default function NotesSubject({ allSubjects, subject, notes }) {
 							Here you will find quick reference notes for some of the major computer science algorithms and related
 							topics. We also have links to more in-depth resources if you want to learn more.{' '}
 						</Text>
-						<Flex gridColumnGap="2rem" gridRowGap="1.5rem" flexWrap="wrap" width="100%" >
+						<Flex flexWrap="wrap" width="100%" >
 							{notes.map((note) => (
-								<SingleTopicButton key={note.slug} topic={note.title} to={`/notes/${subject.slug}/${note.slug}`} />
+								<SingleTopicButton key={note.slug} topic={note.title} to={`/notes/${subject.slug}/${note.slug}`}
+									mr="2rem" mb={["1.5rem", 0]} />
 							))}
 						</Flex>
 					</Box>
