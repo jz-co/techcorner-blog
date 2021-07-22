@@ -25,7 +25,7 @@ export default function Home({ recentNotes, recentPosts, hero }) {
 				<Flex width="100%" height="fit-content" px={['1.5rem', '4rem']} maxWidth="1180px" flexDirection={["column", "row"]}>
 
 					<Flex flexBasis="50%" px={2} flexDirection="column" justifyContent="center">
-						<motion.div initial="displaced" animate="normal" transitionnpm={{ duration: .8 }} variants={{
+						<motion.div initial="displaced" animate="normal" transition={{ duration: 1, delay: .2 }} variants={{
 							displaced: {
 								translateY: 28,
 								opacity: 0
@@ -39,7 +39,7 @@ export default function Home({ recentNotes, recentPosts, hero }) {
 								{hero.heroTitle}
 							</Heading>
 						</motion.div>
-						<motion.div initial="displaced" animate="normal" transition={{ duration: .8, delay: .4 }} variants={{
+						<motion.div initial="displaced" animate="normal" transition={{ duration: .8, delay: .8 }} variants={{
 							displaced: {
 								translateY: 28,
 								opacity: 0
