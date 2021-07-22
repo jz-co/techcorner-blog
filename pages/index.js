@@ -68,11 +68,12 @@ export default function Home({ recentNotes, recentPosts, hero }) {
 						<Text fontSize="md">
 							Check out our notes on Computer Science topics
 						</Text>
-						<Flex gridColumnGap="2rem" gridRowGap="24px" flexWrap="wrap" width="100%" py={10}>
+						<Flex flexWrap="wrap" width="100%" py={10}>
 							{
 								recentNotes.map(({ slug, title, topic }) => {
 									return (
-										<SingleTopicCard key={slug} topic={title} category={topic.name} to={`/notes/${topic.slug}/${slug}`} />
+										< SingleTopicCard key={slug} topic={title}
+											category={topic.name} to={`/notes/${topic.slug}/${slug}`} mr="2rem" mb={["1.5rem", 0]} />
 									)
 								})
 							}
@@ -97,9 +98,9 @@ export default function Home({ recentNotes, recentPosts, hero }) {
 						<Text fontSize="md">
 							Everything from career to humor, check out our awesome blog!
 						</Text>
-						<Flex gridColumnGap="2.5rem" gridRowGap="1.5rem" flexWrap="wrap" width="100%" py={10}>
+						<Flex flexWrap="wrap" width="100%" py={10}>
 							{
-								recentPosts.map((post) => (<PostCard key={post.title} {...post} />))
+								recentPosts.map((post) => (<PostCard key={post.title} {...post} mr="2rem" mb={["1.5rem", 0]} />))
 							}
 						</Flex>
 						<Flex justifyContent={["flex-start"]} pl={2}>

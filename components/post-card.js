@@ -12,10 +12,10 @@ export default function PostCard({
     ...props
 }) {
     return (
-        <Flex flex="1 0 0%" padding="0.8rem" flexBasis="33.3333333333%" maxWidth="33.333333333%">
+        <Flex flex="1 0 0%" padding="0.8rem" flexBasis="33.3333333333%" maxWidth="33.333333333%" {...props}>
             <Box width="250px" height="340px" borderWidth="1px" bg="white">
                 <Link href={`/blog/posts/${slug}`} passHref>
-                    <Image height="150px" width="300px" src={thumbnail.url} alt={thumbnail.alt} objectFit="cover"/>
+                    <Image height="150px" width="300px" src={thumbnail.url} alt={thumbnail.alt} objectFit="cover" />
 
                 </Link>
 
