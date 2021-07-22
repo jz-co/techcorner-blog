@@ -22,10 +22,10 @@ export default function Home({ recentNotes, recentPosts, hero }) {
 				w="100%"
 				pt="54px"
 				pb={["54px", "80px"]}>
-				<Flex width="100%" px={['1.5rem', '4rem']} maxWidth="1180px" flexWrap="wrap" flexDirection={["column", "row"]}>
+				<Flex width="100%" px={['1.5rem', '4rem']} maxWidth="1180px" flexDirection={["column"]}>
 
 					<Flex flexBasis="50%" px={2} flexDirection="column" justifyContent="center">
-						<motion.div initial="displaced" animate="normal" transition={{ duration: .8 }} variants={{
+						<motion.div initial="displaced" animate="normal" transitionnpm={{ duration: .8 }} variants={{
 							displaced: {
 								translateY: 28,
 								opacity: 0
