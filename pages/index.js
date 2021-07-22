@@ -68,7 +68,7 @@ export default function Home({ recentNotes, recentPosts, hero }) {
 						<Text fontSize="md">
 							Check out our notes on Computer Science topics
 						</Text>
-						<Flex gridColumnGap="2rem" gridRowGap="1.5rem" flexWrap="wrap" width="100%" py={10}>
+						<Flex gridColumnGap="2rem" gridRowGap="24px" flexWrap="wrap" width="100%" py={10}>
 							{
 								recentNotes.map(({ slug, title, topic }) => {
 									return (
