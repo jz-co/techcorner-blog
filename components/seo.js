@@ -7,7 +7,7 @@ export default function Seo({ seo }) {
     const fullSeo = {
         metaTitle: `${seo.metaTitle} - ${siteName}`,
         metaDescription: seo.metaDescription || defaultSeo.shareImage,
-        shareImage: seo.shareImage.url || defaultSeo.shareImage.url,
+        shareImage: seo.shareImage || defaultSeo.shareImage,
     }
 
     return (
@@ -29,9 +29,9 @@ export default function Seo({ seo }) {
             {/* share image meta tags */}
             {fullSeo.shareImage && (
                 <>
-                    <meta property="og:image" content={fullSeo.shareImage} />
-                    <meta name="twitter:image" content={fullSeo.shareImage} />
-                    <meta name="image" content={fullSeo.shareImage} />
+                    <meta property="og:image" content={fullSeo.shareImage.url} />
+                    <meta name="twitter:image" content={fullSeo.shareImage.url} />
+                    <meta name="image" content={fullSeo.shareImage.url} />
                 </>
             )}
 
