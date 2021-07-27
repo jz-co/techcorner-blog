@@ -4,11 +4,12 @@ import { GlobalContext } from "../pages/_app";
 
 export default function Seo({ seo }) {
     const { defaultSeo, siteName } = useContext(GlobalContext); // add context
-    const fullSeo = {
-        metaTitle: `${seo.metaTitle} - ${siteName}`,
+    const fullSeo = seo ? {
+        ...seo,
+        metaTitle: `${seo.metaTitle || defaultSeo.metaTitle} - ${siteName}`,
         metaDescription: seo.metaDescription || defaultSeo.shareImage,
         shareImage: seo.shareImage || defaultSeo.shareImage,
-    }
+    } : defaultSeo;
 
     return (
         <Head>
@@ -35,7 +36,7 @@ export default function Seo({ seo }) {
                 </>
             )}
 
-            {seo.article && <meta property="og:type" content="article" />}
+            {fullSeo.article && <meta property="og:type" content="article" />}
             <meta name="twitter:card" content="summary_large_image" />
 
             <link rel='icon' href='/favicon.png' />

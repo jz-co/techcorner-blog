@@ -17,7 +17,8 @@ export default class Document extends NextDocument {
           gtag('js', new Date());
           gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
             page_path: window.location.pathname,
-          })`
+          })
+        `
           }} />
         <body>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />

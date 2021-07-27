@@ -125,20 +125,30 @@ export default function Home({ recentNotes, recentPosts, hero }) {
 
 export async function getStaticProps({ params }) {
 
-	// Call Strapi to get homepage data (for hero section)
-	const { hero } = await fetchStrapi("get.homepage");
+	try {
+		const [homepage, recentNotes, articles] = await Promise.all([
+			fetchStrapi("get.homepage"),
+			fetchStrapi('get.recent-notes'),
+			fetchStrapi('get.recent-articles')
+		])
 
-	// Call Strapi API to get 4 most recently added notes
-	const recentNotes = await fetchStrapi('get.recent-notes');
+		return {
+			props: {
+				recentNotes,
+				recentPosts: articles,
+				hero: homepage.hero,
+			},
+		};
 
-	// Call Strapi API to get 3 most recently added blog posts/articles
-	const articles = await fetchStrapi('get.recent-articles');
+	} catch (error) {
+		console.log(error);
+	}
+	// // Call Strapi to get homepage data (for hero section)
+	// const { hero } = await fetchStrapi("get.homepage");
 
-	return {
-		props: {
-			recentNotes,
-			recentPosts: articles,
-			hero,
-		},
-	};
+	// // Call Strapi API to get 4 most recently added notes
+	// const recentNotes = await fetchStrapi('get.recent-notes');
+
+	// // Call Strapi API to get 3 most recently added blog posts/articles
+	// const articles = await fetchStrapi('get.recent-articles');
 }
