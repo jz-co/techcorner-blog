@@ -7,7 +7,7 @@ export default function About() {
     return (
         <Container>
             <MainLayout>
-                <Box>
+                <Box ml="4rem">
                     <Text fontSize="4xl" fontWeight="bold" mt="30px">About</Text>
                     <Text fontSize="18px" mt="10px">Here is where we describe what our website is about and why we started it</Text>
 
@@ -15,7 +15,7 @@ export default function About() {
                         <Box mr="40px">
                             <TeamProfileCard imgSrc="images/Avatar.png" name="Jessie Lam" message="Here is where we describe ourselves. We can give a brief introduction of who we are and a message that we want to tell the world."></TeamProfileCard>
                         </Box>
-                        <Box>
+                        <Box mr="40px">
                             <TeamProfileCard imgSrc="images/Avatar2.png" name="Jenny Zhang" message="Here is where we describe ourselves. We can give a brief introduction of who we are and a message that we want to tell the world."></TeamProfileCard>
                         </Box>
                     </Flex> 

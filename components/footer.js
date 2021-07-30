@@ -1,4 +1,5 @@
 import { Text, Flex, Box, Heading, HStack, Link, Button} from '@chakra-ui/react';
+import { whiten } from '@chakra-ui/theme-tools';
 
 export default function Footer() {
     return (
@@ -91,7 +92,7 @@ export default function Footer() {
             <Box textAlign="center" position="relative">
                 <Link href="#" _hover={{ textDecoration: "none" }}>
 
-                    <Button borderRadius="8px" marginBottom="30px" color="#FAFAFA" backgroundColor="#4E4E4E" border="1px solid #FAFAFA" _hover={{ bg: "#4E4E4E" }} position="absolute" right={["10", "20"]} bottom="0">
+                    <Button borderRadius="8px" marginBottom="30px" color="#FAFAFA" backgroundColor="#4E4E4E" border="1px solid #FAFAFA" _hover={{ bg: whiten("#4E4E4E", 20) }} position="absolute" right={["10", "20"]} bottom="0">
                         <HStack spacing="0">
                             <Text pr="5px">BACK TO TOP</Text>
                             <svg width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg">

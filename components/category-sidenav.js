@@ -5,13 +5,33 @@ import { Flex, Button, Box, Link as ChakraLink, Heading, Stack } from '@chakra-u
 	{ name: string, slug: string }
 */
 
-export default function CategorySideNav({ pathPrefix, currCategory, categories, title, ...props }) {
+export default function CategorySideNav({ pathPrefix, currCategory, categories, title, allPrefix, ...props }) {
 	return (
 		<Box w="fit-content" {...props}>
 			<Heading mb={8} color='#353535'>
 				{title}
 			</Heading>
 			<Stack spacing={4}>
+				<Box
+
+					fontSize='md'
+					fontWeight={(!currCategory) ? 'bold' : 'normal'}
+					color={(!currCategory) ? '#353535' : 'gray.400'}
+					borderLeft={(!currCategory) ? '3px solid #353535' : 'none'}
+					px={2}
+					_hover={{
+						color: '#353535'
+					}}>
+					{allPrefix
+						? <ChakraLink as={Link} href={`${allPrefix}`}>
+							All
+						</ChakraLink>
+						: <ChakraLink as={Link} href={`${pathPrefix}`}>
+							All
+						</ChakraLink>
+					}
+
+				</Box>
 				{categories.map(({ name, slug }) => {
 					let selected = currCategory && currCategory.slug === slug;
 
@@ -32,6 +52,7 @@ export default function CategorySideNav({ pathPrefix, currCategory, categories, 
 						</Box>
 					);
 				})}
+
 			</Stack>
 		</Box>
 	);

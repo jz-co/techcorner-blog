@@ -9,7 +9,7 @@ import PostTag from './post-tag';
  */
 export default function HeroPostCard({ title, description, published_at, category, thumbnail, slug, ...props }) {
 	return (
-		<Flex maxW='800px' maxH={['1000px', '240px']} {...props} overflow='hidden' flexWrap='wrap'>
+		<Flex maxW='800px' maxH={['1000px', '240px']} {...props} overflow='hidden' flexWrap='wrap' mb="20px">
 			<Link href={`/blog/posts/${slug}`} passHref>
 				<Box as="a" d='flex' flexBasis='50%'>
 					<Image src={thumbnail.url} objectFit='cover' />

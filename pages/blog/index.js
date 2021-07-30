@@ -6,8 +6,60 @@ import { fetchStrapi } from '../../lib/api';
 import HeroPostCard from '../../components/hero-post-card';
 import PostCard from '../../components/post-card';
 import CategorySideNav from '../../components/category-sidenav';
+import { useMediaQuery } from "@chakra-ui/react"
+import ReactPaginate from "react-paginate";
+import paginationStyles from '../../styles/pagination.module.css'
+import { useState } from "react";
 
 export default function Blog({ articles, allArticleCategories }) {
+  const [isSmallerThan660] = useMediaQuery("(max-width: 660px)")
+  const [pageNumber, setPageNumber] = useState(0);
+
+  const articlesPerPage = 9;
+	const pagesVisited = pageNumber * articlesPerPage;
+
+	const pageCount = Math.ceil(articles.length / articlesPerPage);
+	const realPageCount = Math.ceil((articles.length - 1) / articlesPerPage);
+
+	const changePage = ({ selected }) => {
+		setPageNumber(selected);
+  };
+
+  const renderArticles = () => {
+    if (pageNumber == 0) {
+      return (
+        <Box>
+              {isSmallerThan660 ? "" : <HeroPostCard {...articles[pagesVisited]}></HeroPostCard>}
+              <Flex flexDirection="row" justifyContent="space-between" flexFlow="wrap">
+                  { isSmallerThan660 ?
+                    articles.slice(0, 10).map(( post ) => {
+                      return (
+                        
+                      <PostCard key={post.id} {...post} />
+                      )
+                    }): 
+                    articles.slice(1, 10).map(( post ) => {
+                      return (
+                      <PostCard key={post.id} {...post} />
+                    )
+                    })
+                }
+              </Flex>
+        </Box>
+      )
+    } else {
+      return (
+        <Flex flexDirection="row" justifyContent="space-between" flexFlow="wrap">
+          {articles.slice(pagesVisited + 1, pagesVisited + articlesPerPage + 1).map((post) => {
+            return (   
+              <PostCard key={post.id} {...post} />
+            )
+          })}
+        </Flex>
+      )
+    }
+  }
+
   return (
     <Container>
       <Head>
@@ -17,24 +69,25 @@ export default function Blog({ articles, allArticleCategories }) {
       </Head>
       <MainLayout>
         <Flex mt={12} w='100%' flexWrap="wrap" >
-          <CategorySideNav title='Topics' categories={allArticleCategories} pathPrefix={`/blog/topic`} mb={8} mr={24} minWidth="200px" />
+          <CategorySideNav title='Topics' categories={allArticleCategories} pathPrefix={`/blog/topic`} allPrefix={ `/blog`} mb={8} mr={24} minWidth="200px" />
           <Box maxWidth='800px'>
             <Heading as='h1' mb='1.5rem' color='#353535'>
               Latest Posts
             </Heading>
-            <Flex gridColumnGap="2rem" gridRowGap="1.5rem" flexWrap="wrap" width="100%">
-              <HeroPostCard {...articles[0]}></HeroPostCard>
-              <Flex flex="0 1 auto" flexDirection="row" flexWrap="wrap" margin="0 -.8rem">
-                  {
-                    articles.slice(1, articles.length).map(( post ) => {
-                        return (
-                          
-                        <PostCard key={post.id} {...post} />
-                      )
-                    })
-                  }
-                </Flex>
-            </Flex>
+            {renderArticles()}
+              <Flex justifyContent="center" marginTop="60px">
+                <ReactPaginate
+                  previousLabel={"<"}
+                  nextLabel={">"}
+                  pageCount={realPageCount}
+                  onPageChange={changePage}
+                  containerClassName={paginationStyles.paginationBttns}
+                  previousLinkClassName={paginationStyles.previousBttn}
+                  nextLinkClassName={paginationStyles.nextBttn}
+                  disabledClassName={paginationStyles.paginationDisabled}
+                  activeClassName={paginationStyles.paginationActive}
+                />
+						</Flex>
           </Box>
         </Flex>
       </MainLayout>
