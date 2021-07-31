@@ -28,6 +28,7 @@ export default function NotesPost({ note }) {
             <Head>
                 <title>{note.title} - Tech Corner</title>
                 <meta name='description' content={`CS notes on ${note.title.toLowerCase()}`} />
+                <link rel='icon' href='/favicon.png' />
             </Head>
             <Flex
                 justifyContent='center'
