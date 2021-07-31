@@ -98,7 +98,7 @@ export default function Home({ recentNotes, recentPosts, hero }) {
 						<Text fontSize="md">
 							Everything from career to humor, check out our awesome blog!
 						</Text>
-						<Flex flexWrap="wrap" width="100%" py={10}>
+						<Flex flexDirection="row" justifyContent="space-between" flexFlow="wrap">
 							{
 								recentPosts.map((post) => (<PostCard key={post.title} {...post} mr="2rem" mb={["1.5rem", 0]} />))
 							}

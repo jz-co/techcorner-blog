@@ -1,13 +1,13 @@
 import Head from 'next/head';
 
-import { Flex, Heading, Text, Stack, Box } from '@chakra-ui/react';
+import { Flex, Heading, Text, Stack, Box, Image } from '@chakra-ui/react';
 import ReactMarkdown from 'react-markdown';
 
 import Container from "../../../components/container";
 import MainLayout from '../../../components/layout';
 import NoteSectionContainer from '../../../components/note-section-container';
 import AddResourcesCard from '../../../components/resources-card';
-import { notesComponents } from '../../../components/markdown';
+import { articlesComponents } from '../../../components/article-markdown';
 import { fetchStrapi } from '../../../lib/api';
 import ArticleLayout from '../../../components/article-layout';
 import { resolveMotionValue } from 'framer-motion';
@@ -34,7 +34,7 @@ export default function BlogPost({ article }) {
                 {article.content.map((section) => {
                     if (section.content) {
                         return (
-                            <ReactMarkdown key={section.id} components={notesComponents}>
+                            <ReactMarkdown key={section.id} components={articlesComponents}>
                                 {section.content}
                                 
                             </ReactMarkdown>
@@ -42,7 +42,7 @@ export default function BlogPost({ article }) {
                     } if (section.name && section.items) {
                         return (
                             <Box>
-                                <ReactMarkdown components={notesComponents}>
+                                <ReactMarkdown components={articlesComponents}>
                                     {section.name}
                                 </ReactMarkdown> 
 
@@ -54,13 +54,17 @@ export default function BlogPost({ article }) {
 
                         ) 
                     } if (section.name) {
-                        return  ( <ReactMarkdown components={notesComponents}>
+                        return  ( <ReactMarkdown components={articlesComponents}>
                                     {section.name}
                                 </ReactMarkdown> )
                     } if (section.items) {
                         {section.items.map((item) => {
                             return <Box key={item.id} pb="10px"> <ReactMarkdown>{item.text}</ReactMarkdown> </Box>
                         })}
+                    } if (Object.assign([], section.images)) {
+                        {console.log(Object.assign([], section.images)[0])}
+                        return <Image w='100%' maxW='1000px' objectFit='cover' src={"https://res.cloudinary.com/d4h7j9/image/upload/v16…_Impact_Wallpapers_Qi_Qi_Venti_02_0273edf3d3.webp"}/>
+                        // return <Image w='100%' maxW='1000px' objectFit='cover' src={section.image} />
                     }
 
                 })}
