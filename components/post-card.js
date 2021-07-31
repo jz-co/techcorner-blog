@@ -95,7 +95,7 @@ export default function PostCard({
         )
     }
     return (
-        <Box flexBasis="30%" height="340px" borderWidth="1px" bg="white" mb="20px" mt="20px">
+        <Box flexBasis="30%" height="345px" borderWidth="1px" bg="white" mb="20px" mt="20px">
             <Link href={`/blog/posts/${slug}`} passHref>
                 <Box as="a">
                     <Image height="150px" width="300px" src={thumbnail.url} alt={thumbnail.alt} objectFit="cover" />
@@ -108,7 +108,7 @@ export default function PostCard({
                     <Box d="flex" alignItems="baseline">
                         <PostTag tag={category.name} slug={category.slug} color={"blue.400"} />
                     </Box>
-                    <Box height="65px" mt="2">
+                    <Box height="90px" mt="2">
                         <Link href={`/blog/posts/${slug}`} passHref>
                             <Box
                                 as="a" 
@@ -119,7 +119,7 @@ export default function PostCard({
                                 fontSize="16"
                                 lineHeight="tight"
                             >
-                                <Text as="h4" noOfLines={1}>{title}</Text>
+                                <Text as="h4" noOfLines={2}>{title}</Text>
                             </Box>
                         </Link>
 

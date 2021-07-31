@@ -2,6 +2,7 @@ import Head from 'next/head';
 
 import { Flex, Heading, Text, Stack } from '@chakra-ui/react';
 import ReactMarkdown from 'react-markdown';
+import { motion } from 'framer-motion'
 
 import Container from "../../../components/container";
 import MainLayout from '../../../components/layout';
@@ -27,6 +28,7 @@ export default function NotesPost({ note }) {
             <Head>
                 <title>{note.title} - Tech Corner</title>
                 <meta name='description' content={`CS notes on ${note.title.toLowerCase()}`} />
+                <link rel='icon' href='/favicon.png' />
             </Head>
             <Flex
                 justifyContent='center'
@@ -35,8 +37,19 @@ export default function NotesPost({ note }) {
                 pt="100px"
                 pb="64px">
                 <Flex width="100%" px='4rem' maxWidth="1120px" flexDirection="column" alignItems="flex-start">
-                    <Heading as="h1" mb={2} color="#353535" fontSize="4xl">{note.title}</Heading>
-                    <Text color="gray.300" fontWeight="bold" fontSize="2xl">{note.topic.name}</Text>
+                    <motion.div initial="displaced" animate="normal" transition={{ duration: .4 }} variants={{
+                        displaced: {
+                            translateY: 16,
+                            opacity: 0.4
+                        },
+                        normal: {
+                            translateY: 0,
+                            opacity: 1,
+                        }
+                    }}>
+                        <Heading as="h1" mb={2} color="#353535" fontSize="4xl">{note.title}</Heading>
+                        <Text color="gray.300" fontWeight="bold" fontSize="2xl">{note.topic.name}</Text>
+                    </motion.div>
                 </Flex>
             </Flex>
             <MainLayout pt="4rem" w="100%">
