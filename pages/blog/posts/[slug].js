@@ -1,16 +1,12 @@
 import Head from 'next/head';
 
-import { Flex, Heading, Text, Stack, Box, Image } from '@chakra-ui/react';
+import { Box, Image } from '@chakra-ui/react';
 import ReactMarkdown from 'react-markdown';
 
 import Container from "../../../components/container";
-import MainLayout from '../../../components/layout';
-import NoteSectionContainer from '../../../components/note-section-container';
-import AddResourcesCard from '../../../components/resources-card';
 import { articlesComponents } from '../../../components/article-markdown';
 import { fetchStrapi } from '../../../lib/api';
 import ArticleLayout from '../../../components/article-layout';
-import { resolveMotionValue } from 'framer-motion';
 
 const vercelResource = {
     title: 'Next.js Documentation',
@@ -62,9 +58,7 @@ export default function BlogPost({ article }) {
                             return <Box key={item.id} pb="10px"> <ReactMarkdown>{item.text}</ReactMarkdown> </Box>
                         })}
                     } if (Object.assign([], section.images)) {
-                        {console.log(Object.assign([], section.images)[0])}
-                        return <Image w='100%' maxW='1000px' objectFit='cover' src={"https://res.cloudinary.com/d4h7j9/image/upload/v16…_Impact_Wallpapers_Qi_Qi_Venti_02_0273edf3d3.webp"}/>
-                        // return <Image w='100%' maxW='1000px' objectFit='cover' src={section.image} />
+                        return <Image w='100%' maxW='1000px' objectFit='cover' src={section.images[0].url}/>
                     }
 
                 })}
@@ -77,7 +71,6 @@ export default function BlogPost({ article }) {
 
 export async function getStaticPaths() {
 
-    // Call Strapi API to get all notes topics, and all notes associated with each topic
     const articleCategories = await fetchStrapi('get.article-categories');
 
     const paths = articleCategories.reduce((accumulator, category) => {
