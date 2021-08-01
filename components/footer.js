@@ -3,12 +3,12 @@ import { whiten } from '@chakra-ui/theme-tools';
 
 export default function Footer() {
     return (
-        <Flex flexDirection="column" backgroundColor="#4E4E4E">
+        <Flex flexDirection="column" backgroundColor="#042E4E">
             <Flex justifyContent="center" marginTop="30px">
                 <Box as="footer" fontWeight="550" width="83%">
                     <Flex justifyContent="center">
                         <Flex flexWrap="wrap"  alignItems="flex-start">
-                            <Box color="#FAFAFA" width="290px" padding="20px">
+                            <Box color="#FAFAFA" width="240px" padding="20px">
                                 <svg width='64' height='53' viewBox='0 0 296 260' fill='none' xmlns='http://www.w3.org/2000/svg'>
                                     <path d='M251.601 103.354L95.7601 40.6034L33.0091 196.444' stroke='#63C1F6' stroke-width='13' />
                                     <circle cx='32.8828' cy='202.883' r='25' transform='rotate(-23.4451 32.8828 202.883)' fill='#5FC5F0' />
@@ -20,9 +20,10 @@ export default function Footer() {
                                     <line x1='46.53' y1='151.653' x2='178.53' y2='76.6527' stroke='#63D3F6' stroke-width='10' />
                                     <line x1='60.4816' y1='95.0232' x2='246.482' y2='113.023' stroke='#63D3F6' stroke-width='10' />
                                 </svg>
-                                <Heading size="md" paddingTop="0.5rem">Tech Corner</Heading>
-                                <Text color="#90E4FF" fontSize="1.1rem" pt="0.25rem" fontWeight="600" mt="0.8rem" mb="0.6rem"> About Us </Text>
-                                <Text> Here is where we talk about why we started this blog </Text>
+                                <Heading size="md" paddingTop="0.5rem">TECH CORNER</Heading>
+                                <Text fontSize="xs" mt="5px"> &copy; Tech Corner 2021</Text>
+                            </Box>
+                            <Box color="#FAFAFA" width="290px" padding="20px">
                                 <Text color="#90E4FF" fontSize="1.1rem" pt="0.25rem" fontWeight="600" mt="0.8rem" mb="0.6rem"> Contact Us </Text>
                                 <HStack paddingBottom="0.3rem">
                                     <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,69 +41,39 @@ export default function Footer() {
                                     <Link href="#"><Text>techcorner@tech.com</Text></Link>
                                 </HStack>
                             </Box>
-                            <Box color="#FAFAFA" width="200px" padding="20px" paddingTop="60px">
-                                <Text color="#90E4FF" fontSize="1.1rem" pt="0.25rem" fontWeight="600" mt="0.8rem" mb="0.6rem"> Information </Text>
+                            <Box color="#FAFAFA" width="150px" padding="20px">
+                                <Text color="#90E4FF" fontSize="1.1rem" pt="0.25rem" fontWeight="600" mt="0.8rem" mb="0.6rem"> Pages </Text>
                                 <Box pb="0.5rem">
-                                    <Link href="#">Tutorial Articles</Link>
+                                    <Link href="#">Learn</Link>
                                 </Box>
                                 <Box pb="0.5rem">
                                     <Link href="#">Blog</Link>
                                 </Box>
                                 <Box  pb="0.5rem">
-                                    <Link href="#">Resources</Link>
+                                    <Link href="#">About Us</Link>
                                 </Box>
                             </Box>
-                            <Box color="#FAFAFA" width="290px" padding="20px" paddingTop="60px">
-                                <Text color="#90E4FF" fontSize="1.1rem" pt="0.25rem" fontWeight="600" mt="0.8rem" mb="0.6rem"> Latest Content </Text>
-                                <Box pb="0.5rem">
-                                    <Link href="#">Resume Blog Post Title</Link>
-                                </Box>
-                                <Box  pb="0.5rem">
-                                    <Link href="#">Big O notation</Link>
-                                </Box>
-                            </Box>
-                            <Box color="#FAFAFA" width="290px" padding="20px" paddingTop="60px">
-                                <Text color="#90E4FF" fontSize="1.1rem" pt="0.25rem" fontWeight="600" mt="0.8rem" mb="0.6rem"> Contribute </Text>
-                                <Text pb="8px">Make suggestions by opening a pull request and make the content better for others</Text>
-                                <HStack>
-                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.7875 0C6.62165 0 0 6.8854 0 15.3796C0 22.1749 4.23706 27.9399 10.1126 29.9736C10.8516 30.1159 11.1229 29.6399 11.1229 29.2337C11.1229 28.867 11.1092 27.6554 11.1029 26.3703C6.98896 27.3007 6.12088 24.5557 6.12088 24.5557C5.44821 22.778 4.479 22.3053 4.479 22.3053C3.13733 21.3507 4.58013 21.3703 4.58013 21.3703C6.06505 21.4786 6.84693 22.9552 6.84693 22.9552C8.16583 25.3065 10.3063 24.6267 11.1501 24.2337C11.2828 23.24 11.6661 22.561 12.089 22.1772C8.80446 21.7883 5.35173 20.4695 5.35173 14.5764C5.35173 12.8972 5.92939 11.5252 6.87534 10.4482C6.7218 10.0605 6.21565 8.49653 7.01859 6.37806C7.01859 6.37806 8.26035 5.96471 11.0862 7.95456C12.2658 7.61379 13.5308 7.4429 14.7875 7.43704C16.0442 7.4429 17.3102 7.61379 18.4919 7.95456C21.3144 5.96471 22.5544 6.37806 22.5544 6.37806C23.3593 8.49653 22.8529 10.0605 22.6994 10.4482C23.6475 11.5252 24.2213 12.8972 24.2213 14.5764C24.2213 20.4835 20.7619 21.7842 17.4691 22.1649C17.9995 22.6422 18.4721 23.5782 18.4721 25.0131C18.4721 27.0707 18.455 28.7269 18.455 29.2337C18.455 29.643 18.7211 30.1226 19.4707 29.9715C25.343 27.9356 29.5747 22.1726 29.5747 15.3796C29.5747 6.8854 22.954 0 14.7875 0Z" fill="#FAFAFA"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.60077 22.0819C5.5682 22.1586 5.45262 22.1812 5.34732 22.1288C5.24007 22.0786 5.17983 21.9744 5.2146 21.8978C5.24643 21.8191 5.36226 21.7974 5.46927 21.8496C5.57677 21.9001 5.63799 22.0053 5.60077 22.0819Z" fill="#FAFAFA"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.19973 22.7767C6.12921 22.8447 5.99134 22.8131 5.8978 22.7056C5.80107 22.5984 5.78295 22.455 5.85446 22.386C5.92719 22.318 6.06089 22.3498 6.15786 22.4571C6.25458 22.5656 6.27344 22.7079 6.19973 22.7767Z" fill="#FAFAFA"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.78278 23.6625C6.69217 23.7279 6.54402 23.6666 6.45244 23.5298C6.36184 23.393 6.36184 23.229 6.4544 23.1633C6.54623 23.0976 6.69217 23.1567 6.78498 23.2924C6.87534 23.4312 6.87534 23.5955 6.78278 23.6625Z" fill="#FAFAFA"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.58156 24.5182C7.5005 24.6112 7.32787 24.5862 7.20151 24.4594C7.07222 24.3354 7.03622 24.1594 7.11752 24.0664C7.19955 23.9732 7.37317 23.9994 7.5005 24.1252C7.62882 24.249 7.668 24.4263 7.58156 24.5182Z" fill="#FAFAFA"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.68349 25.0151C8.64774 25.1356 8.48147 25.1903 8.31398 25.1391C8.14673 25.0864 8.03727 24.9453 8.07106 24.8236C8.10583 24.7024 8.27284 24.6453 8.44156 24.7001C8.60856 24.7525 8.71826 24.8926 8.68349 25.0151Z" fill="#FAFAFA"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.89366 25.1073C9.89782 25.2341 9.7558 25.3393 9.57998 25.3414C9.40318 25.3457 9.26017 25.2431 9.25821 25.1183C9.25821 24.9902 9.39706 24.886 9.57386 24.8829C9.74967 24.8794 9.89366 24.9812 9.89366 25.1073Z" fill="#FAFAFA"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.0198 24.9079C11.0409 25.0317 10.9187 25.1588 10.7441 25.1924C10.5725 25.2252 10.4135 25.1488 10.3917 25.0261C10.3704 24.8992 10.4948 24.7721 10.6662 24.7393C10.8411 24.7077 10.9976 24.7821 11.0198 24.9079Z" fill="#FAFAFA"/>
-                                    </svg>
-                                    <Link href="#"><Text>techcorner@tech.com</Text></Link>
-                                </HStack>
-                            </Box>
+
                         </Flex>
                     </Flex>
+                    <Box color="#FAFAFA" width="200px" padding="20px" mt="30px">
+                        <Link href="#" _hover={{ textDecoration: "none" }}>
 
-
-                    <Box textAlign="center" paddingBottom="70px">   
-
+                            <Button borderRadius="8px" marginBottom="30px" color="white" backgroundColor="#042E4E" border="1px solid #FAFAFA" _hover={{ bg: whiten("#042E4E", 20) }} position="absolute" right={["10", "20"]} bottom="0">
+                                <HStack spacing="0">
+                                    <Text pr="5px">BACK TO TOP</Text>
+                                    <svg width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7.85547 0L14.3507 7.5H1.36028L7.85547 0Z" fill="#FAFAFA"/>
+                                    <rect x="5.35547" y="5" width="5" height="14" fill="#FAFAFA"/>
+                                    </svg>
+                                    
+                                </HStack>
+                            </Button>
+                        </Link>
                     </Box>
+
                 </Box>
             </Flex>
-            <Box textAlign="center" position="relative">
-                <Link href="#" _hover={{ textDecoration: "none" }}>
-
-                    <Button borderRadius="8px" marginBottom="30px" color="#FAFAFA" backgroundColor="#4E4E4E" border="1px solid #FAFAFA" _hover={{ bg: whiten("#4E4E4E", 20) }} position="absolute" right={["10", "20"]} bottom="0">
-                        <HStack spacing="0">
-                            <Text pr="5px">BACK TO TOP</Text>
-                            <svg width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.85547 0L14.3507 7.5H1.36028L7.85547 0Z" fill="#FAFAFA"/>
-                            <rect x="5.35547" y="5" width="5" height="14" fill="#FAFAFA"/>
-                            </svg>
-                            
-                        </HStack>
-                    </Button>
-                </Link>
-
-            </Box>
         </Flex>
     );
 }
