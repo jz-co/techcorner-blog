@@ -8,7 +8,7 @@ export default function ChecklistSection({
 }) {
     const itemObjects = [];
     for (var i = 0; i < items.length; i++) {
-        itemObjects.push({text: items[i], complete: false})
+        itemObjects.push({text: items[i].text, complete: false})
     }
     const [checklistItems, setChecklistItems] = useState(itemObjects);
 
@@ -27,16 +27,16 @@ export default function ChecklistSection({
     }
 
     return (
-        <Box borderRadius="10px" backgroundColor="#FFFFFF" maxWidth="1000px" boxShadow="0px 0px 12px rgba(0, 0, 0, 0.16)">
-            <Box backgroundColor="#D2D2D2"
+        <Box borderRadius="10px" backgroundColor="#FFFFFF" maxWidth="1000px" boxShadow="0 4px 2px -2px rgba(0, 0, 0, 0.10)">
+            <Box backgroundColor="#E2E2E2"
                 borderTopLeftRadius="10px"
                 borderTopRightRadius="10px"
-                padding="18px"
+                padding="10px"
                 
             >
-                <Text marginLeft="50px" fontSize="20px">{title}</Text>
+                <Text marginLeft="20px" fontSize="xl">{title}</Text>
             </Box>
-            <Stack marginLeft="43px" padding="20px" spacing="15px">
+            <Stack marginLeft="5px" padding="25px" spacing="15px">
                 {checklistItems.map(({ text, complete }, i) => (
 
                     <Flex alignItems="flex-start">

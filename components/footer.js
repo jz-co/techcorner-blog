@@ -83,9 +83,7 @@ export default function Footer() {
 
 
                     <Box textAlign="center" paddingBottom="70px">   
-                        <Text color="#FAFAFA" padding="20px">
-                            &copy; {new Date().getFullYear()} Tech Corner. All rights reserved.
-                        </Text>
+
                     </Box>
                 </Box>
             </Flex>

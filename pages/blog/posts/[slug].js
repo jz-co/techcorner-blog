@@ -6,6 +6,7 @@ import ReactMarkdown from 'react-markdown';
 import Container from "../../../components/container";
 import { articlesComponents } from '../../../components/article-markdown';
 import { fetchStrapi } from '../../../lib/api';
+import ChecklistSection from '../../../components/checklist-section';
 import ArticleLayout from '../../../components/article-layout';
 
 const vercelResource = {
@@ -28,38 +29,42 @@ export default function BlogPost({ article }) {
             </Head>
             <ArticleLayout {...article}>
                 {article.content.map((section) => {
-                    if (section.content) {
+                    console.log(section)
+                    if (section.__component == "components.section") {
                         return (
                             <ReactMarkdown key={section.id} components={articlesComponents}>
                                 {section.content}
                                 
                             </ReactMarkdown>
                         )
-                    } if (section.name && section.items) {
-                        return (
-                            <Box>
-                                <ReactMarkdown components={articlesComponents}>
-                                    {section.name}
-                                </ReactMarkdown> 
+                    } if (section.__component == "components.media-image") {
+                        return <Image w='100%' maxW='1000px' objectFit='cover' src={section.images[0].url}/>
+                    } if (section.__component == "components.checklist") {
+                        return <Box mt="20px"><ChecklistSection title={section.name} items={section.items}></ChecklistSection></Box>
+                    }
+                    // if (section.name && section.items) {
+                    //     return (
+                    //         <Box>
+                    //             <ReactMarkdown components={articlesComponents}>
+                    //                 {section.name}
+                    //             </ReactMarkdown> 
 
                                     
-                                {section.items.map((item) => {
-                                    return <Box key={item.id} pb="10px"> <ReactMarkdown>{item.text}</ReactMarkdown> </Box>
-                                })}
-                            </Box>
+                    //             {section.items.map((item) => {
+                    //                 return <Box key={item.id} pb="10px"> <ReactMarkdown>{item.text}</ReactMarkdown> </Box>
+                    //             })}
+                    //         </Box>
 
-                        ) 
-                    } if (section.name) {
-                        return  ( <ReactMarkdown components={articlesComponents}>
-                                    {section.name}
-                                </ReactMarkdown> )
-                    } if (section.items) {
-                        {section.items.map((item) => {
-                            return <Box key={item.id} pb="10px"> <ReactMarkdown>{item.text}</ReactMarkdown> </Box>
-                        })}
-                    } if (Object.assign([], section.images)) {
-                        return <Image w='100%' maxW='1000px' objectFit='cover' src={section.images[0].url}/>
-                    }
+                    //     ) 
+                    // } if (section.name) {
+                    //     return  ( <ReactMarkdown components={articlesComponents}>
+                    //                 {section.name}
+                    //             </ReactMarkdown> )
+                    // } if (section.items) {
+                    //     {section.items.map((item) => {
+                    //         return <Box key={item.id} pb="10px"> <ReactMarkdown>{item.text}</ReactMarkdown> </Box>
+                    //     })}
+                    // } 
 
                 })}
             </ArticleLayout>
