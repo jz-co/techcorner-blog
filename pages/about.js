@@ -9,17 +9,20 @@ export default function About() {
             <MainLayout>
                 <Box ml="4rem">
                     <Text fontSize="4xl" fontWeight="bold" mt="30px">About</Text>
-                    <Text fontSize="18px" mt="10px">
+                    <Box maxWidth="880px">
+                        <Text fontSize="18px" mt="10px">
                         Welcome to Tech Corner! On our website you will find structured notes on important computer science topics, career tips, as well as discussions on current and emerging technologies.
                         We created our website with everyone interested in computer science in mind, paying special attention to students and self learners in the early stages of their computer science career.
-                    </Text>
+                        </Text>
+                    </Box>
+
 
                     <Flex mt="40px" justifyContent="flex-start" flexWrap="wrap">
                         <Box mr="40px">
-                            <TeamProfileCard imgSrc="images/Avatar.png" name="Jessie Lam" linkedinLink="https://www.linkedin.com/in/wing-chung-jessie-lam/" message="Hello! My name is Jessie Lam and my passion flickers amounst the fields of bioinformatics, UI/UX, and video game development. I aim to bring my enthusiasm and practical knowledge in computer science topics into writing practical and (hopefully) entertaining articles for this website. "></TeamProfileCard>
+                            <TeamProfileCard imgSrc="images/jessie.png" name="Jessie Lam" linkedinLink="https://www.linkedin.com/in/wing-chung-jessie-lam/" message="Hello! My name is Jessie Lam and my passion flickers amounst the fields of bioinformatics, UI/UX, and video game development. I aim to bring my enthusiasm and practical knowledge in computer science topics into writing practical and (hopefully) entertaining articles for this website. "></TeamProfileCard>
                         </Box>
                         <Box mr="40px">
-                            <TeamProfileCard imgSrc="images/Avatar2.png" name="Jenny Zhang" message="Here is where we describe ourselves. We can give a brief introduction of who we are and a message that we want to tell the world."></TeamProfileCard>
+                            <TeamProfileCard imgSrc="images/jenny.png" name="Jenny Zhang" message="Here is where we describe ourselves. We can give a brief introduction of who we are and a message that we want to tell the world."></TeamProfileCard>
                         </Box>
                     </Flex> 
 
