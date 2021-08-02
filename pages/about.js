@@ -19,10 +19,10 @@ export default function About() {
 
                     <Flex mt="40px" justifyContent="flex-start" flexWrap="wrap">
                         <Box mr="40px">
-                            <TeamProfileCard imgSrc="images/jessie.png" name="Jessie Lam" linkedinLink="https://www.linkedin.com/in/wing-chung-jessie-lam/" message="Hello! My name is Jessie Lam and my passion flickers amounst the fields of bioinformatics, UI/UX, and video game development. I aim to bring my enthusiasm and practical knowledge in computer science topics into writing practical and (hopefully) entertaining articles for this website. "></TeamProfileCard>
+                            <TeamProfileCard imgSrc="images/jenny.png" name="Jenny Zhang" message="Here is where we describe ourselves. We can give a brief introduction of who we are and a message that we want to tell the world."></TeamProfileCard>
                         </Box>
                         <Box mr="40px">
-                            <TeamProfileCard imgSrc="images/jenny.png" name="Jenny Zhang" message="Here is where we describe ourselves. We can give a brief introduction of who we are and a message that we want to tell the world."></TeamProfileCard>
+                            <TeamProfileCard imgSrc="images/jessie.png" name="Jessie Lam" linkedinLink="https://www.linkedin.com/in/wing-chung-jessie-lam/" message="Hello! My name is Jessie Lam and my passion flickers amounst the fields of bioinformatics, UI/UX, and video game development. I aim to bring my enthusiasm and practical knowledge in computer science topics into writing practical and (hopefully) entertaining articles for this website. "></TeamProfileCard>
                         </Box>
                     </Flex> 
 
