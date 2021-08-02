@@ -1,5 +1,5 @@
 import Container from "../components/container";
-import { Box, Flex, Link, Text, HStack} from '@chakra-ui/react';
+import { Box, Flex, Link, Text, HStack, Image} from '@chakra-ui/react';
 import TeamProfileCard from "../components/team-profile-card";
 import MainLayout from "../components/layout";
 
@@ -47,12 +47,8 @@ export default function About() {
                         <Link href="https://www.instagram.com/techcorner0101/" fontSize="18px"> @techcorner0101 </Link>
                     </HStack>
                     <HStack ml="40px" mt="10px" spacing="4">
-                        <svg width="35" height="35" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="42" height="42" rx="8" fill="#353535"/>
-                        <circle cx="21" cy="21" r="21" fill="white"/>
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 21C0 9.40202 9.40202 0 21 0C32.598 0 42 9.40202 42 21C42 32.598 32.598 42 21 42C9.40202 42 0 32.598 0 21ZM24.5009 20.5749H24.5V27.3H32.2916C32.9841 27.3 33.6 26.8848 33.6 25.8947V16.8C33.6 16.8 26.2517 21.8224 26.5111 21.659C26.5111 21.659 26.2507 21.8224 26.0347 21.659L24.5009 20.5749ZM24.5 14V19.1549L26.1809 20.2892C26.2252 20.3031 26.3213 20.3041 26.3656 20.2892L33.6 15.0621C33.6 14.4434 33.0616 14 32.7577 14H24.5ZM9.1 11.2394V30.5239L23.8 33.6V8.4L9.1 11.2394Z" fill="#353535"/>
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M18.9367 24.1418C18.3155 24.9577 17.5056 25.3666 16.506 25.3666C15.532 25.3666 14.7391 24.971 14.1255 24.1806C13.5128 23.3894 13.2056 22.3596 13.2056 21.0894C13.2056 19.7483 13.5166 18.6636 14.1397 17.8354C14.7628 17.0073 15.5879 16.5927 16.615 16.5927C17.5852 16.5927 18.3705 16.9883 18.9689 17.7815C19.5683 18.5746 19.868 19.6196 19.868 20.9172C19.8689 22.2508 19.5579 23.326 18.9367 24.1418ZM16.4862 18.2C15.9397 18.2 15.5043 18.4574 15.1828 18.9714C14.8612 19.4853 14.7 20.1657 14.7 21.0126C14.7 21.872 14.8612 22.5515 15.1828 23.0509C15.5043 23.5513 15.9262 23.8 16.4476 23.8C16.9854 23.8 17.4121 23.5571 17.7269 23.0712C18.0417 22.5853 18.2 21.9107 18.2 21.0484C18.2 20.1493 18.0474 19.4495 17.7414 18.9491C17.4353 18.4497 17.0172 18.2 16.4862 18.2Z" fill="#353535"/>
-                        </svg>
+                        <Image boxSize="35" src="images/email.png"></Image>
+
                         <Link href="mailto:techcorner0101@gmail.com" fontSize="18px"> techcorner0101@gmail.com </Link>
                     </HStack>
 

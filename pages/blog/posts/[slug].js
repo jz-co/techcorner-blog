@@ -29,7 +29,6 @@ export default function BlogPost({ article }) {
             </Head>
             <ArticleLayout {...article}>
                 {article.content.map((section) => {
-                    console.log(section)
                     if (section.__component == "components.section") {
                         return (
                             <ReactMarkdown key={section.id} components={articlesComponents}>
@@ -38,7 +37,7 @@ export default function BlogPost({ article }) {
                             </ReactMarkdown>
                         )
                     } if (section.__component == "components.media-image") {
-                        return <Image w='100%' maxW='1000px' objectFit='cover' src={section.images[0].url}/>
+                        return <Image w='100%' maxW='1000px' objectFit='cover' mt="15px" mb="15px" src={section.images[0].url}/>
                     } if (section.__component == "components.checklist") {
                         return <Box mt="20px"><ChecklistSection title={section.name} items={section.items}></ChecklistSection></Box>
                     }

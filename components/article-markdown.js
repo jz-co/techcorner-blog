@@ -6,7 +6,8 @@ import {
     Code,
     UnorderedList,
     OrderedList,
-    ListItem
+    ListItem,
+    Link
 } from '@chakra-ui/react';
 
 const articlesComponents = {
@@ -39,6 +40,8 @@ const articlesComponents = {
     ),
     li: ({ node, ordered, ...props }) => (
         <ListItem ml={8} mt="8px" {...props}/>
+    ), a: ({ node, ...props }) => (
+        <Link  color="blue" textDecoration="underline" {...props}/>
     )
 
 }

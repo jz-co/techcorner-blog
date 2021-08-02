@@ -1,4 +1,4 @@
-import { Text, Flex, Box, Heading, HStack, Link, Button} from '@chakra-ui/react';
+import { Text, Flex, Box, Heading, HStack, Link, Button, Image} from '@chakra-ui/react';
 import { whiten } from '@chakra-ui/theme-tools';
 
 export default function Footer() {
@@ -37,11 +37,8 @@ export default function Footer() {
                                     </svg>
                                     <Link href="https://www.instagram.com/techcorner0101/"><Text> @techcorner0101 </Text></Link>
                                 </HStack>
-                                <HStack>
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 10C0 4.47715 4.41371 0 9.85829 0C15.3029 0 19.7166 4.47715 19.7166 10C19.7166 15.5228 15.3029 20 9.85829 20C4.41371 20 0 15.5228 0 10ZM11.5018 9.79757H11.5013V13H15.159C15.4841 13 15.7733 12.8023 15.7733 12.3308V8C15.7733 8 12.3236 10.3916 12.4455 10.3138C12.4455 10.3138 12.3232 10.3916 12.2218 10.3138L11.5018 9.79757ZM11.5013 6.66667V9.12139L12.2904 9.66154C12.3112 9.66814 12.3563 9.66861 12.3771 9.66154L15.7733 7.17241C15.7733 6.87782 15.5205 6.66667 15.3779 6.66667H11.5013ZM4.27193 5.35211V14.5352L11.1727 16V4L4.27193 5.35211Z" fill="#FAFAFA"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.88968 11.4961C8.59806 11.8846 8.21785 12.0793 7.7486 12.0793C7.29136 12.0793 6.91916 11.8909 6.63111 11.5146C6.3435 11.1378 6.19925 10.6474 6.19925 10.0426C6.19925 9.40394 6.34528 8.88744 6.63779 8.49307C6.93029 8.0987 7.31763 7.9013 7.7998 7.9013C8.25525 7.9013 8.62389 8.08969 8.90481 8.46738C9.18619 8.84507 9.32688 9.34265 9.32688 9.96056C9.32732 10.5956 9.18129 11.1076 8.88968 11.4961ZM7.73933 8.66667C7.48278 8.66667 7.27837 8.78926 7.12743 9.03399C6.9765 9.27872 6.9008 9.60272 6.9008 10.006C6.9008 10.4153 6.9765 10.7388 7.12743 10.9766C7.27837 11.2149 7.47644 11.3333 7.7212 11.3333C7.97366 11.3333 8.174 11.2177 8.32176 10.9863C8.46952 10.7549 8.54385 10.4337 8.54385 10.023C8.54385 9.59488 8.47224 9.26167 8.32856 9.02339C8.18488 8.78557 7.98862 8.66667 7.73933 8.66667Z" fill="#FAFAFA"/>
-                                    </svg>
+                                <HStack mt="5px">
+                                    <Image src="images/email-light.png" width="21px" height="20px"></Image>
                                     <Link href="mailto:techcorner0101@gmail.com"><Text>techcorner0101@gmail.com</Text></Link>
                                 </HStack>
                             </Box>
