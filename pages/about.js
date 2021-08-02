@@ -1,5 +1,5 @@
 import Container from "../components/container";
-import { Box, Flex, Link, Text, HStack} from '@chakra-ui/react';
+import { Box, Flex, Link, Text, HStack, Image} from '@chakra-ui/react';
 import TeamProfileCard from "../components/team-profile-card";
 import MainLayout from "../components/layout";
 
@@ -9,14 +9,20 @@ export default function About() {
             <MainLayout>
                 <Box ml="4rem">
                     <Text fontSize="4xl" fontWeight="bold" mt="30px">About</Text>
-                    <Text fontSize="18px" mt="10px">Here is where we describe what our website is about and why we started it</Text>
+                    <Box maxWidth="880px">
+                        <Text fontSize="18px" mt="10px">
+                        Welcome to Tech Corner! On our website you will find structured notes on important computer science topics, career tips, as well as discussions on current and emerging technologies.
+                        We created our website with everyone interested in computer science in mind, paying special attention to students and self learners in the early stages of their computer science career.
+                        </Text>
+                    </Box>
+
 
                     <Flex mt="40px" justifyContent="flex-start" flexWrap="wrap">
                         <Box mr="40px">
-                            <TeamProfileCard imgSrc="images/Avatar.png" name="Jessie Lam" message="Here is where we describe ourselves. We can give a brief introduction of who we are and a message that we want to tell the world."></TeamProfileCard>
+                            <TeamProfileCard imgSrc="images/jenny.png" name="Jenny Zhang" message="Here is where we describe ourselves. We can give a brief introduction of who we are and a message that we want to tell the world."></TeamProfileCard>
                         </Box>
                         <Box mr="40px">
-                            <TeamProfileCard imgSrc="images/Avatar2.png" name="Jenny Zhang" message="Here is where we describe ourselves. We can give a brief introduction of who we are and a message that we want to tell the world."></TeamProfileCard>
+                            <TeamProfileCard imgSrc="images/jessie.png" name="Jessie Lam" linkedinLink="https://www.linkedin.com/in/wing-chung-jessie-lam/" message="Hello! My name is Jessie Lam and my passion flickers amounst the fields of bioinformatics, UI/UX, and video game development. I aim to bring my enthusiasm and practical knowledge in computer science topics into writing practical and (hopefully) entertaining articles for this website. "></TeamProfileCard>
                         </Box>
                     </Flex> 
 
@@ -37,22 +43,19 @@ export default function About() {
                         <svg width="35" height="35" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="42" height="42" rx="8" fill="#353535"/>
                         <circle cx="21" cy="21" r="21" fill="white"/>
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 21C0 9.40202 9.40202 0 21 0C32.598 0 42 9.40202 42 21C42 32.598 32.598 42 21 42C9.40202 42 0 32.598 0 21ZM24.5009 20.5749H24.5V27.3H32.2916C32.9841 27.3 33.6 26.8848 33.6 25.8947V16.8C33.6 16.8 26.2517 21.8224 26.5111 21.659C26.5111 21.659 26.2507 21.8224 26.0347 21.659L24.5009 20.5749ZM24.5 14V19.1549L26.1809 20.2892C26.2252 20.3031 26.3213 20.3041 26.3656 20.2892L33.6 15.0621C33.6 14.4434 33.0616 14 32.7577 14H24.5ZM9.1 11.2394V30.5239L23.8 33.6V8.4L9.1 11.2394Z" fill="#353535"/>
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M18.9367 24.1418C18.3155 24.9577 17.5056 25.3666 16.506 25.3666C15.532 25.3666 14.7391 24.971 14.1255 24.1806C13.5128 23.3894 13.2056 22.3596 13.2056 21.0894C13.2056 19.7483 13.5166 18.6636 14.1397 17.8354C14.7628 17.0073 15.5879 16.5927 16.615 16.5927C17.5852 16.5927 18.3705 16.9883 18.9689 17.7815C19.5683 18.5746 19.868 19.6196 19.868 20.9172C19.8689 22.2508 19.5579 23.326 18.9367 24.1418ZM16.4862 18.2C15.9397 18.2 15.5043 18.4574 15.1828 18.9714C14.8612 19.4853 14.7 20.1657 14.7 21.0126C14.7 21.872 14.8612 22.5515 15.1828 23.0509C15.5043 23.5513 15.9262 23.8 16.4476 23.8C16.9854 23.8 17.4121 23.5571 17.7269 23.0712C18.0417 22.5853 18.2 21.9107 18.2 21.0484C18.2 20.1493 18.0474 19.4495 17.7414 18.9491C17.4353 18.4497 17.0172 18.2 16.4862 18.2Z" fill="#353535"/>
-                        </svg>
-                        <Link href="#" fontSize="18px"> team@techcorner.app </Link>
-                    </HStack>
-                    <HStack ml="40px" mt="5px" spacing="4">
-                        <svg width="35" height="35" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="42" height="42" rx="8" fill="#353535"/>
-                        <circle cx="21" cy="21" r="21" fill="white"/>
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M0 21C0 9.40202 9.40202 0 21 0C32.598 0 42 9.40202 42 21C42 32.598 32.598 42 21 42C9.40202 42 0 32.598 0 21ZM21.001 9.8C17.9593 9.8 17.5775 9.8133 16.3829 9.86767C15.1905 9.92227 14.3766 10.111 13.6645 10.388C12.9279 10.6741 12.303 11.0567 11.6805 11.6795C11.0574 12.3021 10.6748 12.9269 10.3878 13.6633C10.1101 14.3757 9.9211 15.1898 9.86743 16.3817C9.814 17.5764 9.8 17.9584 9.8 21.0001C9.8 24.0419 9.81353 24.4225 9.86767 25.6171C9.9225 26.8095 10.1113 27.6234 10.388 28.3355C10.6743 29.0721 11.057 29.697 11.6798 30.3195C12.3021 30.9426 12.9269 31.3262 13.6631 31.6122C14.3757 31.8892 15.1898 32.078 16.3819 32.1326C17.5766 32.1869 17.9581 32.2002 20.9996 32.2002C24.0416 32.2002 24.4222 32.1869 25.6169 32.1326C26.8092 32.078 27.6241 31.8892 28.3367 31.6122C29.0731 31.3262 29.697 30.9426 30.3193 30.3195C30.9423 29.697 31.325 29.0721 31.612 28.3357C31.8873 27.6234 32.0763 26.8092 32.1323 25.6174C32.186 24.4227 32.2 24.0419 32.2 21.0001C32.2 17.9584 32.186 17.5766 32.1323 16.3819C32.0763 15.1896 31.8873 14.3757 31.612 13.6636C31.325 12.9269 30.9423 12.3021 30.3193 11.6795C29.6963 11.0565 29.0733 10.6738 28.336 10.388C27.622 10.111 26.8076 9.92227 25.6153 9.86767C24.4206 9.8133 24.0402 9.8 20.9976 9.8H21.001Z" fill="#353535"/>
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M19.9963 11.8184C20.2945 11.8179 20.6272 11.8184 21.001 11.8184C23.9915 11.8184 24.3459 11.8291 25.5268 11.8828C26.6188 11.9327 27.2115 12.1152 27.6063 12.2685C28.129 12.4715 28.5016 12.7141 28.8934 13.1061C29.2854 13.4981 29.5281 13.8715 29.7315 14.3941C29.8848 14.7885 30.0675 15.3812 30.1172 16.4732C30.1709 17.6538 30.1826 18.0085 30.1826 20.9976C30.1826 23.9866 30.1709 24.3412 30.1172 25.5219C30.0673 26.6139 29.8848 27.2066 29.7315 27.601C29.5285 28.1236 29.2854 28.4958 28.8934 28.8876C28.5014 29.2796 28.1292 29.5222 27.6063 29.7252C27.212 29.8792 26.6188 30.0612 25.5268 30.1112C24.3461 30.1648 23.9915 30.1765 21.001 30.1765C18.0104 30.1765 17.6559 30.1648 16.4753 30.1112C15.3833 30.0608 14.7906 29.8783 14.3955 29.725C13.8729 29.522 13.4995 29.2793 13.1075 28.8873C12.7155 28.4953 12.4729 28.1229 12.2694 27.6C12.1161 27.2057 11.9334 26.613 11.8837 25.521C11.83 24.3403 11.8193 23.9856 11.8193 20.9947C11.8193 18.0039 11.83 17.651 11.8837 16.4704C11.9336 15.3784 12.1161 14.7857 12.2694 14.3909C12.4724 13.8682 12.7155 13.4949 13.1075 13.1029C13.4995 12.7109 13.8729 12.4682 14.3955 12.2647C14.7904 12.1107 15.3833 11.9287 16.4753 11.8786C17.5085 11.8319 17.9089 11.8179 19.9963 11.8156V11.8184ZM26.9796 13.678C26.2376 13.678 25.6356 14.2793 25.6356 15.0216C25.6356 15.7636 26.2376 16.3656 26.9796 16.3656C27.7216 16.3656 28.3236 15.7636 28.3236 15.0216C28.3236 14.2796 27.7216 13.678 26.9796 13.678ZM21.001 15.2484C17.8246 15.2484 15.2493 17.8237 15.2493 21.0001C15.2493 24.1765 17.8246 26.7507 21.001 26.7507C24.1775 26.7507 26.7518 24.1765 26.7518 21.0001C26.7518 17.8237 24.1775 15.2484 21.001 15.2484Z" fill="#353535"/>
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0011 17.2667C23.0628 17.2667 24.7344 18.9381 24.7344 21.0001C24.7344 23.0619 23.0628 24.7335 21.0011 24.7335C18.9391 24.7335 17.2677 23.0619 17.2677 21.0001C17.2677 18.9381 18.9391 17.2667 21.0011 17.2667Z" fill="#353535"/>
                         </svg>
-                        <Link href="#" fontSize="18px"> @techcorner </Link>
+                        <Link href="https://www.instagram.com/techcorner0101/" fontSize="18px"> @techcorner0101 </Link>
                     </HStack>
-                        <HStack spacing={3} mt="30px">
+                    <HStack ml="40px" mt="10px" spacing="4">
+                        <Image boxSize="35" src="images/email.png"></Image>
+
+                        <Link href="mailto:techcorner0101@gmail.com" fontSize="18px"> techcorner0101@gmail.com </Link>
+                    </HStack>
+
+                        {/* <HStack spacing={3} mt="30px">
                             <Text fontSize="4xl" fontWeight="bold">Contribute</Text>
                             <svg width="34" height="36" viewBox="0 0 34 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M4.86469 21.6138C4.78669 22.5358 5.18569 22.8118 5.81069 23.2498C6.42869 23.6828 10.1937 20.3828 11.4247 19.8808C12.6557 19.3788 24.2117 16.9318 23.7107 14.6978C23.2097 12.4638 19.7177 12.1338 17.0277 12.5898C14.3377 13.0458 9.18969 15.4118 7.68569 16.6888C6.18169 17.9648 4.86469 21.6138 4.86469 21.6138ZM13.4867 23.1108C13.4867 23.1108 9.92969 24.2658 9.92969 27.2658C9.92969 30.2658 10.7957 31.9578 11.2057 32.7788C11.6167 33.5988 12.8937 34.3948 14.6607 33.6298C16.7127 32.7408 14.1697 27.6258 20.6607 29.9738C23.6347 31.0488 26.7197 32.5018 29.7197 31.5018C32.5657 30.5528 33.6617 26.9728 33.6617 24.9728C33.6617 20.8788 30.6617 21.9728 29.6617 22.9728C28.6617 23.9728 20.6617 25.9728 19.6617 25.9728C18.6617 25.9728 13.4867 23.1108 13.4867 23.1108Z" fill="#EF9645"/>
@@ -82,7 +85,7 @@ export default function About() {
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M15.6496 34.871C15.6795 35.0443 15.506 35.2223 15.2581 35.2693C15.0143 35.3153 14.7886 35.2084 14.7576 35.0365C14.7274 34.8589 14.904 34.681 15.1475 34.635C15.3958 34.5908 15.618 34.6949 15.6496 34.871Z" fill="#353535"/>
                             </svg>
                             <Link href="#" fontSize="18px"> techcorner/notes </Link>
-                        </HStack>
+                        </HStack> */}
                         <Box height="100px"></Box>
                 </Box>
             </MainLayout>
