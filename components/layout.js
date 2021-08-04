@@ -7,9 +7,8 @@ export default function MainLayout({ children, ...props }) {
             justifyContent='flex-start'
             alignItems='center'
             flexDirection='column'
-            bg='#F5F5F5'
             minHeight='80vh'
-            maxWidth='1200px'
+            maxWidth='1080px'
             {...props}>
             {children}
         </Flex>

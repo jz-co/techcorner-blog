@@ -28,12 +28,12 @@ export default function ArticleLayout({ title, author, published_at, category, d
 	const { url, alternativeText } = thumbnail;
 
 	return (
-		<Box m={8} maxWidth='760px' {...props} color="#353535">
-			<Heading as='h1' fontSize="xxx-large" mb={4}>
+		<Box m={8} maxWidth='780px' {...props} color="#031628">
+			<Heading as='h1' fontSize="5xl" mb={4}>
 				{title}
 			</Heading>
 			<Text color="gray.500">
-				Posted by <Text as='span' color="gray.700">{author.name}</Text> on {published_at.slice(0,10)} in{' '}
+				Posted by <Text as='span' color="gray.700">{author.name}</Text> on {published_at.slice(0, 10)} in{' '}
 				<Link color="teal.500" fontWeight="semibold" href={`/blog/topic/${category.slug}`}>
 					{category.name[0].toUpperCase().concat(category.name.slice(1))}
 					{/* TODO: change teal colour */}

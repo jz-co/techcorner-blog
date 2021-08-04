@@ -14,7 +14,7 @@ export default function ThumbnailImage({ src, alt, ...props }) {
 			overflow='hidden'
 			justifyContent='center'
 			{...props}>
-			<Image w='100%' maxW='1000px' objectFit='cover' src={src} alt={alt} />
+			<Image w='100%' maxW='900px' objectFit='cover' src={src} alt={alt} />
 		</Flex>
 	);
 }

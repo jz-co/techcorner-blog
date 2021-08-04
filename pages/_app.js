@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 
 // import Loader from '../components/loader';
 import { fetchStrapi } from '../lib/api';
+import theme from '../styles/theme'
 
 /* Not sure if this is best way to add global styles */
 const GlobalStyle = ({ children }) => {
@@ -33,7 +34,7 @@ const GlobalStyle = ({ children }) => {
 						display: flex;
 						flex-direction: column;
 						min-height: 100vh;
-						background: ${colorMode === 'light' ? '#F5F5F5' : 'black'};
+						background: ${colorMode === 'light' ? 'white' : 'black'};
 					}
 				`}
       />

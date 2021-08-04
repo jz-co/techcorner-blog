@@ -1,26 +1,37 @@
 import { Button, Link } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
+const colorIndices = [
+    {
+        color: "#03544F",
+        bg: "#B3EBE8"
+    },
+    {
+        color: "#042E4E",
+        bg: "#BAE1FF"
+    },
+    {
+        color: "#042E4E",
+        bg: "#FFE9B2"
+    }
+]
+
 export default function PostTag({
     tag,
     slug,
-    color,
-    ...props
+    colorIndex,
 }) {
     return (
         <Link as={NextLink} href={`/blog/topic/${slug}`} passHref>
             <Button
                 as="a"
-                fontSize="13"
+                fontSize="xs"
                 mb="1"
                 size="xs"
-                border="2px"
-                backgroundColor="transparent"
-                color={color}
-                borderColor={color}
+                bg={colorIndices[colorIndex].bg}
+                color={colorIndices[colorIndex].color}
                 _hover={{
-                    background: color,
-                    color: "white",
+                    border: `1px solid ${colorIndices[colorIndex].color}`
                 }}
             >
                 {tag.toUpperCase()}

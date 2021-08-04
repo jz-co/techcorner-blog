@@ -25,30 +25,30 @@ export default function BlogTopic({ allArticleCategories, category, articles }) 
 	const changePage = ({ selected }) => {
 		setPageNumber(selected);
 	};
-	
-    const displayArticles = articles.sort(byDate)
-        .slice(pagesVisited, pagesVisited + articlesPerPage)
-        .map((article) => {
-        return (
-            <PostCard key={articles.id} {...article} category={ category }/>
-        );
-        });
-    
-    return (
-		<Container currPage='blog posts'>
+
+	const displayArticles = articles.sort(byDate)
+		.slice(pagesVisited, pagesVisited + articlesPerPage)
+		.map((article) => {
+			return (
+				<PostCard key={articles.id} {...article} category={category} />
+			);
+		});
+
+	return (
+		<Container bg="#F5FBFF">
 			<Head>
 				<title>{category.name} - Tech Corner</title>
 				<meta name='description' content={`Find all CS notes on the topic of ${category.name.toLowerCase()}`} />
 			</Head>
 			<MainLayout>
-				<Flex mt={12} w='100%' flexWrap="wrap" >
-					<CategorySideNav title='Topics' currCategory={category} categories={allArticleCategories} pathPrefix={`/blog/topic`} allPrefix={ `/blog`} mb={8} mr={24} minWidth="200px" />
+				<Flex mt={12} w='100%' flexWrap={["wrap", "wrap", "nowrap"]} >
+					<CategorySideNav title='Topics' currCategory={category} categories={allArticleCategories} pathPrefix={`/blog/topic`} allPrefix={`/blog`} mb={8} mr={16} />
 					<Box maxWidth='800px'>
-						<Heading as='h1' mb='1.5rem' color='#353535'>
+						<Heading as='h1' mb='1.5rem' color='#042E4E' fontSize="3xl">
 							{category.name[0].toUpperCase().concat(category.name.slice(1))}
 						</Heading>
 						<Flex flexDirection="row" justifyContent="space-between" flexFlow="wrap">
-							{ displayArticles}
+							{displayArticles}
 						</Flex>
 
 						<Flex justifyContent="center" marginTop="60px">

@@ -14,11 +14,11 @@ export default function Notes({ notes, allSubjects }) {
     metaTitle: 'Computer Science Notes',
   }
   return (
-    <Container>
+    <Container bg="#F5FBFF">
       <Seo seo={seo} />
       <MainLayout>
-        <Flex mt={12} w='100%' flexWrap="wrap" >
-          <CategorySideNav title='Subjects' categories={allSubjects} pathPrefix={`/notes`} mb={8} mr={24} minWidth="200px" />
+        <Flex mt={12} w='100%' flexWrap={["wrap", "wrap", "nowrap"]}>
+          <CategorySideNav title='Subjects' categories={allSubjects} pathPrefix={`/notes`} mb={8} mr={24} />
           <Box maxWidth='800px'>
             <Heading as='h1' mb='1.5rem' color='#353535'>
               Computer Science Notes
@@ -32,7 +32,7 @@ export default function Notes({ notes, allSubjects }) {
                 notes.map(({ slug, title, topic }) => {
                   return (
                     <SingleTopicCard key={slug} topic={title} category={topic.name} to={`/notes/${topic.slug}/${slug}`}
-                      mr="2rem" mb={["1.5rem", 0]} />
+                      mr="2rem" mb={["1.5rem", "1.5rem", 0]} />
                   )
                 })
               }

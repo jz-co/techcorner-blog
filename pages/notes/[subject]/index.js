@@ -10,23 +10,23 @@ import { fetchStrapi } from '../../../lib/api';
 
 export default function NotesSubject({ allSubjects, subject, notes }) {
 	return (
-		<Container currPage='cs notes'>
+		<Container bg="#F5FBFF" >
 			<Seo seo={subject.seo} />
 			<MainLayout>
-				<Flex mt={12} w='100%' flexWrap="wrap" >
-					<CategorySideNav title='Subjects' currCategory={subject} categories={allSubjects} pathPrefix={`/notes`} mb={8} mr={24} minWidth="200px" />
+				<Flex mt={12} w='100%' flexWrap={["wrap", "wrap", "nowrap"]} >
+					<CategorySideNav title='Subjects' currCategory={subject} categories={allSubjects} pathPrefix={`/notes`} mb={8} mr={24} />
 					<Box maxWidth='800px'>
-						<Heading as='h1' mb='1.5rem' color='#353535'>
+						<Heading as='h1' mb='1.5rem' color='#042E4E' fontSize="3xl">
 							{subject.name}
 						</Heading>
-						<Text mb='2.5rem' color='gray.500'>
+						<Text mb='2.5rem' color='#778995'>
 							Here you will find quick reference notes for some of the major computer science algorithms and related
 							topics. We also have links to more in-depth resources if you want to learn more.{' '}
 						</Text>
 						<Flex flexWrap="wrap" width="100%" >
 							{notes.map((note) => (
 								<SingleTopicButton key={note.slug} topic={note.title} to={`/notes/${subject.slug}/${note.slug}`}
-									mr="2rem" mb={["1.5rem", 0]} />
+									mr="2rem" mb={"1.5rem"} />
 							))}
 						</Flex>
 					</Box>
