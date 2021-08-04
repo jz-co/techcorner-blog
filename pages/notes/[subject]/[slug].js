@@ -4,6 +4,7 @@ import { Flex, Heading, Text, Stack } from '@chakra-ui/react';
 import ReactMarkdown from 'react-markdown';
 import { motion } from 'framer-motion'
 
+import Seo from '../../../components/seo';
 import Container from "../../../components/container";
 import MainLayout from '../../../components/layout';
 import NoteSectionContainer from '../../../components/note-section-container';
@@ -25,11 +26,7 @@ export default function NotesPost({ note }) {
 
     return (
         <Container>
-            <Head>
-                <title>{note.title} - Tech Corner</title>
-                <meta name='description' content={`CS notes on ${note.title.toLowerCase()}`} />
-                <link rel='icon' href='/favicon.png' />
-            </Head>
+            <Seo seo={note.seo} />
             <Flex
                 justifyContent='center'
                 bg='white'
@@ -97,7 +94,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
 
     // params contains the `subject` and `slug` of the curr page
-    // TODO: call Strapi API to get detailed info about the note
+    // call Strapi API to get detailed info about the note
 
     // Use API to (query) find the note that corresponds to params.slug
 

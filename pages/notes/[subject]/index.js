@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { Box, Flex, Heading, SimpleGrid, Text } from '@chakra-ui/react';
 
+import Seo from '../../../components/seo';
 import Container from '../../../components/container';
 import { SingleTopicButton } from '../../../components/single-topic';
 import CategorySideNav from '../../../components/category-sidenav';
@@ -10,11 +11,7 @@ import { fetchStrapi } from '../../../lib/api';
 export default function NotesSubject({ allSubjects, subject, notes }) {
 	return (
 		<Container currPage='cs notes'>
-			<Head>
-				<title>{subject.name} - Tech Corner</title>
-				<meta name='description' content={`Find all CS notes on the topic of ${subject.name.toLowerCase()}`} />
-				<link rel='icon' href='/favicon.png' />
-			</Head>
+			<Seo seo={subject.seo} />
 			<MainLayout>
 				<Flex mt={12} w='100%' flexWrap="wrap" >
 					<CategorySideNav title='Subjects' currCategory={subject} categories={allSubjects} pathPrefix={`/notes`} mb={8} mr={24} minWidth="200px" />

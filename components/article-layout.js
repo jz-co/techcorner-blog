@@ -39,7 +39,7 @@ export default function ArticleLayout({ title, author, published_at, category, d
 					{/* TODO: change teal colour */}
 				</Link>
 			</Text>
-			<Text my={6} fontSize="lg">
+			<Text my={6} fontSize="md">
 				{description}
 			</Text>
 			<ThumbnailImage my={10} src={url} alt={alternativeText} />

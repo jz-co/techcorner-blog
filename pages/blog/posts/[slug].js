@@ -1,16 +1,13 @@
 import Head from 'next/head';
 
-import { Flex, Heading, Text, Stack, Box } from '@chakra-ui/react';
+import { Box, Image } from '@chakra-ui/react';
 import ReactMarkdown from 'react-markdown';
 
 import Container from "../../../components/container";
-import MainLayout from '../../../components/layout';
-import NoteSectionContainer from '../../../components/note-section-container';
-import AddResourcesCard from '../../../components/resources-card';
-import { notesComponents } from '../../../components/markdown';
+import { articlesComponents } from '../../../components/article-markdown';
 import { fetchStrapi } from '../../../lib/api';
+import ChecklistSection from '../../../components/checklist-section';
 import ArticleLayout from '../../../components/article-layout';
-import { resolveMotionValue } from 'framer-motion';
 
 const vercelResource = {
     title: 'Next.js Documentation',
@@ -32,36 +29,41 @@ export default function BlogPost({ article }) {
             </Head>
             <ArticleLayout {...article}>
                 {article.content.map((section) => {
-                    if (section.content) {
+                    if (section.__component == "components.section") {
                         return (
-                            <ReactMarkdown key={section.id} components={notesComponents}>
+                            <ReactMarkdown key={section.id} components={articlesComponents}>
                                 {section.content}
                                 
                             </ReactMarkdown>
                         )
-                    } if (section.name && section.items) {
-                        return (
-                            <Box>
-                                <ReactMarkdown components={notesComponents}>
-                                    {section.name}
-                                </ReactMarkdown> 
+                    } if (section.__component == "components.media-image") {
+                        return <Image w='100%' maxW='1000px' objectFit='cover' mt="15px" mb="15px" src={section.images[0].url}/>
+                    } if (section.__component == "components.checklist") {
+                        return <Box mt="20px"><ChecklistSection title={section.name} items={section.items}></ChecklistSection></Box>
+                    }
+                    // if (section.name && section.items) {
+                    //     return (
+                    //         <Box>
+                    //             <ReactMarkdown components={articlesComponents}>
+                    //                 {section.name}
+                    //             </ReactMarkdown> 
 
                                     
-                                {section.items.map((item) => {
-                                    return <Box key={item.id} pb="10px"> <ReactMarkdown>{item.text}</ReactMarkdown> </Box>
-                                })}
-                            </Box>
+                    //             {section.items.map((item) => {
+                    //                 return <Box key={item.id} pb="10px"> <ReactMarkdown>{item.text}</ReactMarkdown> </Box>
+                    //             })}
+                    //         </Box>
 
-                        ) 
-                    } if (section.name) {
-                        return  ( <ReactMarkdown components={notesComponents}>
-                                    {section.name}
-                                </ReactMarkdown> )
-                    } if (section.items) {
-                        {section.items.map((item) => {
-                            return <Box key={item.id} pb="10px"> <ReactMarkdown>{item.text}</ReactMarkdown> </Box>
-                        })}
-                    }
+                    //     ) 
+                    // } if (section.name) {
+                    //     return  ( <ReactMarkdown components={articlesComponents}>
+                    //                 {section.name}
+                    //             </ReactMarkdown> )
+                    // } if (section.items) {
+                    //     {section.items.map((item) => {
+                    //         return <Box key={item.id} pb="10px"> <ReactMarkdown>{item.text}</ReactMarkdown> </Box>
+                    //     })}
+                    // } 
 
                 })}
             </ArticleLayout>
@@ -73,7 +75,6 @@ export default function BlogPost({ article }) {
 
 export async function getStaticPaths() {
 
-    // Call Strapi API to get all notes topics, and all notes associated with each topic
     const articleCategories = await fetchStrapi('get.article-categories');
 
     const paths = articleCategories.reduce((accumulator, category) => {

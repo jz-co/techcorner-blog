@@ -1,10 +1,13 @@
+import App from 'next/app';
+import { createContext, useEffect } from 'react';
 import { ChakraProvider, useColorMode } from '@chakra-ui/react';
 import { Global, css } from '@emotion/react';
 import { motion, AnimatePresence } from 'framer-motion';
 // import { useState } from 'react';
-// import Router from 'next/router';
+import { useRouter } from 'next/router';
 
-import Loader from '../components/loader';
+// import Loader from '../components/loader';
+import { fetchStrapi } from '../lib/api';
 
 /* Not sure if this is best way to add global styles */
 const GlobalStyle = ({ children }) => {
@@ -39,6 +42,8 @@ const GlobalStyle = ({ children }) => {
   );
 };
 
+export const GlobalContext = createContext({});
+
 function MyApp({ Component, pageProps, router }) {
   // const { colorMode } = useColorMode();
   // const [loading, setLoading] = useState(false);
@@ -49,6 +54,20 @@ function MyApp({ Component, pageProps, router }) {
   // Router.events.on('routeChangeComplete', () => {
   //   setLoading(false);
   // });
+  const nextRouter = useRouter();
+  const { global } = pageProps;
+
+  useEffect(() => {
+    const handleRouteChange = url => {
+      window.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
+        page_path: url,
+      })
+    }
+    nextRouter.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      nextRouter.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [nextRouter.events])
 
   return (
     <motion.div key={router.route} initial="pageInitial" animate="pageAnimate"
@@ -63,17 +82,28 @@ function MyApp({ Component, pageProps, router }) {
           opacity: 0,
         }
       }}>
-      <ChakraProvider>
-        {/* {loading ? (
+      <GlobalContext.Provider value={global}>
+        <ChakraProvider>
+          {/* {loading ? (
         <Loader />
       ) : ( */
-          (<GlobalStyle>
-            <Component {...pageProps} />
-          </GlobalStyle>
-          )}
-      </ChakraProvider>
+            (<GlobalStyle>
+              <Component {...pageProps} />
+            </GlobalStyle>
+            )}
+        </ChakraProvider>
+      </GlobalContext.Provider>
     </motion.div>
   );
+}
+
+MyApp.getInitialProps = async (ctx) => {
+  // required by Next.js
+  const appProps = await App.getInitialProps(ctx);
+  // Fetch global site settings from Strapi
+  const global = await fetchStrapi("get.global");
+
+  return { ...appProps, pageProps: { global } };
 }
 
 export default MyApp;
