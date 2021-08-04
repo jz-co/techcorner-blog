@@ -2,7 +2,7 @@ import {
     Heading,
     Text,
     Box,
-    Image, 
+    Image,
     Code,
     UnorderedList,
     OrderedList,
@@ -12,13 +12,13 @@ import {
 
 const articlesComponents = {
     h1: ({ node, ...props }) => (
-        <Heading as='h2' fontSize='2xl' fontWeight="medium" {...props} mt="15px" mb="15px"  />
+        <Heading as='h2' fontSize='3xl' fontWeight="medium" {...props} pt={10} pb={6} color="#778995" />
     ),
     h2: ({ node, ...props }) => (
-        <Heading as='h3' fontSize='xl' fontWeight="medium" py={2} {...props} mt="8px" mb="8px" />
+        <Heading as='h3' fontSize='xl' fontWeight="bold" pt={8} pb={2} {...props} />
     ),
     p: ({ node, ...props }) => (
-        <Text as='p' fontSize='md' mt="8px" {...props} />
+        <Text as='p' fontSize='md' pb={2} {...props} />
     ),
     blockquote: (props) => (
         <Box bg="blue.50" py={4} px={6} borderRadius={12} color="blue.700" my={4} {...props} />
@@ -33,15 +33,15 @@ const articlesComponents = {
         <Code bg={!inline ? 'none' : 'default'} color={!inline ? 'inherit' : 'default'} {...props} />
     ),
     ol: ({ node, ordered, ...props }) => (
-        <OrderedList spacing={1} {...props} />
+        <OrderedList spacing={2} pb={2} {...props} />
     ),
     ul: ({ node, ordered, ...props }) => (
-        <UnorderedList spacing={1} {...props} />
+        <UnorderedList spacing={2} pb={2} {...props} />
     ),
     li: ({ node, ordered, ...props }) => (
-        <ListItem ml={8} mt="8px" {...props}/>
+        <ListItem ml={8} {...props} />
     ), a: ({ node, ...props }) => (
-        <Link  color="blue" textDecoration="underline" {...props}/>
+        <Link color="blue" textDecoration="underline" {...props} />
     )
 
 }

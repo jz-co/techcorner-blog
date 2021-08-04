@@ -4,9 +4,10 @@ import { Flex } from '@chakra-ui/react';
 import Logo from './logo';
 import NavBar from './navbar';
 
-export default function Header({ ...props }) {
+export default function Header({ bg }) {
     return (
-        <Flex w="100%" justifyContent="center" bg="white" borderBottom={["solid 1px #353535", "none"]}>
+        <Flex w="100%" justifyContent="center"
+            borderBottom={["solid 1px #353535", "none"]} bg={bg}>
             <Flex
                 as='nav'
                 flexDirection={['column', 'row']}

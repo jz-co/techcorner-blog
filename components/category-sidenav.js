@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Flex, Button, Box, Link as ChakraLink, Heading, Stack } from '@chakra-ui/react';
+import { Box, Link as ChakraLink, Heading, Stack } from '@chakra-ui/react';
 
 /* catgories is list of categories, which are objects of form
 	{ name: string, slug: string }
@@ -7,8 +7,8 @@ import { Flex, Button, Box, Link as ChakraLink, Heading, Stack } from '@chakra-u
 
 export default function CategorySideNav({ pathPrefix, currCategory, categories, title, allPrefix, ...props }) {
 	return (
-		<Box w="fit-content" {...props}>
-			<Heading mb={8} color='#353535'>
+		<Box w="fit-content" width="140px" {...props}>
+			<Heading mb={8} color='#042E4E' fontSize={["2xl", "3xl"]}>
 				{title}
 			</Heading>
 			<Stack spacing={4}>
@@ -16,20 +16,15 @@ export default function CategorySideNav({ pathPrefix, currCategory, categories, 
 
 					fontSize='md'
 					fontWeight={(!currCategory) ? 'bold' : 'normal'}
-					color={(!currCategory) ? '#353535' : 'gray.400'}
-					borderLeft={(!currCategory) ? '3px solid #353535' : 'none'}
+					color={(!currCategory) ? '#042E4E' : '#778995'}
+					borderLeft={(!currCategory) ? '3px solid #042E4E' : 'none'}
 					px={2}
 					_hover={{
-						color: '#353535'
+						color: '#778995'
 					}}>
-					{allPrefix
-						? <ChakraLink as={Link} href={`${allPrefix}`}>
-							All
-						</ChakraLink>
-						: <ChakraLink as={Link} href={`${pathPrefix}`}>
-							All
-						</ChakraLink>
-					}
+					<ChakraLink as={Link} href={`${allPrefix || pathPrefix}`}>
+						<a>All</a>
+					</ChakraLink>
 
 				</Box>
 				{categories.map(({ name, slug }) => {
@@ -40,14 +35,14 @@ export default function CategorySideNav({ pathPrefix, currCategory, categories, 
 							key={slug}
 							fontSize='md'
 							fontWeight={selected ? 'bold' : 'normal'}
-							color={selected ? '#353535' : 'gray.400'}
-							borderLeft={selected ? '3px solid #353535' : 'none'}
+							color={selected ? '#042E4E' : 'gray.400'}
+							borderLeft={selected ? '3px solid #042E4E' : 'none'}
 							px={2}
 							_hover={{
-								color: '#353535'
+								color: '#042E4E'
 							}}>
 							<ChakraLink as={Link} href={`${pathPrefix}/${slug}`}>
-								{name[0].toUpperCase().concat(name.slice(1))}
+								<a>{name[0].toUpperCase().concat(name.slice(1))}</a>
 							</ChakraLink>
 						</Box>
 					);
