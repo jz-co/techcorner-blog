@@ -7,10 +7,10 @@ import NavBar from './navbar';
 export default function Header({ bg }) {
     return (
         <Flex w="100%" justifyContent="center"
-            borderBottom={["solid 1px #353535", "none"]} bg={bg}>
+            borderBottom={["solid 1px #353535", "solid 1px #353535", "none"]} bg={bg}>
             <Flex
                 as='nav'
-                flexDirection={['column', 'row']}
+                flexDirection={['column', 'column', 'row']}
                 justifyContent={['flex-start', 'space-between']}
                 alignItems='center'
                 width='100%'
@@ -21,7 +21,7 @@ export default function Header({ bg }) {
                 <Link href="/" passHref>
                     <a><Logo /></a>
                 </Link>
-                <NavBar />
+                <NavBar mt={[0, 2, 0]} />
             </Flex>
         </Flex>
     );

@@ -3,7 +3,7 @@ import { Flex } from '@chakra-ui/react';
 export default function MainLayout({ children, ...props }) {
     return (
         <Flex
-            m='0 4rem 4rem 4rem'
+            m={['0 2.5rem 4rem 2.5rem', '0 4rem 4rem 4rem']}
             justifyContent='flex-start'
             alignItems='center'
             flexDirection='column'

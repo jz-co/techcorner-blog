@@ -20,7 +20,7 @@ export default function Notes({ notes, allSubjects }) {
         <Flex mt={12} w='100%' flexWrap={["wrap", "wrap", "nowrap"]}>
           <CategorySideNav title='Subjects' categories={allSubjects} pathPrefix={`/notes`} mb={8} mr={24} />
           <Box maxWidth='800px'>
-            <Heading as='h1' mb='1.5rem' color='#353535'>
+            <Heading as='h1' mb='1.5rem' color='#042E4E'>
               Computer Science Notes
             </Heading>
             <Text mb='2.5rem' color='gray.500'>

@@ -25,7 +25,7 @@ const vercelResource = {
 export default function NotesPost({ note }) {
 
     return (
-        <Container>
+        <Container bg="#F5F5F5">
             <Seo seo={note.seo} />
             <Flex
                 justifyContent='center'
@@ -44,16 +44,16 @@ export default function NotesPost({ note }) {
                             opacity: 1,
                         }
                     }}>
-                        <Heading as="h1" mb={2} color="#353535" fontSize="4xl">{note.title}</Heading>
-                        <Text color="gray.300" fontWeight="bold" fontSize="2xl">{note.topic.name}</Text>
+                        <Heading as="h1" mb={2} color="#042E4E" fontSize="4xl">{note.title}</Heading>
+                        <Text color="#98A8B2" fontWeight="semibold" fontSize="2xl">{note.topic.name}</Text>
                     </motion.div>
                 </Flex>
             </Flex>
             <MainLayout pt="4rem" w="100%">
                 {note.body.length === 0 && <Text>Nothing to see here...</Text>}
-                <Flex w="100%" px='2rem' maxWidth="1120px" justifyContent="space-between" wrap="wrap">
+                <Flex w="100%" px={['1.5rem', '2rem']} justifyContent="space-between" wrap={["wrap", "wrap", "nowrap"]}>
 
-                    <Stack spacing={12} maxWidth="700px" mb={12} color="gray.700">
+                    <Stack spacing={12} maxWidth="700px" mb={12} color="gray.700" flexBasis={["100%", "100%", "70%"]}>
                         {note.body.map((section) => {
                             return (<NoteSectionContainer key={section.id} spacing={6}>
                                 <ReactMarkdown components={notesComponents}>
@@ -63,7 +63,13 @@ export default function NotesPost({ note }) {
                             </NoteSectionContainer>)
                         })}
                     </Stack>
-                    {note.resources.length > 0 && <AddResourcesCard srcs={[...note.resources, vercelResource]} w="300px" h="fit-content" ml={2} />}
+                    {note.resources.length > 0 && (
+                        <AddResourcesCard srcs={[...note.resources]}
+                            flexBasis={["100%", "100%", "25%"]}
+                            maxWidth={["none", "none", "300px"]}
+                            h="fit-content"
+                            ml={[0, 0, 8]} />)
+                    }
                 </Flex>
             </MainLayout>
         </Container>
