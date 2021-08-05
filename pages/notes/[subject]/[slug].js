@@ -33,7 +33,7 @@ export default function NotesPost({ note }) {
                 w="100%"
                 pt="100px"
                 pb="64px">
-                <Flex width="100%" px='4rem' maxWidth="1120px" flexDirection="column" alignItems="flex-start">
+                <Flex width="100%" px={['2.5rem', '4rem']} maxWidth="1120px" flexDirection="column" alignItems="flex-start">
                     <motion.div initial="displaced" animate="normal" transition={{ duration: .4 }} variants={{
                         displaced: {
                             translateY: 16,
@@ -53,7 +53,7 @@ export default function NotesPost({ note }) {
                 {note.body.length === 0 && <Text>Nothing to see here...</Text>}
                 <Flex w="100%" px={['1.5rem', '2rem']} justifyContent="space-between" wrap={["wrap", "wrap", "nowrap"]}>
 
-                    <Stack spacing={12} maxWidth="700px" mb={12} color="gray.700" flexBasis={["100%", "100%", "70%"]}>
+                    <Stack spacing={12} maxWidth="700px" mb={12} color="gray.700" flexBasis={["100%", "100%", "80%"]}>
                         {note.body.map((section) => {
                             return (<NoteSectionContainer key={section.id} spacing={6}>
                                 <ReactMarkdown components={notesComponents}>
@@ -65,7 +65,7 @@ export default function NotesPost({ note }) {
                     </Stack>
                     {note.resources.length > 0 && (
                         <AddResourcesCard srcs={[...note.resources]}
-                            flexBasis={["100%", "100%", "25%"]}
+                            flexBasis={["100%", "100%", "20%"]}
                             maxWidth={["none", "none", "300px"]}
                             h="fit-content"
                             ml={[0, 0, 8]} />)

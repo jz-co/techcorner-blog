@@ -32,7 +32,7 @@ export default function Notes({ notes, allSubjects }) {
                 notes.map(({ slug, title, topic }) => {
                   return (
                     <SingleTopicCard key={slug} topic={title} category={topic.name} to={`/notes/${topic.slug}/${slug}`}
-                      mr="2rem" mb={["1.5rem", "1.5rem", 0]} />
+                      mr="2rem" mb={"1.5rem"} />
                   )
                 })
               }

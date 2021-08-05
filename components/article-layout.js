@@ -29,7 +29,7 @@ export default function ArticleLayout({ title, author, published_at, category, d
 
 	return (
 		<Box m={8} maxWidth='780px' {...props} color="#031628">
-			<Heading as='h1' fontSize="5xl" mb={4}>
+			<Heading as='h1' fontSize={["4xl", "5xl"]} mb={4}>
 				{title}
 			</Heading>
 			<Text color="gray.500">
@@ -42,7 +42,7 @@ export default function ArticleLayout({ title, author, published_at, category, d
 			<Text my={6} fontSize="md">
 				{description}
 			</Text>
-			<ThumbnailImage my={10} src={url} alt={alternativeText} />
+			<ThumbnailImage mt={10} mb={8} src={url} alt={alternativeText} />
 			{children}
 		</Box>
 	);
