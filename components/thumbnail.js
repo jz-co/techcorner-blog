@@ -10,7 +10,6 @@ export default function ThumbnailImage({ src, alt, ...props }) {
 			right='50%'
 			marginLeft='-50vw'
 			marginRight='-50vw'
-			minHeight='200px'
 			overflow='hidden'
 			justifyContent='center'
 			{...props}>
