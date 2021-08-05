@@ -8,6 +8,7 @@ import { articlesComponents } from '../../../components/article-markdown';
 import { fetchStrapi } from '../../../lib/api';
 import ChecklistSection from '../../../components/checklist-section';
 import ArticleLayout from '../../../components/article-layout';
+import Seo from "../../../components/seo";
 
 const vercelResource = {
     title: 'Next.js Documentation',
@@ -23,10 +24,7 @@ const vercelResource = {
 export default function BlogPost({ article }) {
     return (
         <Container bg="#F5F5F5">
-            <Head>
-                <title>{article.title} - Tech Corner</title>
-                <meta name='description' content={`Blog article on ${article.title.toLowerCase()}`} />
-            </Head>
+            <Seo seo={article.seo} />
             <ArticleLayout {...article} mt={12}>
                 <Stack spacing={2} mb={24}>
                     {article.content.map((section) => {

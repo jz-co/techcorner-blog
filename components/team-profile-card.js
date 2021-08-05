@@ -11,7 +11,9 @@ export default function TeamProfileCard({
 }) {
     return (
 
-        <Box color="#353535"
+        <Box
+            bg="#FFFFFF"
+            color="#353535"
             borderRadius="16px"
             boxShadow="0px 0px 12px rgba(0, 0, 0, 0.16)"
             width="400px"

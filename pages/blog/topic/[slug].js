@@ -9,6 +9,7 @@ import ReactPaginate from "react-paginate";
 import { useState } from "react";
 import PostCard from "../../../components/post-card.js";
 import paginationStyles from '../../../styles/pagination.module.css'
+import Seo from "../../../components/seo";
 export default function BlogTopic({ allArticleCategories, category, articles }) {
 
 	const byDate = (a, b) => {
@@ -36,10 +37,7 @@ export default function BlogTopic({ allArticleCategories, category, articles }) 
 
 	return (
 		<Container bg="#F5FBFF">
-			<Head>
-				<title>{category.name} - Tech Corner</title>
-				<meta name='description' content={`Find all CS notes on the topic of ${category.name.toLowerCase()}`} />
-			</Head>
+			<Seo seo={category.seo} />
 			<MainLayout>
 				<Flex mt={12} w='100%' flexWrap={["wrap", "wrap", "nowrap"]} >
 					<CategorySideNav title='Topics' currCategory={category} categories={allArticleCategories} pathPrefix={`/blog/topic`} allPrefix={`/blog`} mb={8} mr={16} />

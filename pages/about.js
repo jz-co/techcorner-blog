@@ -5,7 +5,7 @@ import MainLayout from "../components/layout";
 
 export default function About() {
     return (
-        <Container>
+        <Container bg="#F5FBFF">
             <MainLayout>
                 <Box ml="4rem">
                     <Text fontSize="4xl" fontWeight="bold" mt="30px">About</Text>

@@ -10,6 +10,7 @@ import { useMediaQuery } from "@chakra-ui/react"
 import ReactPaginate from "react-paginate";
 import paginationStyles from '../../styles/pagination.module.css'
 import { useState } from "react";
+import Seo from "../../components/seo";
 
 export default function Blog({ articles, allArticleCategories }) {
   const [isSmallerThan660] = useMediaQuery("(max-width: 660px)")
@@ -25,10 +26,15 @@ export default function Blog({ articles, allArticleCategories }) {
     setPageNumber(selected);
   };
 
+  const seo = {
+    metaTitle: 'Computer Science Blog Posts',
+  }
+
   const renderArticles = () => {
     if (pageNumber == 0) {
       return (
         <Box>
+          <Seo seo={seo} />
           {isSmallerThan660 ? "" : <HeroPostCard {...articles[pagesVisited]}></HeroPostCard>}
           <Flex flexDirection="row" justifyContent="space-between" flexFlow="wrap">
             {isSmallerThan660 ?
@@ -75,6 +81,7 @@ export default function Blog({ articles, allArticleCategories }) {
               Latest Posts
             </Heading>
             {renderArticles()}
+            {articles.length > 1 ?
             <Flex justifyContent="center" marginTop="60px">
               <ReactPaginate
                 previousLabel={"<"}
@@ -87,7 +94,7 @@ export default function Blog({ articles, allArticleCategories }) {
                 disabledClassName={paginationStyles.paginationDisabled}
                 activeClassName={paginationStyles.paginationActive}
               />
-            </Flex>
+            </Flex>:""}
           </Box>
         </Flex>
       </MainLayout>
