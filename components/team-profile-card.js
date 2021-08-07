@@ -21,7 +21,7 @@ export default function TeamProfileCard({
             p={["1.5rem", "40px"]}
             {...props}
         >
-            <Image src={imgSrc} alt='avatar' boxSize="120px" />
+            <Image src={imgSrc} alt='avatar' boxSize="120px" borderRadius="full" />
             <Heading size='md' fontSize="25px" mt={4} mb={4} textAlign='left' fontWeight="semibold">
                 {name}
             </Heading>

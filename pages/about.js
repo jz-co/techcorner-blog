@@ -1,47 +1,40 @@
 import Container from "../components/container";
-import { Box, Flex, Link, Text, HStack, Stack, Image } from '@chakra-ui/react';
+import { Box, Flex, Link, Text, HStack, Stack, Image, Heading } from '@chakra-ui/react';
 import TeamProfileCard from "../components/team-profile-card";
 import MainLayout from "../components/layout";
+import { fetchStrapi } from '../lib/api';
 
-export default function About() {
+export default function About({ about, contact }) {
     return (
         <Container bg="#F5FBFF">
             <MainLayout >
                 <Box mx={[0, "0.5rem", "2rem"]} pt="1rem" maxWidth="840px">
-                    <Text fontSize="4xl" fontWeight="bold" mt="30px" color="#042E4E">About</Text>
-
+                    <Heading as="h1" fontSize="4xl" fontWeight="bold" mt="30px" color="#042E4E">About</Heading>
                     <Text fontSize="18px" mt="1.5rem" color="#031628">
-                        Welcome to Tech Corner! On our website you will find structured notes on important computer science topics, career tips, as well as discussions on current and emerging technologies.
-                        We created our website with everyone interested in computer science in mind, paying special attention to students and self learners in the early stages of their computer science career.
+                        {about.aboutLong}
                     </Text>
 
-
-
                     <Flex my="3rem" justifyContent="space-between" flexWrap="wrap">
-                        <TeamProfileCard
-                            flexBasis={["100%", "100%", "48%"]}
-                            imgSrc="images/jenny.png"
-                            name="Jenny Zhang"
-                            message="Here is where we describe ourselves. We can give a brief introduction of who we are and a message that we want to tell the world." />
-
-                        <TeamProfileCard
-                            flexBasis={["100%", "100%", "48%"]}
-                            imgSrc="images/jessie.png" name="Jessie Lam" linkedinLink="https://www.linkedin.com/in/wing-chung-jessie-lam/" message="Hello! My name is Jessie Lam and my passion flickers amounst the fields of bioinformatics, UI/UX, and video game development. I aim to bring my enthusiasm and practical knowledge in computer science topics into writing practical and (hopefully) entertaining articles for this website. "></TeamProfileCard>
+                        {
+                            about.authorBio.map((author) => (
+                                <TeamProfileCard
+                                    flexBasis={["100%", "100%", "48%"]}
+                                    imgSrc={author.profileImage.url}
+                                    name={author.name}
+                                    message={author.bio}
+                                />
+                            ))
+                            // Would have to change for lg screens if there 3+ authors
+                        }
                     </Flex>
 
                     <Box height="1.5px" backgroundColor="#CCD9E1">
                     </Box>
                     <HStack spacing={4} mt="3rem">
-                        <Text fontSize="4xl" fontWeight="bold" color="#042E4E">Contact</Text>
-                        <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M38 33.7779C38 36.1096 36.1095 38.0001 33.7778 38.0001H4.22222C1.8905 38.0001 0 36.1096 0 33.7779V14.7779C0 12.4462 1.8905 10.5557 4.22222 10.5557H33.7778C36.1095 10.5557 38 12.4462 38 14.7779V33.7779Z" fill="#CCD6DD" />
-                            <path d="M12.6142 23.8935L0.672708 35.835C0.644208 35.8646 0.633653 35.9015 0.609375 35.9311C0.968264 36.5328 1.4686 37.032 2.07026 37.392C2.10088 37.3677 2.13676 37.3571 2.16526 37.3286L14.1078 25.3861C14.5195 24.9734 14.5195 24.3062 14.1078 23.8935C13.694 23.4808 13.0269 23.4808 12.6142 23.8935ZM37.3913 35.9311C37.3691 35.9015 37.3564 35.8646 37.3279 35.8361L25.3875 23.8935C24.9737 23.4808 24.3066 23.4808 23.8939 23.8935C23.4812 24.3073 23.4812 24.9744 23.8939 25.3861L35.8354 37.3286C35.8628 37.3561 35.9008 37.3677 35.9304 37.392C36.5331 37.0331 37.0324 36.5328 37.3913 35.9311Z" fill="#99AAB5" />
-                            <path d="M33.7778 10.5557H4.22222C1.8905 10.5557 0 12.4462 0 14.7779V15.8651L15.3351 31.1664C17.3343 33.1657 20.6002 33.1657 22.6016 31.1664L38 15.8429V14.7779C38 12.4462 36.1095 10.5557 33.7778 10.5557Z" fill="#99AAB5" />
-                            <path d="M33.7775 10.5557H4.22197C2.54575 10.5557 1.10914 11.5416 0.427246 12.9571L16.0136 28.5444C17.6624 30.1932 20.3371 30.1932 21.9849 28.5444L37.5723 12.9571C36.8904 11.5416 35.4548 10.5557 33.7775 10.5557Z" fill="#E1E8ED" />
-                            <path d="M28.2003 7.38889H23.2223V2.11111C23.2223 0.945778 22.2776 0 21.1112 0H16.889C15.7237 0 14.7779 0.945778 14.7779 2.11111V7.38889H9.65634C8.3654 7.38889 8.05717 8.04756 8.96917 8.96061L17.269 17.2604C18.1821 18.1735 19.6757 18.1735 20.5887 17.2604L28.8886 8.96061C29.8006 8.04756 29.4923 7.38889 28.2003 7.38889Z" fill="#55ACEE" />
-                        </svg>
+                        <Heading as="h2" fontSize="4xl" fontWeight="bold" color="#042E4E">Contact</Heading>
+                        <img src="/icons/write-to-us.svg" />
                     </HStack>
-                    <Text fontSize="18px" mt="10px"> Have questions or got feedback? Feel free to reach out! </Text>
+                    <Text fontSize="18px" mt="10px">{contact.description}</Text>
                     <Stack ml="1rem" spacing={3}>
                         <HStack mt="15px" spacing={2}>
                             <svg width="35" height="35" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -98,4 +91,20 @@ export default function About() {
         </Container>
 
     );
+}
+
+export async function getStaticProps() {
+    const [about, contact] = await Promise.all([
+        fetchStrapi('get.about'),
+        fetchStrapi('get.contact')
+    ]);
+
+    return {
+        props: {
+            about,
+            contact
+        },
+    };
+
+
 }
