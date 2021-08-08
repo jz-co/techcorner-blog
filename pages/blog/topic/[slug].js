@@ -45,6 +45,9 @@ export default function BlogTopic({ allArticleCategories, category, articles }) 
 						<Heading as='h1' mb='1.5rem' color='#042E4E' fontSize="3xl">
 							{category.name[0].toUpperCase().concat(category.name.slice(1))}
 						</Heading>
+						<Text mb='2rem' color='#778995'>
+							{category.description}
+						</Text>
 						<Flex flexDirection="row" justifyContent="space-between" flexFlow="wrap">
 							{displayArticles}
 						</Flex>
@@ -91,11 +94,11 @@ export async function getStaticProps({ params }) {
 
 	const allArticleCategories = await fetchStrapi('get.article-categories');
 
-	const { name, slug, articles } = allArticleCategories.filter((category) => category.slug === params.slug)[0];
+	const { name, slug, articles, description } = allArticleCategories.filter((category) => category.slug === params.slug)[0];
 	return {
 		props: {
 			allArticleCategories,
-			category: { name, slug },
+			category: { name, slug, description },
 			articles,
 		},
 	};

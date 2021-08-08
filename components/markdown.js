@@ -2,7 +2,7 @@ import {
     Heading,
     Text,
     Box,
-    Image, 
+    Image,
     Code,
     UnorderedList,
     OrderedList,
@@ -11,7 +11,7 @@ import {
 
 const notesComponents = {
     h1: ({ node, ...props }) => (
-        <Heading as='h2' fontSize='xl' fontWeight="medium" {...props} />
+        <Heading as='h2' fontSize={'xl'} fontWeight="semibold" {...props} />
     ),
     h2: ({ node, ...props }) => (
         <Heading as='h3' fontSize='lg' fontWeight="medium" py={2} {...props} />
@@ -25,20 +25,20 @@ const notesComponents = {
     img: (props) => (
         <Image boxSize={["default", "200px"]} objectFit="cover" float={["none", "right"]} ml={[0, 6]} mb={4} borderRadius={8} {...props} />
     ),
-    pre: ({node, ...props}) => (
-        <Box as="pre" bg="gray.700" color="white" p={6} borderRadius={8} {...props}/>
+    pre: ({ node, ...props }) => (
+        <Box as="pre" bg="gray.700" color="white" p={6} borderRadius={8} {...props} />
     ),
-    code: ({inline, node, ...props}) => (
-        <Code bg={!inline ? 'none' : 'default'} color={!inline ? 'inherit' : 'default'} {...props}/>
+    code: ({ inline, node, ...props }) => (
+        <Code bg={!inline ? 'none' : 'default'} color={!inline ? 'inherit' : 'default'} {...props} />
     ),
-    ol: ({node, ordered, ...props}) => (
-        <OrderedList spacing={1} {...props}/>
+    ol: ({ node, ordered, ...props }) => (
+        <OrderedList spacing={1} {...props} />
     ),
-    ul: ({node, ordered, ...props}) => (
-        <UnorderedList  spacing={1} {...props}/>
+    ul: ({ node, ordered, ...props }) => (
+        <UnorderedList spacing={1} {...props} />
     ),
-    li: ({node, ordered, ...props}) => (
-        <ListItem ml={8} {...props}/>
+    li: ({ node, ordered, ...props }) => (
+        <ListItem ml={8} {...props} />
     )
 
 }
