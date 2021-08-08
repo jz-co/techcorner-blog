@@ -12,10 +12,10 @@ import {
 
 const articlesComponents = {
     h1: ({ node, ...props }) => (
-        <Heading as='h2' fontSize='3xl' fontWeight="medium" {...props} pt={10} pb={6} color="#778995" />
+        <Heading as='h2' fontSize={['2xl', '3xl']} fontWeight="medium" {...props} pt={[4, 10]} pb={[3, 6]} color="#778995" />
     ),
     h2: ({ node, ...props }) => (
-        <Heading as='h3' fontSize='xl' fontWeight="bold" pt={8} pb={2} {...props} />
+        <Heading as='h3' fontSize='xl' fontWeight="bold" pt={[4, 8]} pb={2} {...props} />
     ),
     p: ({ node, ...props }) => (
         <Text as='p' fontSize='md' pb={2} {...props} />

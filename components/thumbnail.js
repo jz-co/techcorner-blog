@@ -10,11 +10,10 @@ export default function ThumbnailImage({ src, alt, ...props }) {
 			right='50%'
 			marginLeft='-50vw'
 			marginRight='-50vw'
-			maxHeight='400'
 			overflow='hidden'
 			justifyContent='center'
 			{...props}>
-			<Image w='100%' maxW='900px' objectFit='cover' src={src} alt={alt} />
+			<Image w='100%' maxH={["200px", "none"]} maxW='1024px' objectFit='cover' src={src} alt={alt} />
 		</Flex>
 	);
 }

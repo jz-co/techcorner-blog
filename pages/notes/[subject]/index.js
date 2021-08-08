@@ -20,8 +20,7 @@ export default function NotesSubject({ allSubjects, subject, notes }) {
 							{subject.name}
 						</Heading>
 						<Text mb='2.5rem' color='#778995'>
-							Here you will find quick reference notes for some of the major computer science algorithms and related
-							topics. We also have links to more in-depth resources if you want to learn more.{' '}
+							{subject.description}
 						</Text>
 						<Flex flexWrap="wrap" width="100%" >
 							{notes.map((note) => (
@@ -62,12 +61,12 @@ export async function getStaticProps({ params }) {
 
 	const allSubjects = await fetchStrapi('get.notes-topics');
 
-	const { name, slug, notes } = allSubjects.filter((subject) => subject.slug === params.subject)[0];
+	const { name, slug, notes, description } = allSubjects.filter((subject) => subject.slug === params.subject)[0];
 
 	return {
 		props: {
 			allSubjects,
-			subject: { name, slug },
+			subject: { name, slug, description },
 			notes,
 		},
 	};

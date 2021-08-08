@@ -3,7 +3,7 @@ import { StackDivider, Text, Box, HStack, Image, LinkBox, LinkOverlay, Stack } f
 function ResourceGroup({ title, srcLink, srcName, srcIcon, ...props }) {
 	return (
 		<LinkBox
-			w='250px'
+			minWidth={['none', '250px']}
 			{...props}
 			_hover={{
 				transform: 'translateX(3px)',
