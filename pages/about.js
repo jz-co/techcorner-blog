@@ -3,10 +3,12 @@ import { Box, Flex, Link, Text, HStack, Stack, Image, Heading } from '@chakra-ui
 import TeamProfileCard from "../components/team-profile-card";
 import MainLayout from "../components/layout";
 import { fetchStrapi } from '../lib/api';
+import Seo from "../components/seo";
 
 export default function About({ about, contact }) {
     return (
         <Container bg="#F5FBFF">
+            <Seo seo={about.seo} />
             <MainLayout >
                 <Box mx={[0, "0.5rem", "2rem"]} pt="1rem" maxWidth="840px">
                     <Heading as="h1" fontSize="4xl" fontWeight="bold" mt="30px" color="#042E4E">About</Heading>
