@@ -1,5 +1,4 @@
 import { Text, Heading, Box, Flex } from '@chakra-ui/react'
-import Head from 'next/head'
 
 import Container from '../../components/container'
 import { SingleTopicCard } from '../../components/single-topic'
@@ -24,8 +23,8 @@ export default function Notes({ notes, allSubjects }) {
               Computer Science Notes
             </Heading>
             <Text mb='2.5rem' color='gray.500'>
-              Here you will find quick reference notes for some of the major computer science algorithms and related
-              topics. We also have links to more in-depth resources if you want to learn more.{' '}
+              Here you will find quick reference notes for some of the major computer science
+              topics, as well as links to more in-depth resources if you want to learn more.{' '}
             </Text>
             <Flex flexWrap="wrap" width="100%">
               {

@@ -1,5 +1,4 @@
-import Head from 'next/head';
-import { Box, Flex, Heading, SimpleGrid, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text } from '@chakra-ui/react';
 
 import Seo from '../../../components/seo';
 import Container from '../../../components/container';

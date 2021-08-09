@@ -2,13 +2,9 @@ import App from 'next/app';
 import { createContext, useEffect } from 'react';
 import { ChakraProvider, useColorMode } from '@chakra-ui/react';
 import { Global, css } from '@emotion/react';
-import { motion, AnimatePresence } from 'framer-motion';
-// import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-
-// import Loader from '../components/loader';
 import { fetchStrapi } from '../lib/api';
-import theme from '../styles/theme'
 
 /* Not sure if this is best way to add global styles */
 const GlobalStyle = ({ children }) => {
@@ -47,14 +43,6 @@ export const GlobalContext = createContext({});
 
 function MyApp({ Component, pageProps, router }) {
   // const { colorMode } = useColorMode();
-  // const [loading, setLoading] = useState(false);
-
-  // Router.events.on('routeChangeStart', () => {
-  //   setLoading(true);
-  // });
-  // Router.events.on('routeChangeComplete', () => {
-  //   setLoading(false);
-  // });
   const nextRouter = useRouter();
   const { global } = pageProps;
 
@@ -85,13 +73,9 @@ function MyApp({ Component, pageProps, router }) {
       }}>
       <GlobalContext.Provider value={global}>
         <ChakraProvider>
-          {/* {loading ? (
-        <Loader />
-      ) : ( */
-            (<GlobalStyle>
-              <Component {...pageProps} />
-            </GlobalStyle>
-            )}
+          <GlobalStyle>
+            <Component {...pageProps} />
+          </GlobalStyle>
         </ChakraProvider>
       </GlobalContext.Provider>
     </motion.div>
