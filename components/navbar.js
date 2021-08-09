@@ -1,48 +1,80 @@
-import Link from 'next/Link'
-import styled from '@emotion/styled'
-import {
-    Flex,
-    Button,
-    Box
-} from '@chakra-ui/react'
+import NextLink from 'next/link';
+import { useRouter } from 'next/router';
+import { Button, Link, Flex, useMediaQuery } from '@chakra-ui/react';
 
-import Logo from './logo'
+function NavLink({ to, label, ...props }) {
+	const router = useRouter();
+	return (
+		<Link as={NextLink} href={to} passHref>
+			<Button
+				as="a"
+				color="#353535"
+				bg='none'
+				mx={[2, 2, 4]}
+				_focus={{
+					boxShadow: 'none',
+					outline: 'none',
+				}}
+				fontWeight={router.pathname === to ? 'bold' : 'medium'}
+				{...props}>
+				{label}
+			</Button>
+		</Link>
+	);
+};
 
-const NavLink = ({ to, label, ...props}) => {
-    return (
-        <Link href={to}>
-            <Button as="a" >
-                {label}
-            </Button>
-        </Link>
-    )
-}
+export default function NavBar({ ...props }) {
+	const pages = [
+		{
+			name: 'Home',
+			path: '/',
+		},
+		{
+			name: 'CS Notes',
+			path: '/notes',
+		},
+		{
+			name: 'Blog',
+			path: '/blog',
+		},
+		{
+			name: 'About',
+			path: '/about',
+		},
+	];
+	const pagesWithoutHome = [
+		{
+			name: 'CS Notes',
+			path: '/notes',
+		},
+		{
+			name: 'Blog',
+			path: '/blog',
+		},
+		{
+			name: 'About',
+			path: '/about',
+		},
+	]
 
-const NavBar = (props) => {
-    const NavContainer = styled(Flex)`
-        position: sticky;
-        z-index: 10;
-        top: 0;
-    `
-    return (
-        <NavContainer
-            as="nav"
-            flexDirection="row"
-            justifyContent="space-between"
-            alignItems="center"
-            width="100%"
-            maxWidth="1024px"
-            mx="auto"
-            mt={8}
-            mb={[0, 0, 8]}
-        >
-            <Logo/>
-            <Box>
-                <NavLink to="/" label="Home"/>
-                <NavLink to="/about" label="About Us"/>
-            </Box>
-        </NavContainer>
-    )
-}
-
-export default NavBar;
+	return (
+		<Flex justifyContent="center" flexWrap="wrap" {...props}>
+			<Flex justifyContent="space-evenly" flexWrap="wrap">
+				{useMediaQuery("(max-width: 500px)")[0] ? (pagesWithoutHome.map(({ name, path }) => (
+					<NavLink
+						key={name}
+						label={name}
+						to={path}
+					/>)))
+					:
+					(pages.map(({ name, path }) => (
+						<NavLink
+							key={name}
+							label={name}
+							to={path}
+						/>
+					)))}
+			</Flex>
+		</Flex >
+	);
+};

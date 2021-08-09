@@ -1,49 +1,110 @@
-import { ChakraProvider, useColorMode } from "@chakra-ui/react"
-import { Global, css } from '@emotion/react'
+import App from 'next/app';
+import { createContext, useEffect } from 'react';
+import { ChakraProvider, useColorMode } from '@chakra-ui/react';
+import { Global, css } from '@emotion/react';
+import { motion, AnimatePresence } from 'framer-motion';
+// import { useState } from 'react';
+import { useRouter } from 'next/router';
+
+// import Loader from '../components/loader';
+import { fetchStrapi } from '../lib/api';
+import theme from '../styles/theme'
 
 /* Not sure if this is best way to add global styles */
-const GlobalStyle = ({ children }) => { 
-  const { colorMode } = useColorMode()
+const GlobalStyle = ({ children }) => {
+  const { colorMode } = useColorMode();
 
   return (
     <>
       <Global
         styles={css`
-          ::selection {
-            background-color: #90CDF4;
-            color: #fefefe;
-          }
-          ::-moz-selection {
-            background: #ffb7b7;
-            color: #fefefe;
-          }
-          html {
-            min-width: 356px;
-            scroll-behavior: smooth;
-          }
-          #__next {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background: ${colorMode === 'light' ? '#F5F5F5' : 'black'};
-          }
-        `}
+					::selection {
+						background-color: #90cdf4;
+						color: #fefefe;
+					}
+					::-moz-selection {
+						background: #ffb7b7;
+						color: #fefefe;
+					}
+					html {
+						min-width: 356px;
+						scroll-behavior: smooth;
+					}
+					#__next {
+						display: flex;
+						flex-direction: column;
+						min-height: 100vh;
+						background: ${colorMode === 'light' ? 'white' : 'black'};
+					}
+				`}
       />
       {children}
     </>
-  )
-}
+  );
+};
 
-function MyApp({ Component, pageProps }) {
-  const { colorMode } = useColorMode()
-  
+export const GlobalContext = createContext({});
+
+function MyApp({ Component, pageProps, router }) {
+  // const { colorMode } = useColorMode();
+  // const [loading, setLoading] = useState(false);
+
+  // Router.events.on('routeChangeStart', () => {
+  //   setLoading(true);
+  // });
+  // Router.events.on('routeChangeComplete', () => {
+  //   setLoading(false);
+  // });
+  const nextRouter = useRouter();
+  const { global } = pageProps;
+
+  useEffect(() => {
+    const handleRouteChange = url => {
+      window.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
+        page_path: url,
+      })
+    }
+    nextRouter.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      nextRouter.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [nextRouter.events])
+
   return (
-    <ChakraProvider>
-      <GlobalStyle>
-        <Component {...pageProps} />
-      </GlobalStyle>
-    </ChakraProvider>
-  )
+    <motion.div key={router.route} initial="pageInitial" animate="pageAnimate"
+      variants={{
+        pageInitial: {
+          opacity: 0.7
+        },
+        pageAnimate: {
+          opacity: 1
+        },
+        pageExit: {
+          opacity: 0,
+        }
+      }}>
+      <GlobalContext.Provider value={global}>
+        <ChakraProvider>
+          {/* {loading ? (
+        <Loader />
+      ) : ( */
+            (<GlobalStyle>
+              <Component {...pageProps} />
+            </GlobalStyle>
+            )}
+        </ChakraProvider>
+      </GlobalContext.Provider>
+    </motion.div>
+  );
 }
 
-export default MyApp
+MyApp.getInitialProps = async (ctx) => {
+  // required by Next.js
+  const appProps = await App.getInitialProps(ctx);
+  // Fetch global site settings from Strapi
+  const global = await fetchStrapi("get.global");
+
+  return { ...appProps, pageProps: { global } };
+}
+
+export default MyApp;

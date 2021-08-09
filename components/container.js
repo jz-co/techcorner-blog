@@ -1,31 +1,35 @@
-import React from 'react'
-import {
-    Flex,
-    useColorMode
-} from '@chakra-ui/react'
+import React from 'react';
+import { Flex, Box, useColorMode } from '@chakra-ui/react';
 
-import NavBar from './navbar'
+import Header from './header';
+import Footer from './footer';
 
-const Container = ({ children }) => {
-    const { colorMode } = useColorMode()
+const Container = ({ children, bg, headerBg }) => {
+	const { colorMode } = useColorMode();
 
-    const bgColor = { light: '#F5F5F5', dark: 'gray.900' }
-    const color = { light: 'black', dark: 'white' }
+	const bgColor = { light: '#F5F5F5', dark: 'gray.900' };
+	const color = { light: 'black', dark: 'white' };
 
-    return (
-        <>
-            <NavBar/>
-            <Flex
-                m="0 20px 4rem 20px"
-                justifyContent="center"
-                flexDirection="column"
-                bg={bgColor[colorMode]}
-                color={color[colorMode]}
-            >
-                {children}
-            </Flex>
-        </>
-    )
-}
+	return (
+		<Box width="100%" bg={bg}>
+			<Header bg={headerBg || "white"} />
+			<Flex w="100%" justifyContent="center" alignItems="center" flexDirection="column">
+				{/* <Flex
+					m='0 4rem 4rem 4rem'
+					justifyContent='flex-start'
+					alignItems='center'
+					flexDirection='column'
+					bg={bgColor[colorMode]}
+					color={color[colorMode]}
+					minHeight='80vh'
+					maxWidth='1200px'>
+					{children}
+				</Flex> */}
+				{children}
+			</Flex>
+			<Footer />
+		</Box>
+	);
+};
 
 export default Container;

@@ -1,14 +1,24 @@
-import React from "react"
-import { Box, Text } from "@chakra-ui/react"
+import React from 'react';
+import { Box, Text, HStack, Image } from '@chakra-ui/react';
 
 export default function Logo(props) {
-  return (
-    <Box {...props}>
-      <Text fontSize="lg" fontWeight="bold">
-        Tech Corner
-        { /** Will replace this with an SVG of our actual logo */
-        }
-      </Text>
-    </Box>
-  )
+	return (
+		<HStack {...props}>
+			{/* <svg width='64' height='53' viewBox='0 0 296 260' fill='none' xmlns='http://www.w3.org/2000/svg'>
+				<path d='M251.601 103.354L95.7601 40.6034L33.0091 196.444' stroke='#63C1F6' stroke-width='13' />
+				<circle cx='32.8828' cy='202.883' r='25' transform='rotate(-23.4451 32.8828 202.883)' fill='#5FC5F0' />
+				<circle cx='92.8828' cy='33.8615' r='25' transform='rotate(-23.4451 92.8828 33.8615)' fill='#6DB6EB' />
+				<circle cx='262.883' cy='115.904' r='25' transform='rotate(-23.4451 262.883 115.904)' fill='#63D3F7' />
+				<circle cx='50.3062' cy='150.306' r='20' transform='rotate(-23.4451 50.3062 150.306)' fill='#63D3F7' />
+				<circle cx='72.018' cy='95.018' r='17.5' transform='rotate(-23.4451 72.018 95.018)' fill='#63D3F7' />
+				<circle cx='181.018' cy='74.018' r='17.5' transform='rotate(-23.4451 181.018 74.018)' fill='#63D3F7' />
+				<line x1='46.53' y1='151.653' x2='178.53' y2='76.6527' stroke='#63D3F6' stroke-width='10' />
+				<line x1='60.4816' y1='95.0232' x2='246.482' y2='113.023' stroke='#63D3F6' stroke-width='10' />
+			</svg>
+			<Text fontSize='lg' fontWeight='bold' color="gray.600" minW="fit-content">
+				Tech Corner
+			</Text> */}
+			<Image src="/logo.svg" height="80px" />
+		</HStack>
+	);
 }
