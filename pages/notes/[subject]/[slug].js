@@ -1,5 +1,3 @@
-import Head from 'next/head';
-
 import { Flex, Heading, Text, Stack } from '@chakra-ui/react';
 import ReactMarkdown from 'react-markdown';
 import { motion } from 'framer-motion'
@@ -11,16 +9,6 @@ import NoteSectionContainer from '../../../components/note-section-container';
 import AddResourcesCard from '../../../components/resources-card';
 import { notesComponents } from '../../../components/markdown';
 import { fetchStrapi } from '../../../lib/api';
-
-const vercelResource = {
-    title: 'Next.js Documentation',
-    source: 'Vercel',
-    link: 'https://nextjs.org/docs/getting-started',
-    icon: {
-        url: '/favicon.ico',
-        alternativeText: 'vercel icon'
-    }
-}
 
 export default function NotesPost({ note }) {
 
