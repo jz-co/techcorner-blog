@@ -11,7 +11,7 @@ export default function Footer() {
                             <Link href="/" _hover={{ textDecoration: "none" }}>
 
                                 <Box color="#FAFAFA" width="240px" padding="20px">
-                                    <Image width='58' src="icons/footer-logo.svg"></Image>
+                                    <Image width='58' src="icons/footer/footer-logo.svg"></Image>
                                     <Heading size="md" paddingTop="0.5rem">TECH CORNER</Heading>
                                     <Text fontSize="xs" mt="5px"> &copy; Tech Corner {new Date().getFullYear()}</Text>
                                 
