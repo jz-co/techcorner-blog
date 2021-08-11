@@ -1,5 +1,3 @@
-import Head from 'next/head';
-
 import { Box, Image, Stack } from '@chakra-ui/react';
 import ReactMarkdown from 'react-markdown';
 

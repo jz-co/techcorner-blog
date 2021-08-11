@@ -4,7 +4,6 @@ import TeamProfileCard from "../components/team-profile-card";
 import MainLayout from "../components/layout";
 import Seo from "../components/seo";
 import { fetchStrapi } from '../lib/api';
-import Seo from "../components/seo";
 
 export default function About({ about, contact }) {
     return (
@@ -26,6 +25,7 @@ export default function About({ about, contact }) {
                                     imgSrc={author.profileImage.url}
                                     name={author.name}
                                     message={author.bio}
+                                    social={author.social}
                                 />
                             ))
                             // Would have to change for lg screens if there 3+ authors

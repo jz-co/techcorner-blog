@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Box, Flex, Heading, SimpleGrid, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading } from '@chakra-ui/react';
 import Container from '../../components/container';
 import MainLayout from '../../components/layout';
 import { fetchStrapi } from '../../lib/api';
