@@ -8,6 +8,9 @@ import {
     OrderedList,
     ListItem
 } from '@chakra-ui/react';
+import ReactMarkdown from 'react-markdown';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 
 const notesComponents = {
     h1: ({ node, ...props }) => (
@@ -43,4 +46,15 @@ const notesComponents = {
 
 }
 
-export { notesComponents };
+function NoteMarkdown({ children }) {
+    return (
+        <ReactMarkdown
+            components={notesComponents}
+            remarkPlugins={[remarkMath]}
+            rehypePlugins={[rehypeKatex]}>
+            {children}
+        </ReactMarkdown>
+    )
+}
+
+export { notesComponents, NoteMarkdown };

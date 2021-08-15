@@ -1,5 +1,4 @@
 import { Flex, Heading, Text, Stack } from '@chakra-ui/react';
-import ReactMarkdown from 'react-markdown';
 import { motion } from 'framer-motion'
 
 import Seo from '../../../components/seo';
@@ -7,8 +6,9 @@ import Container from "../../../components/container";
 import MainLayout from '../../../components/layout';
 import NoteSectionContainer from '../../../components/note-section-container';
 import AddResourcesCard from '../../../components/resources-card';
-import { notesComponents } from '../../../components/markdown';
 import { fetchStrapi } from '../../../lib/api';
+
+import { NoteMarkdown } from '../../../components/markdown';
 
 export default function NotesPost({ note }) {
 
@@ -44,10 +44,9 @@ export default function NotesPost({ note }) {
                     <Stack spacing={12} maxWidth="700px" mb={12} color="gray.700" flexBasis={["100%", "100%", "80%"]}>
                         {note.body.map((section) => {
                             return (<NoteSectionContainer key={section.id} spacing={6}>
-                                <ReactMarkdown components={notesComponents}>
+                                <NoteMarkdown>
                                     {section.content}
-
-                                </ReactMarkdown>
+                                </NoteMarkdown>
                             </NoteSectionContainer>)
                         })}
                     </Stack>
