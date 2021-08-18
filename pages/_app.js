@@ -5,6 +5,7 @@ import { Global, css } from '@emotion/react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { fetchStrapi } from '../lib/api';
+import 'katex/dist/katex.min.css'; // stylesheet for the math
 
 /* Not sure if this is best way to add global styles */
 const GlobalStyle = ({ children }) => {
