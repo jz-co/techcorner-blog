@@ -7,7 +7,7 @@ import { fetchStrapi } from '../../../lib/api';
 import ReactPaginate from "react-paginate";
 import { useState } from "react";
 import PostCard from "../../../components/post-card.js";
-import paginationStyles from '../../../styles/pagination.module.css'
+import paginationStyles from '../../../styles/pagination.module.css';
 import Seo from "../../../components/seo";
 export default function BlogTopic({ allArticleCategories, category, articles }) {
 
@@ -53,8 +53,8 @@ export default function BlogTopic({ allArticleCategories, category, articles }) 
 
 						<Flex justifyContent="center" marginTop="60px">
 							<ReactPaginate
-								previousLabel={"<"}
-								nextLabel={">"}
+								previousLabel="&larr;"
+								nextLabel="&rarr;"
 								pageCount={pageCount}
 								onPageChange={changePage}
 								containerClassName={paginationStyles.paginationBttns}
