@@ -4,11 +4,9 @@ import { motion } from 'framer-motion'
 import Seo from '../../../components/seo';
 import Container from "../../../components/container";
 import MainLayout from '../../../components/layout';
-import NoteSectionContainer from '../../../components/note-section-container';
+import NoteSection from '../../../components/notes-section';
 import AddResourcesCard from '../../../components/resources-card';
 import { fetchStrapi } from '../../../lib/api';
-
-import { NoteMarkdown } from '../../../components/markdown';
 
 export default function NotesPost({ note }) {
 
@@ -43,11 +41,11 @@ export default function NotesPost({ note }) {
 
                     <Stack spacing={12} maxWidth="700px" mb={12} color="gray.700" flexBasis={["100%", "100%", "80%"]}>
                         {note.body.map((section) => {
-                            return (<NoteSectionContainer key={section.id} spacing={6}>
-                                <NoteMarkdown>
-                                    {section.content}
-                                </NoteMarkdown>
-                            </NoteSectionContainer>)
+                            return (
+                                <NoteSection key={section.id}
+                                    component={section.__component}
+                                    content={section.content} />
+                            )
                         })}
                     </Stack>
                     {note.resources.length > 0 && (
