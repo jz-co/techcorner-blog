@@ -43,29 +43,31 @@ export default function NotesPost({ note }) {
                     }}>
                         <Heading as="h1" mb={2} color="#042E4E" fontSize="4xl">{note.title}</Heading>
                         <Text color="#98A8B2" fontWeight="semibold" fontSize="2xl">{note.topic.name}</Text>
-                        <Flex mt="20px">
-                            <Box mr="4">
-                                <Button backgroundColor="#1DA1F2" color="white" height="28px" fontSize="13.5px" fontWeight="bold" pl="8px" pr="8px" leftIcon={<FaTwitter />} _hover={{ bg: darken("#1DA1F2", 5) }} onClick={() => window.open(twitterShairngUrl)} borderRadius="3.5">
-                                    Tweet
-                                </Button>
-                            </Box>
-                            <Box mr="4">
-                                <Button backgroundColor="#0A66C2" color="white" height="28px" fontSize="13.5px" fontWeight="bold" pl="8px" pr="8px" leftIcon={<FaLinkedin />} _hover={{ bg: darken("#0A66C2", 5) }} onClick={() => window.open(linkedinSharingUrl)} borderRadius="3.5">
-                                    Share
-                                </Button>
-                            </Box>
-                            <Box>
-                                <Button backgroundColor="#1877F2" color="white" height="28px" fontSize="13.5px" fontWeight="bold" pl="8px" pr="8px" leftIcon={<FaFacebook />} _hover={{ bg: darken("#1877F2", 5) }} onClick={() => window.open(fbSharingUrl)} borderRadius="3.5">
-                                    Share
-                                </Button>
-                            </Box>
-                        </Flex>
                     </motion.div>
                 </Flex>
             </Flex>
-            <MainLayout pt="4rem" w="100%">
+            <MainLayout w="100%">
                 {note.body.length === 0 && <Text>Nothing to see here...</Text>}
-                <Flex w="100%" px={['1.5rem', '2rem']} justifyContent="space-between" wrap={["wrap", "wrap", "nowrap"]}>
+                <Box width="100%">
+                    <Flex mt="2rem" ml="35px">
+                        <Box mr="4">
+                            <Button backgroundColor="#1DA1F2" color="white" height="28px" fontSize="13.5px" fontWeight="bold" pl="8px" pr="8px" leftIcon={<FaTwitter />} _hover={{ bg: darken("#1DA1F2", 5) }} onClick={() => window.open(twitterShairngUrl)} borderRadius="3.5">
+                                Tweet
+                            </Button>
+                        </Box>
+                        <Box mr="4">
+                            <Button backgroundColor="#0A66C2" color="white" height="28px" fontSize="13.5px" fontWeight="bold" pl="8px" pr="8px" leftIcon={<FaLinkedin />} _hover={{ bg: darken("#0A66C2", 5) }} onClick={() => window.open(linkedinSharingUrl)} borderRadius="3.5">
+                                Share
+                            </Button>
+                        </Box>
+                        <Box>
+                            <Button backgroundColor="#1877F2" color="white" height="28px" fontSize="13.5px" fontWeight="bold" pl="8px" pr="8px" leftIcon={<FaFacebook />} _hover={{ bg: darken("#1877F2", 5) }} onClick={() => window.open(fbSharingUrl)} borderRadius="3.5">
+                                Share
+                            </Button>
+                        </Box>
+                    </Flex>
+                </Box>
+                <Flex w="100%" px={['1.5rem', '2rem']} justifyContent="space-between" wrap={["wrap", "wrap", "nowrap"]} mt="2rem">
 
                     <Stack spacing={12} maxWidth="700px" mb={12} color="gray.700" flexBasis={["100%", "100%", "80%"]}>
                         {note.body.map((section) => {
