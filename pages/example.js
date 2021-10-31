@@ -15,6 +15,7 @@ import ArticleLayout from '../components/article-layout';
 import MainLayout from '../components/layout';
 
 import { notesComponents, NoteMarkdown } from '../components/markdown';
+import TableOfContents from '../components/table-of-contents';
 
 
 // FAKE DATA
@@ -83,6 +84,10 @@ const addResources = [
 	},
 ];
 
+const headings = [
+	{ id: "hello", heading: "Big Oh Notation" },
+	{ id: "bye", heading: "Formal Definition" }
+]
 
 export default function Home() {
 	return (
@@ -157,6 +162,7 @@ export default function Home() {
 						${texContent}`}
 					</NoteMarkdown>
 				</Stack>
+				<TableOfContents sections={headings} />
 			</MainLayout>
 		</Container>
 	);

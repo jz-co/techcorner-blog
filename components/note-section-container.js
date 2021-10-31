@@ -1,8 +1,9 @@
 import { Stack } from '@chakra-ui/react'
 
-export default function NoteSectionContainer({ children, ...props }) {
+export default function NoteSectionContainer({ children, id, ...props }) {
     return (
         <Stack
+            id={id}
             as="section"
             spacing="1em"
             bg="white"
