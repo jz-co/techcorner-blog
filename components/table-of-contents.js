@@ -4,7 +4,7 @@ import { useScrollSpy } from "../hooks/use-scrollspy";
 // sections is a list of heading objects, which have the following structure:
 // { heading: string, id: string }
 
-function TableOfContents({ sections }) {
+function TableOfContents({ sections, ...props }) {
     const selectors = sections.map(({ id }) => `#${id}`);
     const activeId = useScrollSpy(
         selectors,
@@ -17,7 +17,8 @@ function TableOfContents({ sections }) {
         <Box padding="34px 32px" background="#EFEFEF"
             borderRadius="12px" border="1px solid #EBEBEB"
             width="270px"
-            position="-webkit-sticky">
+            {...props}
+        >
             <Text
                 as="h2"
                 fontWeight="semibold"

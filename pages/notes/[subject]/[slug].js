@@ -1,4 +1,4 @@
-import { Flex, Heading, Text, Stack } from '@chakra-ui/react';
+import { Flex, Heading, Text, Stack, Box } from '@chakra-ui/react';
 import { motion } from 'framer-motion'
 
 import Seo from '../../../components/seo';
@@ -7,8 +7,9 @@ import MainLayout from '../../../components/layout';
 import NoteSection from '../../../components/notes-section';
 import AddResourcesCard from '../../../components/resources-card';
 import { fetchStrapi } from '../../../lib/api';
+import TableOfContents from '../../../components/table-of-contents';
 
-export default function NotesPost({ note }) {
+export default function NotesPost({ note, sections }) {
 
     return (
         <Container bg="#F5F5F5">
@@ -35,26 +36,40 @@ export default function NotesPost({ note }) {
                     </motion.div>
                 </Flex>
             </Flex>
+
             <MainLayout pt="4rem" w="100%">
                 {note.body.length === 0 && <Text>Nothing to see here...</Text>}
                 <Flex w="100%" px={['1.5rem', '2rem']} justifyContent="space-between" wrap={["wrap", "wrap", "nowrap"]}>
-
                     <Stack spacing={12} maxWidth="700px" mb={12} color="gray.700" flexBasis={["100%", "100%", "80%"]}>
                         {note.body.map((section) => {
                             return (
                                 <NoteSection key={section.id}
                                     component={section.__component}
-                                    content={section.content} />
+                                    content={section.content}
+                                    id={section.sectionId} />
                             )
                         })}
                     </Stack>
-                    {note.resources.length > 0 && (
-                        <AddResourcesCard srcs={[...note.resources]}
+                    <div>
+                        <Box
+                            ml={[0, 0, 8]}
                             flexBasis={["100%", "100%", "20%"]}
-                            maxWidth={["none", "none", "300px"]}
-                            h="fit-content"
-                            ml={[0, 0, 8]} />)
-                    }
+                            position="-webkit-sticky"
+                            position="sticky"
+                            top="20px"
+                            mb={12}
+                        >
+                            <TableOfContents sections={sections} mb={6} />
+
+                            {note.resources.length > 0 && (
+                                <AddResourcesCard srcs={[...note.resources]}
+                                    maxWidth={["none", "none", "300px"]}
+                                    h="fit-content"
+                                />)
+                            }
+
+                        </Box>
+                    </div>
                 </Flex>
             </MainLayout>
         </Container>
@@ -92,9 +107,17 @@ export async function getStaticProps({ params }) {
     const response = await fetchStrapi("get.note-by-slug", params.slug);
     const note = response[0];
 
+    const sections = note.body.map((section) => {
+        return {
+            heading: section.sectionHeading,
+            id: section.sectionId
+        }
+    })
+
     return {
         props: {
-            note
+            note,
+            sections
         },
     };
 }
