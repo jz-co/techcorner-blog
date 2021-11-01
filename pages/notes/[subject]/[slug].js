@@ -1,4 +1,7 @@
-import { Flex, Heading, Text, Stack, Box } from '@chakra-ui/react';
+import { Flex, Heading, Text, Stack, Button, Box } from '@chakra-ui/react';
+import { FaLinkedin, FaFacebook, FaTwitter } from "react-icons/fa";
+import { darken } from '@chakra-ui/theme-tools';
+
 import { motion } from 'framer-motion'
 
 import Seo from '../../../components/seo';
@@ -9,7 +12,17 @@ import AddResourcesCard from '../../../components/resources-card';
 import { fetchStrapi } from '../../../lib/api';
 import TableOfContents from '../../../components/table-of-contents';
 
+import { NoteMarkdown } from '../../../components/markdown';
+import React, { useEffect, useState } from "react";
+
 export default function NotesPost({ note, sections }) {
+	const [currentUrl, setCurrentUrl] = React.useState("");
+	React.useEffect(() => {
+		setCurrentUrl(window.location.href);
+	});
+	const twitterShairngUrl = `https://twitter.com/intent/tweet?url=${currentUrl}&text=Check%20out%20this%20article%20by%20@techcorner0101`
+	const linkedinSharingUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}`
+	const fbSharingUrl = "https://www.facebook.com/sharer/sharer.php?u=" + currentUrl;
 
     return (
         <Container bg="#F5F5F5">
@@ -37,10 +50,29 @@ export default function NotesPost({ note, sections }) {
                 </Flex>
             </Flex>
 
-            <MainLayout pt="4rem" w="100%">
+            <MainLayout w="100%">
                 {note.body.length === 0 && <Text>Nothing to see here...</Text>}
-                <Flex w="100%" px={['1.5rem', '2rem']} justifyContent="space-between" wrap={["wrap", "wrap", "nowrap"]}>
-                    <TableOfContents
+                <Box width="100%">
+                    <Flex mt="2rem" ml="35px">
+                        <Box mr="4">
+                            <Button backgroundColor="#1DA1F2" color="white" height="28px" fontSize="13.5px" fontWeight="bold" pl="8px" pr="8px" leftIcon={<FaTwitter />} _hover={{ bg: darken("#1DA1F2", 5) }} onClick={() => window.open(twitterShairngUrl)} borderRadius="3.5">
+                                Tweet
+                            </Button>
+                        </Box>
+                        <Box mr="4">
+                            <Button backgroundColor="#0A66C2" color="white" height="28px" fontSize="13.5px" fontWeight="bold" pl="8px" pr="8px" leftIcon={<FaLinkedin />} _hover={{ bg: darken("#0A66C2", 5) }} onClick={() => window.open(linkedinSharingUrl)} borderRadius="3.5">
+                                Share
+                            </Button>
+                        </Box>
+                        <Box>
+                            <Button backgroundColor="#1877F2" color="white" height="28px" fontSize="13.5px" fontWeight="bold" pl="8px" pr="8px" leftIcon={<FaFacebook />} _hover={{ bg: darken("#1877F2", 5) }} onClick={() => window.open(fbSharingUrl)} borderRadius="3.5">
+                                Share
+                            </Button>
+                        </Box>
+                    </Flex>
+                </Box>
+                <Flex w="100%" px={['1.5rem', '2rem']} justifyContent="space-between" wrap={["wrap", "wrap", "nowrap"]} mt="2rem">
+                  <TableOfContents
                         sections={sections}
                         mb={12}
                         display={["block", "block", "none"]} />

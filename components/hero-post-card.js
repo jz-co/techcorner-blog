@@ -16,7 +16,7 @@ export default function HeroPostCard({ title, description, published_at, categor
 			bg="white">
 			<Link href={`/blog/posts/${slug}`} passHref>
 				<Box as="a" d='flex' flexBasis='50%'>
-					<Image src={thumbnail.url} objectFit='cover' />
+					<Image height={["240px"]} width="100%" src={thumbnail.url} objectFit='cover' />
 				</Box>
 			</Link>
 			<Box p={8} bg='white' color='#031628' flexBasis='50%'>
