@@ -40,6 +40,11 @@ export default function NotesPost({ note, sections }) {
             <MainLayout pt="4rem" w="100%">
                 {note.body.length === 0 && <Text>Nothing to see here...</Text>}
                 <Flex w="100%" px={['1.5rem', '2rem']} justifyContent="space-between" wrap={["wrap", "wrap", "nowrap"]}>
+                    <TableOfContents
+                        sections={sections}
+                        mb={12}
+                        display={["block", "block", "none"]} />
+
                     <Stack spacing={12} maxWidth="700px" mb={12} color="gray.700" flexBasis={["100%", "100%", "80%"]}>
                         {note.body.map((section) => {
                             return (
@@ -59,7 +64,10 @@ export default function NotesPost({ note, sections }) {
                             top="20px"
                             mb={12}
                         >
-                            <TableOfContents sections={sections} mb={6} />
+                            <TableOfContents
+                                sections={sections}
+                                mb={6}
+                                display={["none", "none", "block"]} />
 
                             {note.resources.length > 0 && (
                                 <AddResourcesCard srcs={[...note.resources]}

@@ -16,7 +16,7 @@ function TableOfContents({ sections, ...props }) {
     return (
         <Box padding="34px 32px" background="#EFEFEF"
             borderRadius="12px" border="1px solid #EBEBEB"
-            width="270px"
+            width={["90%", "90%", "280px"]}
             {...props}
         >
             <Text
@@ -31,8 +31,8 @@ function TableOfContents({ sections, ...props }) {
             <OrderedList spacing={1.5} styleType="none" ml={0}>
                 {sections.map(({ id, heading }) => (
                     <ListItem key={id}
-                        color="#686868"
-                        fontSize="14px"
+                        color={id == activeId ? "gray.700" : "gray.500"}
+                        fontSize={["16px", "16px", "14px"]}
                         fontWeight={id == activeId ? "semibold" : "normal"}
                         _hover={{
                             color: "black"
