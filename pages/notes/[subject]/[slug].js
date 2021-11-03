@@ -1,26 +1,27 @@
 import { Flex, Heading, Text, Stack, Button, Box } from '@chakra-ui/react';
 import { FaLinkedin, FaFacebook, FaTwitter } from "react-icons/fa";
 import { darken } from '@chakra-ui/theme-tools';
+
 import { motion } from 'framer-motion'
 
 import Seo from '../../../components/seo';
 import Container from "../../../components/container";
 import MainLayout from '../../../components/layout';
-import NoteSectionContainer from '../../../components/note-section-container';
+import NoteSection from '../../../components/notes-section';
 import AddResourcesCard from '../../../components/resources-card';
 import { fetchStrapi } from '../../../lib/api';
+import TableOfContents from '../../../components/table-of-contents';
+import React from "react";
 
-import { NoteMarkdown } from '../../../components/markdown';
-import React, { useEffect, useState } from "react";
+export default function NotesPost({ note, sections }) {
+    const [currentUrl, setCurrentUrl] = React.useState("");
+    React.useEffect(() => {
+        setCurrentUrl(window.location.href);
+    });
+    const twitterShairngUrl = `https://twitter.com/intent/tweet?url=${currentUrl}&text=Check%20out%20this%20article%20by%20@techcorner0101`
+    const linkedinSharingUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}`
+    const fbSharingUrl = "https://www.facebook.com/sharer/sharer.php?u=" + currentUrl;
 
-export default function NotesPost({ note }) {
-	const [currentUrl, setCurrentUrl] = React.useState("");
-	React.useEffect(() => {
-		setCurrentUrl(window.location.href);
-	});
-	const twitterShairngUrl = `https://twitter.com/intent/tweet?url=${currentUrl}&text=Check%20out%20this%20article%20by%20@techcorner0101`
-	const linkedinSharingUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}`
-	const fbSharingUrl = "https://www.facebook.com/sharer/sharer.php?u=" + currentUrl;
     return (
         <Container bg="#F5F5F5">
             <Seo seo={note.seo} />
@@ -46,16 +47,17 @@ export default function NotesPost({ note }) {
                     </motion.div>
                 </Flex>
             </Flex>
+
             <MainLayout w="100%">
                 {note.body.length === 0 && <Text>Nothing to see here...</Text>}
                 <Box width="100%">
-                    <Flex mt="2rem" ml="35px">
-                        <Box mr="4">
+                    <Flex mt="3rem" ml="3rem">
+                        <Box mr="3">
                             <Button backgroundColor="#1DA1F2" color="white" height="28px" fontSize="13.5px" fontWeight="bold" pl="8px" pr="8px" leftIcon={<FaTwitter />} _hover={{ bg: darken("#1DA1F2", 5) }} onClick={() => window.open(twitterShairngUrl)} borderRadius="3.5">
                                 Tweet
                             </Button>
                         </Box>
-                        <Box mr="4">
+                        <Box mr="3">
                             <Button backgroundColor="#0A66C2" color="white" height="28px" fontSize="13.5px" fontWeight="bold" pl="8px" pr="8px" leftIcon={<FaLinkedin />} _hover={{ bg: darken("#0A66C2", 5) }} onClick={() => window.open(linkedinSharingUrl)} borderRadius="3.5">
                                 Share
                             </Button>
@@ -67,24 +69,45 @@ export default function NotesPost({ note }) {
                         </Box>
                     </Flex>
                 </Box>
-                <Flex w="100%" px={['1.5rem', '2rem']} justifyContent="space-between" wrap={["wrap", "wrap", "nowrap"]} mt="2rem">
+                <Flex w="100%" px={['1.5rem', '2rem']} justifyContent="space-between" wrap={["wrap", "wrap", "nowrap"]} mt={["3rem", "3rem", "2rem"]}>
+                    <TableOfContents
+                        sections={sections}
+                        mb={12}
+                        display={["block", "block", "none"]} />
 
                     <Stack spacing={12} maxWidth="700px" mb={12} color="gray.700" flexBasis={["100%", "100%", "80%"]}>
                         {note.body.map((section) => {
-                            return (<NoteSectionContainer key={section.id} spacing={6}>
-                                <NoteMarkdown>
-                                    {section.content}
-                                </NoteMarkdown>
-                            </NoteSectionContainer>)
+                            return (
+                                <NoteSection key={section.id}
+                                    component={section.__component}
+                                    content={section.content}
+                                    id={section.sectionId} />
+                            )
                         })}
                     </Stack>
-                    {note.resources.length > 0 && (
-                        <AddResourcesCard srcs={[...note.resources]}
+                    <div>
+                        <Box
+                            ml={[0, 0, 8]}
                             flexBasis={["100%", "100%", "20%"]}
-                            maxWidth={["none", "none", "300px"]}
-                            h="fit-content"
-                            ml={[0, 0, 8]} />)
-                    }
+                            position="-webkit-sticky"
+                            position="sticky"
+                            top="20px"
+                            mb={12}
+                        >
+                            <TableOfContents
+                                sections={sections}
+                                mb={6}
+                                display={["none", "none", "block"]} />
+
+                            {note.resources.length > 0 && (
+                                <AddResourcesCard srcs={[...note.resources]}
+                                    maxWidth={["none", "none", "300px"]}
+                                    h="fit-content"
+                                />)
+                            }
+
+                        </Box>
+                    </div>
                 </Flex>
             </MainLayout>
         </Container>
@@ -122,9 +145,17 @@ export async function getStaticProps({ params }) {
     const response = await fetchStrapi("get.note-by-slug", params.slug);
     const note = response[0];
 
+    const sections = note.body.map((section) => {
+        return {
+            heading: section.sectionHeading,
+            id: section.sectionId
+        }
+    })
+
     return {
         props: {
-            note
+            note,
+            sections
         },
     };
 }
