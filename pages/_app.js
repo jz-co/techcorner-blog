@@ -33,10 +33,6 @@ const GlobalStyle = ({ children }) => {
 						min-height: 100vh;
 						background: ${colorMode === 'light' ? 'white' : 'black'};
 					}
-
-          img + em {
-            opacity: 0.75
-          }
 				`}
       />
       {children}

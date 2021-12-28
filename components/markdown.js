@@ -8,7 +8,8 @@ import {
     UnorderedList,
     OrderedList,
     ListItem,
-    Stack
+    Stack,
+    Flex
 } from '@chakra-ui/react';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
@@ -21,12 +22,17 @@ const notesComponents = {
     h2: ({ node, ...props }) => (
         <Heading as='h3' fontSize='lg' fontWeight="medium" py={2} {...props} />
     ),
+    h3: ({ node, ...props }) => (
+        <Heading as='h4' fontSize="md" fontWeight="medium" {...props} />
+    ),
     p: ({ node, children, props }) => {
         const firstChild = node.children[0].tagName;
         return (
             <Text as='p'
                 fontSize={firstChild == 'img' ? 'sm' : 'md'}
                 lineHeight={firstChild == 'img' ? 'short' : 'inherit'}
+                color={firstChild == "img" ? "gray.400" : "inherit"}
+                textAlign={firstChild == "img" ? "center" : "inherit"}
                 {...props} >
                 {children}
             </Text>
@@ -42,9 +48,11 @@ const notesComponents = {
         const width = startOfWidth != -1 ? alt.slice(startOfWidth + 2) : "500px";
         const actualAlt = alt.slice(0, startOfWidth);
         return (
-            <Image alt={actualAlt}
-                width={["100%", "100%", "fit-content"]}
-                maxWidth={width} fit={"contain"} ml={[0, 6]} mb={4} mt={4} {...props} />
+            <Flex justifyContent="center" width="100%">
+                <Image alt={actualAlt}
+                    width={["100%", "100%", "fit-content"]}
+                    maxWidth={width} fit={"contain"} mb={4} mt={4} {...props} />
+            </Flex>
         )
     },
     pre: ({ node, ...props }) => (
