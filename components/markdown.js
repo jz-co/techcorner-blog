@@ -1,3 +1,4 @@
+import React from 'react';
 import {
     Heading,
     Text,
@@ -6,7 +7,9 @@ import {
     Code,
     UnorderedList,
     OrderedList,
-    ListItem
+    ListItem,
+    Stack,
+    Flex
 } from '@chakra-ui/react';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
@@ -19,15 +22,39 @@ const notesComponents = {
     h2: ({ node, ...props }) => (
         <Heading as='h3' fontSize='lg' fontWeight="medium" py={2} {...props} />
     ),
-    p: ({ node, ...props }) => (
-        <Text as='p' fontSize='md' {...props} />
+    h3: ({ node, ...props }) => (
+        <Heading as='h4' fontSize="md" fontWeight="medium" {...props} />
     ),
+    p: ({ node, children, props }) => {
+        const firstChild = node.children[0].tagName;
+        return (
+            <Text as='p'
+                fontSize={firstChild == 'img' ? 'sm' : 'md'}
+                lineHeight={firstChild == 'img' ? 'short' : 'inherit'}
+                color={firstChild == "img" ? "gray.400" : "inherit"}
+                textAlign={firstChild == "img" ? "center" : "inherit"}
+                {...props} >
+                {children}
+            </Text>
+        )
+    },
     blockquote: (props) => (
-        <Box bg="blue.50" py={4} px={6} borderRadius={12} color="blue.700" my={4} {...props} />
+        <Stack bg="blue.50" py={4} px={6} borderRadius={12} color="blue.700" my={4} spacing={4} {...props} />
+        // <blockquoteComponent {...props} />
     ),
-    img: (props) => (
-        <Image boxSize={["default", "200px"]} objectFit="cover" float={["none", "right"]} ml={[0, 6]} mb={4} borderRadius={8} {...props} />
-    ),
+    img: ({ alt, ...props }) => {
+        // alt will be of format "alt_text@@width", where width is of the format ###px
+        const startOfWidth = alt.indexOf("@@");
+        const width = startOfWidth != -1 ? alt.slice(startOfWidth + 2) : "500px";
+        const actualAlt = alt.slice(0, startOfWidth);
+        return (
+            <Flex justifyContent="center" width="100%">
+                <Image alt={actualAlt}
+                    width={["100%", "100%", "fit-content"]}
+                    maxWidth={width} fit={"contain"} mb={4} mt={4} {...props} />
+            </Flex>
+        )
+    },
     pre: ({ node, ...props }) => (
         <Box as="pre" bg="gray.700" color="white" p={6} borderRadius={8} {...props} />
     ),
@@ -43,8 +70,10 @@ const notesComponents = {
     li: ({ node, ordered, ...props }) => (
         <ListItem ml={8} {...props} />
     )
-
 }
+
+
+
 
 function NoteMarkdown({ children }) {
     return (
