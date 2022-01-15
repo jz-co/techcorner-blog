@@ -31,7 +31,7 @@ const notesComponents = {
             <Text as='p'
                 fontSize={firstChild == 'img' ? 'sm' : 'md'}
                 lineHeight={firstChild == 'img' ? 'short' : 'inherit'}
-                color={firstChild == "img" ? "gray.400" : "inherit"}
+                color={firstChild == "img" ? "gray.500" : "inherit"}
                 textAlign={firstChild == "img" ? "center" : "inherit"}
                 {...props} >
                 {children}
